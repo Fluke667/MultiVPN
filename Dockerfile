@@ -9,7 +9,7 @@ apt-get -yqq --no-install-recommends install \
          strongswan-libcharon libcharon-standard-plugins libcharon-extra-plugins \
          wget dnsutils openssl ca-certificates kmod certbot \
          iproute gawk grep sed net-tools iptables \
-         gcc make pkg-config uuid-runtime ndppd
+         gcc make pkg-config uuid-runtime
 
 
 COPY ./etc/pptpd.conf /etc/pptpd.conf
