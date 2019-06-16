@@ -4,7 +4,7 @@ LABEL maintainer="Fluke667 <Fluke667@gmail.com>"
 
 RUN apt-get update \
 apt-get -yqq --no-install-recommends install \
-         ppp pptpd xl2tpd cron procps \
+         ppp pptpd xl2tpd cron procps software-properties-common \
          strongswan libstrongswan-standard-plugins libstrongswan-extra-plugins \
          strongswan-libcharon libcharon-standard-plugins libcharon-extra-plugins \
          wget dnsutils openssl ca-certificates kmod certbot \
