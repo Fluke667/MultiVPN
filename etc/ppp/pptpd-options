@@ -1,0 +1,23 @@
+name pptpd
+refuse-pap
+refuse-chap
+refuse-mschap
+require-mschap-v2
+require-mppe-128
+
+# Network and Routing
+ms-dns 1.1.1.1
+ms-dns 1.0.0.1
+proxyarp
+nodefaultroute
+
+# Logging
+# debug
+# dump
+
+# Miscellaneous
+lock
+nobsdcomp
+novj
+novjccomp
+nologfd
