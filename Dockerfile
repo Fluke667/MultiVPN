@@ -7,12 +7,7 @@ apt-get -yqq --no-install-recommends install \
          ppp pptpd xl2tpd cron procps strongswan \
          wget dnsutils openssl ca-certificates kmod \
          iproute gawk grep sed net-tools iptables \
-         bsdmainutils libcurl3-nss \
-         libnss3-tools libevent-dev libcap-ng0 \
-         libnss3-dev libnspr4-dev pkg-config libpam0g-dev \
-         libcap-ng-dev libcap-ng-utils libselinux1-dev \
-         libcurl4-nss-dev libpcap0.8-dev \
-flex bison gcc make
+         gcc make pkg-config
 
 
 
