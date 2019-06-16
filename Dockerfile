@@ -14,7 +14,7 @@ apt-get -yqq --no-install-recommends install \
 COPY ./etc/pptpd.conf /etc/pptpd.conf
 COPY ./etc/ipsec.conf /etc/ipsec.conf
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
-#COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
+COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
 COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
 COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
 
