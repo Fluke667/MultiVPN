@@ -7,8 +7,7 @@ apt-get -yqq --no-install-recommends install \
          ppp pptpd xl2tpd cron procps strongswan \
          wget dnsutils openssl ca-certificates kmod \
          iproute gawk grep sed net-tools iptables \
-         gcc make pkg-config
-
+         gcc make pkg-config uuid-runtime ndppd
 
 
 COPY ./etc/pptpd.conf /etc/pptpd.conf
