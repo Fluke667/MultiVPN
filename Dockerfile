@@ -4,7 +4,7 @@ LABEL maintainer="Fluke667 <Fluke667@gmail.com>"
 
 RUN set -x \
          && apt-get update \
-         && apt-get install --no-install-recommends --no-install-suggests
+         && apt-get install --no-install-recommends --no-install-suggests \
          pptpd xl2tpd cron procps software-properties-common \
          strongswan libstrongswan-standard-plugins libstrongswan-extra-plugins \
          strongswan-libcharon libcharon-standard-plugins libcharon-extra-plugins \
