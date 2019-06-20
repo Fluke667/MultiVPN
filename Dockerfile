@@ -18,6 +18,7 @@ COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
 COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
 COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
 
+EXPOSE 1723
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 0700 /entrypoint.sh
