@@ -6,8 +6,7 @@ RUN set -x \
          && apt-get update \
          && apt-get install --no-install-recommends --no-install-suggests \
          pptpd xl2tpd cron procps software-properties-common \
-         strongswan libstrongswan-standard-plugins libstrongswan-extra-plugins \
-         strongswan-libcharon libcharon-standard-plugins libcharon-extra-plugins \
+         strongswan libstrongswan-extra-plugins \
          wget dnsutils openssl ca-certificates kmod certbot \
          gawk grep sed net-tools iptables gcc make pkg-config 
 
