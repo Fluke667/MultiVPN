@@ -25,5 +25,6 @@ EXPOSE 1723/tcp 500/udp 4500/udp
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 0700 /entrypoint.sh
 
+VOLUME ["/lib/modules"]
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["pptpd", "--fg"]
