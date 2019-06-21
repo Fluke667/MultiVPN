@@ -8,7 +8,7 @@ if [ -z ${vpn_user} ] || [ -z ${vpn_password} ]; then
 	exit 1
 fi
 
-vpndeluser ${vpn_user}
+vpndel ${vpn_user}
 
 cat >> /etc/ipsec.d/l2tp-secrets <<EOF
 "${vpn_user}" "*" "${vpn_password}" "*"
