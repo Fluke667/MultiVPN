@@ -41,9 +41,9 @@ docker run \
 
 ### Script Commands
 ```
-- vpnadd <user> <pass>
-- vpndel <user>
-- setpsk <psk>
-- unsetpsk <psk>
-- apply
+vpnadd <user> <pass>
+vpndel <user>
+setpsk <psk>
+unsetpsk <psk>
+apply
 ```
