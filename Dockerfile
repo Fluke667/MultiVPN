@@ -7,7 +7,7 @@ RUN set -x \
          && apt-get install --no-install-recommends --no-install-suggests -y \
          pptpd xl2tpd cron procps software-properties-common python3-pip \
          #strongswan libstrongswan-extra-plugins \
-         wget curl dnsutils openssl ca-certificates kmod certbot supervisor \
+         wget curl dnsutils openssl ca-certificates kmod certbot supervisor libopencv-dev \
          gawk grep sed net-tools iptables gcc make pkg-config kmod libgmp-dev libssl-dev
 
 ENV STRONGSWAN_VERSION 5.8.0
