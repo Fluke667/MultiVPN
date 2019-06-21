@@ -1,9 +1,5 @@
 #!/bin/sh
 
-
-
-
-
 set -e
 
 # Sysctl Configs
