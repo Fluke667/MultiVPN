@@ -20,4 +20,5 @@ docker run \
     -v /lib/modules:/lib/modules \
     -d --privileged \
     -e VPN_USER=MyUsername VPN_PASSWORD=MyPassword \
+    -e VPN_PSK=MyPSK \
     fluke667/multvpn
