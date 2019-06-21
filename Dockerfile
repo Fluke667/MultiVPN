@@ -5,7 +5,7 @@ LABEL maintainer="Fluke667 <Fluke667@gmail.com>"
 RUN set -x \
          && apt-get update \
          && apt-get install --no-install-recommends --no-install-suggests -y \
-         pptpd xl2tpd cron procps software-properties-common \
+         pptpd xl2tpd cron procps software-properties-common python3-pip \
          #strongswan libstrongswan-extra-plugins \
          wget curl dnsutils openssl ca-certificates kmod certbot \
          gawk grep sed net-tools iptables gcc make pkg-config 
