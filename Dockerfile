@@ -52,7 +52,7 @@ RUN mkdir -p /usr/src/strongswan \
 && cd / \
 && git clone --depth=50 https://github.com/strongswan/strongMan.git strongMan \
 && cd strongMan \
-&& git checkout -qf ${COMMIT} \
+#&& git checkout -qf ${COMMIT} \
 && pip3 install -r requirements.txt
 
 
