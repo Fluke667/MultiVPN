@@ -17,6 +17,7 @@ EOF
 cat >> /etc/ipsec.d/ipsec.secrets <<EOF
 ${vpn_user} : EAP "${vpn_password}"
 ${vpn_user} : XAUTH "${vpn_password}"
+${vpn_user} : ECDSA "${vpn_password}"
 EOF
 
 cat >> /etc/ppp/chap-secrets <<EOF
