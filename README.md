@@ -1,6 +1,14 @@
 # MultVPN a PPTP / L2TP Server
 
 
+Start the IPsec VPN server
+VERY IMPORTANT ! First, run this command on the Docker host to load the IPsec NETKEY kernel module:
+
+
+sudo modprobe af_key
+
+
+
 docker run \
     --name multivpn \
     -p 1723:1723 \
