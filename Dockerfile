@@ -56,12 +56,16 @@ RUN mkdir -p /usr/src/strongswan \
 && pip3 install -r requirements.txt \
 && ./setup.py add-service
 
-
+# PPTP Configuration
 COPY ./etc/pptpd.conf /etc/pptpd.conf
+COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
+# Strongswan Configuration
 COPY ./etc/ipsec.conf /etc/ipsec.conf
+COPY ./etc/strongswan.conf /etc/strongswan.conf
+# L2TP Configuration
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
-COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
+# Authentication
 COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
 
 
