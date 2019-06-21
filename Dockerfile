@@ -66,7 +66,7 @@ COPY ./etc/strongswan.conf /etc/strongswan.conf
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
 # Authentication
-COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
+#COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
 
 
 EXPOSE 1723/tcp 
@@ -75,9 +75,12 @@ EXPOSE 4500/udp
 EXPOSE 1701/udp
 EXPOSE 1515
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod 0700 /entrypoint.sh
+COPY firewall.sh /firewall.sh
+COPY auth.sh /auth.sh
+RUN chmod 0700 /firewall.sh
+RUN chmod 0700 /auth.sh
 
 VOLUME ["/lib/modules"]
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/firewall.sh"]
+CMD ["/auth.sh"]
 CMD ["pptpd", "--fg"]
