@@ -40,8 +40,8 @@ docker run \
 - CRT_DOM= - The fully qualified domain name.
 
 ### Script Commands
-vpnadd <user> <pass>
-vpndel <user>
-setpsk <psk>
-unsetpsk <psk>
-apply
+- vpnadd <user> <pass>
+- vpndel <user>
+- setpsk <psk>
+- unsetpsk <psk>
+- apply
