@@ -75,10 +75,13 @@ EXPOSE 1515/tcp
 
 COPY firewall.sh /firewall.sh
 COPY auth.sh /auth.sh
+COPY cert.sh /cert.sh
 RUN chmod 0700 /firewall.sh
 RUN chmod 0700 /auth.sh
+RUN chmod 0700 /cert.sh
 
 VOLUME ["/lib/modules"]
 CMD ["/firewall.sh"]
 CMD ["/auth.sh"]
+CMD ["/cert.sh"]
 CMD ["pptpd", "--fg"]
