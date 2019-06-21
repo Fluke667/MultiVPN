@@ -53,10 +53,8 @@ RUN mkdir -p /usr/src/strongswan \
 && git clone --depth=50 https://github.com/strongswan/strongMan.git strongMan \
 && cd strongMan \
 && git checkout -qf ${COMMIT} \
-&& pip install -r requirements.txt
+&& pip3 install -r requirements.txt
 
-RUN cp -rf /strongswan-$STRONGSWAN_VERSION/testing/hosts/moon/etc/swanctl/* /etc/swanctl/ \
-&& cp /strongswan-$STRONGSWAN_VERSION/testing/hosts/moon/etc/ipsec.secrets /etc/
 
 COPY ./etc/pptpd.conf /etc/pptpd.conf
 COPY ./etc/ipsec.conf /etc/ipsec.conf
