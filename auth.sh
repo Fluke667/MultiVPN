@@ -55,3 +55,27 @@ cat > /etc/ppp/pap-secrets <<EOF
 "$VPN_USER" "*" "$VPN_PASSWORD" "*"
 EOF
 
+if [ -f "/etc/ipsec.d/l2tp-secrets" ]; then
+	echo "Overwriting standard /etc/ppp/l2tp-secrets with /etc/ipsec.d/l2tp-secrets"
+	cp -f /etc/ipsec.d/l2tp-secrets /etc/ppp/l2tp-secrets
+fi
+
+if [ -f "/etc/ipsec.d/ipsec.secrets" ]; then
+	echo "Overwriting standard /etc/ipsec.secrets with /etc/ipsec.d/ipsec.secrets"
+	cp -f /etc/ipsec.d/ipsec.secrets /etc/ipsec.secrets
+fi
+
+if [ -f "/etc/ipsec.d/ipsec.conf" ]; then
+	echo "Overwriting standard /etc/ipsec.conf with /etc/ipsec.d/ipsec.conf"
+	cp -f /etc/ipsec.d/ipsec.conf /etc/ipsec.conf
+fi
+
+if [ -f "/etc/ipsec.d/strongswan.conf" ]; then
+	echo "Overwriting standard /etc/strongswan.conf with /etc/ipsec.d/strongswan.conf"
+	cp -f /etc/ipsec.d/strongswan.conf /etc/strongswan.conf
+fi
+
+if [ -f "/etc/ipsec.d/xl2tpd.conf" ]; then
+	echo "Overwriting standard /etc/xl2tpd/xl2tpd.conf with /etc/ipsec.d/xl2tpd.conf"
+	cp -f /etc/ipsec.d/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
+fi
