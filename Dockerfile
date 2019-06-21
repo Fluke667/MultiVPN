@@ -65,8 +65,7 @@ COPY ./etc/strongswan.conf /etc/strongswan.conf
 # L2TP Configuration
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
-# Authentication
-#COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
+
 
 
 EXPOSE 1723/tcp 
