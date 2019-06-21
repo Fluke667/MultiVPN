@@ -81,6 +81,9 @@ RUN chmod 0700 /auth.sh
 RUN chmod 0700 /cert.sh
 
 VOLUME ["/lib/modules"]
+VOLUME ["/etc/ipsec.d"]
+VOLUME ["/etc/ppp"]
+
 CMD ["/firewall.sh"]
 CMD ["/auth.sh"]
 CMD ["/cert.sh"]
