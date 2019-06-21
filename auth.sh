@@ -49,3 +49,9 @@ cat > /etc/ppp/chap-secrets <<EOF
 "$VPN_USER" "*" "$VPN_PASSWORD" "*"
 EOF
 
+cat > /etc/ppp/pap-secrets <<EOF
+# Secrets for authentication using PAP
+# client    server      secret      acceptable local IP addresses
+"$VPN_USER" "*" "$VPN_PASSWORD" "*"
+EOF
+
