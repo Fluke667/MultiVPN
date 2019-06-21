@@ -48,3 +48,6 @@ setpsk <psk>
 unsetpsk <psk>
 apply
 ```
+
+### Services running
+
