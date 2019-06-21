@@ -60,6 +60,12 @@ COPY ./etc/strongswan.conf /etc/strongswan.conf
 # L2TP Configuration
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
+# Copy Scripts
+COPY ./scripts/vpnadd /usr/local/bin/vpnadd
+COPY ./scripts/vpndel /usr/local/bin/vpndel
+COPY ./scripts/setpsk /usr/local/bin/setpsk
+COPY ./scripts/unsetpsk /usr/local/bin/unsetpsk
+COPY ./scripts/apply /usr/local/bin/apply
 
 ### Expose Ports
 # 1723/tcp+udp - PPTP Protocol
