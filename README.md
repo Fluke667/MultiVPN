@@ -25,6 +25,15 @@ docker run \
     fluke667/multvpn
 ```
 
+
+### Exposed Ports
+- 1723/tcp+udp - PPTP Protocol  
+- 500/udp  - Internet Key Exchange (IKE)   
+- 4500/udp - IPSec NAT Traversal   
+- 1701/udp - Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)    
+- 1515/tcp - Webinterface
+
+
 ### The fields, specified in certificate line are listed below:
 - CRT_CN= - Country name. The two-letter ISO abbreviation.
 - CRT_ST= - State or Province name.
