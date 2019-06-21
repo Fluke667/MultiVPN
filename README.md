@@ -25,7 +25,7 @@ docker run \
     fluke667/multvpn
 ```
 
-### The fields, specified in second certificate line are listed below:
+### The fields, specified in certificate line are listed below:
 - CRT_CN= - Country name. The two-letter ISO abbreviation.
 - CRT_ST= - State or Province name.
 - CRT_LOC= - Locality Name. The name of the city where you are located.
