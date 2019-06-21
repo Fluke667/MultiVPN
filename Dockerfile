@@ -11,15 +11,10 @@ RUN set -x \
          gawk grep sed net-tools iptables gcc make pkg-config module-init-tools libgmp-dev libssl-dev
 
 ENV STRONGSWAN_VERSION 5.8.0
-ENV GPG_KEY 948F158A4E76A27BF3D07532DF42C170B34DBA77
 
 RUN mkdir -p /usr/src/strongswan \
 	&& cd /usr/src \
-	&& curl -SOL "https://download.strongswan.org/strongswan-$STRONGSWAN_VERSION.tar.gz.sig" \
 	&& curl -SOL "https://download.strongswan.org/strongswan-$STRONGSWAN_VERSION.tar.gz" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
-	&& gpg --batch --verify strongswan-$STRONGSWAN_VERSION.tar.gz.sig strongswan-$STRONGSWAN_VERSION.tar.gz \
 	&& tar -zxf strongswan-$STRONGSWAN_VERSION.tar.gz -C /usr/src/strongswan --strip-components 1 \
 	&& cd /usr/src/strongswan \
 	&& ./configure --prefix=/usr --sysconfdir=/etc \
