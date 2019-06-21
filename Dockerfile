@@ -7,8 +7,8 @@ RUN set -x \
          && apt-get install --no-install-recommends --no-install-suggests -y \
          pptpd xl2tpd cron procps software-properties-common python3-pip \
          #strongswan libstrongswan-extra-plugins \
-         wget curl dnsutils openssl ca-certificates kmod certbot \
-         gawk grep sed net-tools iptables gcc make pkg-config 
+         wget curl dnsutils openssl ca-certificates kmod certbot supervisor \
+         gawk grep sed net-tools iptables gcc make pkg-config module-init-tools libgmp-dev libssl-dev
 
 ENV STRONGSWAN_VERSION 5.8.0
 ENV GPG_KEY 948F158A4E76A27BF3D07532DF42C170B34DBA77
