@@ -16,8 +16,8 @@ sysctl -e -q -w net.ipv4.conf.default.accept_source_route=0
 sysctl -e -q -w net.ipv4.conf.default.accept_redirects=0
 sysctl -e -q -w net.ipv4.conf.default.send_redirects=0
 sysctl -e -q -w net.ipv4.conf.default.rp_filter=0
-sysctl -e -q -w net.ipv4.conf.eth0.send_redirects=0
-sysctl -e -q -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -e -q -w net.ipv4.conf.ens3.send_redirects=0
+sysctl -e -q -w net.ipv4.conf.ens3.rp_filter=0
 
 # configure firewall
 iptables -t nat -A POSTROUTING -s 10.99.99.0/24 ! -d 10.99.99.0/24 -j MASQUERADE
