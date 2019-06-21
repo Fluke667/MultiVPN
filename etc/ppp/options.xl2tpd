@@ -33,7 +33,7 @@ mtu 1200
 mru 1200
 
 # DNS options for Windows clients
-ms-dns $DNS1
-ms-dns $DNS2
+ms-dns $VPN_DNS1
+ms-dns $VPN_DNS2
 
 
