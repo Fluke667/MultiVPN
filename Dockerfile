@@ -61,13 +61,17 @@ COPY ./etc/strongswan.conf /etc/strongswan.conf
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
 
-
-
-EXPOSE 1723/tcp 
+### Expose Ports
+# 1723/tcp+udp - PPTP Protocol
+# 500/udp  - Internet Key Exchange (IKE)
+# 4500/udp - IPSec NAT Traversal
+# 1701/udp - Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)
+# 1515/tcp - Webinterface
+EXPOSE 1723/tcp 1723/udp
 EXPOSE 500/udp 
-EXPOSE 4500/udp 
+EXPOSE 4500/udp
 EXPOSE 1701/udp
-EXPOSE 1515
+EXPOSE 1515/tcp
 
 COPY firewall.sh /firewall.sh
 COPY auth.sh /auth.sh
