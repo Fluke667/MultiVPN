@@ -21,7 +21,7 @@ docker run \
     -d --privileged \
     -e VPN_USER=MyUsername VPN_PASSWORD=MyPassword \
     -e VPN_PSK=MyPSK \
-    -e CRT_CN=DE CRT_ST=Bavaria CRT_LOC=Nuremberg CRT_NAME=TB CRT_ORG=ORG CRT_DOM=localhost CRT_EMAIL=Fluke667@protonmail.com \
+    -e CRT_CN=DE CRT_ST=Bavaria CRT_LOC=Nuremberg CRT_NAME=TB CRT_ORG=ORG CRT_DOM=localhost \
     fluke667/multvpn
 ```
 
@@ -32,4 +32,3 @@ docker run \
 - CRT_NAME= - The full name of your organization.
 - CRT_ORG= - Organizational Unit.
 - CRT_DOM= - The fully qualified domain name.
-- CRT_EMAIL= - Your Email Adress.
