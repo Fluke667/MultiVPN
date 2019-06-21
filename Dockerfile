@@ -7,7 +7,7 @@ RUN set -x \
          && apt-get install --no-install-recommends --no-install-suggests -y \
          pptpd xl2tpd cron procps software-properties-common \
          #strongswan libstrongswan-extra-plugins \
-         wget dnsutils openssl ca-certificates kmod certbot \
+         wget curl dnsutils openssl ca-certificates kmod certbot \
          gawk grep sed net-tools iptables gcc make pkg-config 
 
 ENV STRONGSWAN_VERSION 5.8.0
@@ -31,22 +31,32 @@ RUN mkdir -p /usr/src/strongswan \
 		--enable-eap-ttls \
 		--enable-eap-peap \
 		--enable-eap-tnc \
-		--enable-eap-dynamic \\
+		--enable-eap-dynamic \
 		--enable-xauth-eap \
-                  --enable-md4 \
+                --enable-md4 \
 		--enable-openssl \
-                  --enable-aesni \
-                  --enable-af-alg \
-                  --enable-ccm \
-                  --enable-curl \
-                  --enable-files \
-                  --enable-gcm \
-                  --enable-sql \
-	         --enable-mysql \
-	         --enable-attr-sql \
+                --enable-aesni \
+                --enable-af-alg \
+                --enable-ccm \
+                --enable-curl \
+                --enable-files \
+                --enable-gcm \
+                --enable-sql \
+	        --enable-mysql \
+	        --enable-attr-sql \
+		--enable-vici \
+                --enable-python-eggs \
 	&& make -j \
 	&& make install \
-&& rm -rf "/usr/src/strongswan*"
+&& rm -rf "/usr/src/strongswan*" \
+&& cd / \
+&& git clone --depth=50 https://github.com/strongswan/strongMan.git strongMan \
+&& cd strongMan \
+&& git checkout -qf ${COMMIT} \
+&& pip install -r requirements.txt
+
+RUN cp -rf /strongswan-$STRONGSWAN_VERSION/testing/hosts/moon/etc/swanctl/* /etc/swanctl/ \
+&& cp /strongswan-$STRONGSWAN_VERSION/testing/hosts/moon/etc/ipsec.secrets /etc/
 
 COPY ./etc/pptpd.conf /etc/pptpd.conf
 COPY ./etc/ipsec.conf /etc/ipsec.conf
