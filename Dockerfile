@@ -19,7 +19,7 @@ COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
 COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
 
 
-EXPOSE 1723/tcp 500/udp 4500/udp
+EXPOSE 1723/tcp 500/udp 4500/udp 1701/udp
 
 
 COPY entrypoint.sh /entrypoint.sh
