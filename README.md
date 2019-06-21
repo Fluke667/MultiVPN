@@ -38,3 +38,10 @@ docker run \
 - CRT_NAME= - The full name of your organization.
 - CRT_ORG= - Organizational Unit.
 - CRT_DOM= - The fully qualified domain name.
+
+### Script Commands
+vpnadd <user> <pass>
+vpndel <user>
+setpsk <psk>
+unsetpsk <psk>
+apply
