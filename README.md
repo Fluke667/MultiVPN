@@ -7,6 +7,6 @@ docker run \
     -p 500:500/udp \
     -p 4500:4500/udp \
     -v /data/ppp:/etc/ppp \
-    -v /data/l2tp/lib/modules:/lib/modules \
+    -v /lib/modules:/lib/modules \
     -d --privileged \
     fluke667/multvpn
