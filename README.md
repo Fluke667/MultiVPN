@@ -11,11 +11,7 @@ sudo modprobe af_key
 ```
 docker run \
     --name multivpn \
-    -p 1723:1723 \
-    -p 1515:1515 \
-    -p 500:500/udp \
-    -p 4500:4500/udp \
-    -p 1701:1701/udp \
+    -p 1723:1723/udp 1515:1515/tcp 500:500/udp 4500:4500/udp 1701:1701/udp \
     -v /data/ppp:/etc/ppp \
     -v /lib/modules:/lib/modules \
     -d --privileged \
