@@ -1,3 +1,4 @@
+#!/bin/sh
 
 if [ "$VPN_PASSWORD" = "password" ] || [ "$VPN_PASSWORD" = "" ]; then
 	# Generate a random password
