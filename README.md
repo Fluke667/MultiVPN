@@ -21,14 +21,15 @@ docker run \
     -d --privileged \
     -e VPN_USER=MyUsername VPN_PASSWORD=MyPassword \
     -e VPN_PSK=MyPSK \
-    -e CRT_COUNTRY=DE CRT_STATE=Bavaria CRT_LOC=Nuremberg CRT_NAME=TB CRT_ORG=ORG CRT_DOM=localhost \
+    -e CRT_CN=DE CRT_ST=Bavaria CRT_LOC=Nuremberg CRT_NAME=TB CRT_ORG=ORG CRT_DOM=localhost CRT_EMAIL=Fluke667@protonmail.com \
     fluke667/multvpn
 ```
 
 ### The fields, specified in second certificate line are listed below:
-- CRT_COUNTRY= - Country name. The two-letter ISO abbreviation.
-- CRT_STATE= - State or Province name.
+- CRT_CN= - Country name. The two-letter ISO abbreviation.
+- CRT_ST= - State or Province name.
 - CRT_LOC= - Locality Name. The name of the city where you are located.
 - CRT_NAME= - The full name of your organization.
 - CRT_ORG= - Organizational Unit.
 - CRT_DOM= - The fully qualified domain name.
+- CRT_EMAIL= - Your Email Adress.
