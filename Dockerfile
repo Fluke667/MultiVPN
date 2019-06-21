@@ -53,7 +53,8 @@ RUN mkdir -p /usr/src/strongswan \
 && git clone --depth=50 https://github.com/strongswan/strongMan.git strongMan \
 && cd strongMan \
 #&& git checkout -qf ${COMMIT} \
-&& pip3 install -r requirements.txt
+&& pip3 install -r requirements.txt \
+&& ./setup.py add-service
 
 
 COPY ./etc/pptpd.conf /etc/pptpd.conf
@@ -64,8 +65,11 @@ COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
 COPY ./etc/ppp/chap-secrets /etc/ppp/chap-secrets
 
 
-EXPOSE 1723/tcp 500/udp 4500/udp 1701/udp
-
+EXPOSE 1723/tcp 
+EXPOSE 500/udp 
+EXPOSE 4500/udp 
+EXPOSE 1701/udp
+EXPOSE 1515
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 0700 /entrypoint.sh
