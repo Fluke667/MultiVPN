@@ -33,7 +33,7 @@ mtu 1200
 mru 1200
 
 # DNS options for Windows clients
-ms-dns 8.8.8.8
-ms-dns 8.8.4.4
+ms-dns $DNS1
+ms-dns $DNS2
 
 
