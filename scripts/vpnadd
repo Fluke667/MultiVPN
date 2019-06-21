@@ -18,3 +18,13 @@ cat >> /etc/ipsec.d/ipsec.secrets <<EOF
 ${vpn_user} : EAP "${vpn_password}"
 ${vpn_user} : XAUTH "${vpn_password}"
 EOF
+
+cat >> /etc/ppp/chap-secrets <<EOF
+${vpn_user} : EAP "${vpn_password}"
+${vpn_user} : XAUTH "${vpn_password}"
+EOF
+
+cat >> /etc/ppp/pap-secrets <<EOF
+${vpn_user} : EAP "${vpn_password}"
+${vpn_user} : XAUTH "${vpn_password}"
+EOF
