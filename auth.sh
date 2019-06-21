@@ -22,6 +22,7 @@ if [ "$VPN_PASSWORD" = "$VPN_PSK" ]; then
 	echo "It is not recommended to use the same secret as password and PSK key!"
 fi
 
+
 cat > /etc/ppp/l2tp-secrets <<EOF
 # This file holds secrets for L2TP authentication.
 # Username  Server  Secret  Hosts
@@ -41,3 +42,10 @@ cat > /etc/ipsec.secrets <<EOF
 $VPN_USER : EAP "$VPN_PASSWORD"
 $VPN_USER : XAUTH "$VPN_PASSWORD"
 EOF
+
+cat > /etc/ppp/chap-secrets <<EOF
+# Secrets for authentication using PAP
+# client    server      secret      acceptable local IP addresses
+"$VPN_USER" "*" "$VPN_PASSWORD" "*"
+EOF
+
