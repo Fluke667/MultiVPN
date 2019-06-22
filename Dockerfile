@@ -5,7 +5,7 @@ LABEL maintainer="Fluke667 <Fluke667@gmail.com>"
 RUN set -x \
          && apt-get update \
          && apt-get install --no-install-recommends --no-install-suggests -y \
-         pptpd xl2tpd cron procps software-properties-common python3-pip python-setuptools python-pkg-resources python-wheel \
+         pptpd xl2tpd cron procps software-properties-common python-pip python-setuptools python-pkg-resources python-wheel \
 	 wget curl dnsutils openssl ca-certificates kmod certbot supervisor libopencv-dev libsqlite3-0 libsqlite3-dev \
          gawk grep sed git net-tools iptables gcc make pkg-config kmod libgmp-dev libssl-dev libcurl4-openssl-dev
 
@@ -45,7 +45,7 @@ RUN mkdir -p /usr/src/strongswan \
 && git clone --depth=50 https://github.com/strongswan/strongMan.git strongMan \
 && cd strongMan \
 #&& git checkout -qf ${COMMIT} \
-&& pip3 install -r requirements.txt \
+&& pip install -r requirements.txt \
 && ./setup.py add-service
 
 # PPTP Configuration
