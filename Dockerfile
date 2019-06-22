@@ -8,7 +8,7 @@ RUN set -x \
          pptpd xl2tpd cron procps software-properties-common python3-pip \
          #strongswan libstrongswan-extra-plugins \
          wget curl dnsutils openssl ca-certificates kmod certbot supervisor libopencv-dev \
-         gawk grep sed net-tools iptables gcc make pkg-config kmod libgmp-dev libssl-dev
+         gawk grep sed net-tools iptables gcc make pkg-config kmod libgmp-dev libssl-dev libcurl4-openssl-dev
 
 ENV STRONGSWAN_VERSION 5.8.0
 
