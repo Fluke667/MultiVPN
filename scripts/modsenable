@@ -1,0 +1,19 @@
+#!/bin/sh
+
+cat >> /etc/modules <<EOF
+ah4
+ah6
+esp4
+esp6
+xfrm4_tunnel
+xfrm6_tunnel
+xfrm_user
+ip_tunnel
+tunnel
+tunnel6
+xfrm4_mode_tunnel
+xfrm6_mode_tunnel
+pcrypt
+xfrm_ipcomp
+deflate
+EOF
