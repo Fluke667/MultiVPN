@@ -18,7 +18,7 @@ docker run \
     -d --privileged \
     -e VPN_USER=MyUsername VPN_PASSWORD=MyPassword VPN_PSK=MyPSK \
     -e VPN_DNS1=1.1.1.1 VPN_DNS2=1.0.0.1 \
-    -e CRT_CN=DE CRT_ST=Bavaria CRT_LOC=NBerlin CRT_NAME=TB CRT_ORG=ORG CRT_DOM=localhost CRT_P12_PW=CertPass \
+    -e CRT_CN=DE CRT_ST=Bavaria CRT_LOC=Berlin CRT_NAME=TB CRT_ORG=ORG CRT_DOM=localhost CRT_P12=CertPass \
     fluke667/multvpn
 ```
 
