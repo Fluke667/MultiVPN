@@ -38,3 +38,6 @@ lsmod | grep tunnel4
 lsmod | grep tunnel6
 lsmod | grep xfrm4_mode_tunnel
 lsmod | grep xfrm6_mode_tunnel
+
+echo -e "\e[36m'Run modsenable to enable all Kernel modules...'\e[0m"
+
