@@ -8,7 +8,8 @@ RUN set -x \
          pptpd xl2tpd cron procps software-properties-common \
 	 python-pip python-setuptools python-pkg-resources python-wheel python-dev \
 	 wget curl dnsutils openssl ca-certificates kmod certbot supervisor libopencv-dev libsqlite3-0 libsqlite3-dev libdbus-1-dev \
-         gawk grep sed git net-tools iptables gcc make pkg-config kmod libgmp-dev libssl-dev libcurl4-openssl-dev libsystemd-dev
+         gawk grep sed git net-tools gcc make pkg-config kmod libgmp-dev libssl-dev libcurl4-openssl-dev libsystemd-dev 
+	 #iptables
 
 ENV STRONGSWAN_VERSION 5.8.0
 
@@ -76,10 +77,10 @@ COPY ./scripts/mods-enable /usr/local/bin/mods-enable
 # 1515/tcp - Webinterface
 EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp
 
-COPY firewall.sh /firewall.sh
+#COPY firewall.sh /firewall.sh
 COPY auth.sh /auth.sh
 COPY cert.sh /cert.sh
-RUN chmod 0700 /firewall.sh
+#RUN chmod 0700 /firewall.sh
 RUN chmod 0700 /auth.sh
 RUN chmod 0700 /cert.sh
 
@@ -87,7 +88,7 @@ VOLUME ["/lib/modules"]
 VOLUME ["/etc/ipsec.d"]
 VOLUME ["/etc/ppp"]
 
-CMD ["/firewall.sh"]
+#CMD ["/firewall.sh"]
 CMD ["/auth.sh"]
 CMD ["/cert.sh"]
 CMD ["service pptpd restart"]
