@@ -7,7 +7,7 @@ RUN set -x \
          && apt-get install --no-install-recommends --no-install-suggests -y \
          pptpd xl2tpd cron procps software-properties-common python3-pip \
          #strongswan libstrongswan-extra-plugins \
-         wget curl dnsutils openssl ca-certificates kmod certbot supervisor libopencv-dev \
+         wget curl dnsutils openssl ca-certificates kmod certbot supervisor libopencv-dev libsqlite3-0 libsqlite3-dev \
          gawk grep sed net-tools iptables gcc make pkg-config kmod libgmp-dev libssl-dev libcurl4-openssl-dev
 
 ENV STRONGSWAN_VERSION 5.8.0
@@ -36,9 +36,7 @@ RUN mkdir -p /usr/src/strongswan \
                 --enable-curl \
                 --enable-files \
                 --enable-gcm \
-                --enable-sql \
-	        --enable-mysql \
-	        --enable-attr-sql \
+                --enable-sqlite \
 		--enable-vici \
                 --enable-python-eggs \
 	&& make -j \
