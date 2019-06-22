@@ -65,6 +65,7 @@ COPY ./scripts/vpndel /usr/local/bin/vpndel
 COPY ./scripts/setpsk /usr/local/bin/setpsk
 COPY ./scripts/unsetpsk /usr/local/bin/unsetpsk
 COPY ./scripts/apply /usr/local/bin/apply
+COPY ./scripts/modcheck /usr/local/bin/modcheck
 
 ### Expose Ports
 # 1723/tcp+udp - PPTP Protocol
