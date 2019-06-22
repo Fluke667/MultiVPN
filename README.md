@@ -42,13 +42,17 @@ docker run \
 
 ### Script Commands
 ```
-vpnadd <user> <pass>
-vpndel <user>
-setpsk <psk>
-unsetpsk <psk>
-apply
-modscheck
-modsenable
+| Command                   | Description                                                            |
+|---------------------------+------------------------------------------------------------------------|
+| vpnadd <user> <pass>      |                                                                        |      
+| vpndel <user>             |                                                                        | 
+| setpsk <psk>              |                                                                        | 
+| unsetpsk <psk>            |                                                                        | 
+| apply                     |                                                                        | 
+| mods-check                |                                                                        | 
+| mods-enable               |                                                                        |
+|                           |                                                                        | 
+|---------------------------+------------------------------------------------------------------------|
 ```
 
 ### Services
