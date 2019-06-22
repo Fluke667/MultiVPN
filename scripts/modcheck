@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'First we check your Kernel Config...' 
+echo -e "\e[36m'First we check your Kernel Config...'\e[0m"
 
 grep -w CONFIG_XFRM_USER /boot/config-`uname -r`
 grep -w CONFIG_NET_KEY /boot/config-`uname -r`
@@ -25,8 +25,7 @@ grep -w CONFIG_NETFILTER /boot/config-`uname -r`
 grep -w CONFIG_NETFILTER_XTABLES /boot/config-`uname -r`
 grep -w CONFIG_NETFILTER_XT_MATCH_POLICY /boot/config-`uname -r`
 
-echo 'Now we check your Loaded Modules...' 
-
+echo -e "\e[36m'Now we check your Loaded Modules...'\e[0m"
 lsmod | grep ah4
 lsmod | grep ah6
 lsmod | grep esp4
