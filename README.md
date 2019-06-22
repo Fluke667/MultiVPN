@@ -47,6 +47,8 @@ vpndel <user>
 setpsk <psk>
 unsetpsk <psk>
 apply
+checkmods
+addmods
 ```
 
 ### Services
