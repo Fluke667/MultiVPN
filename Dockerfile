@@ -74,11 +74,7 @@ COPY ./scripts/mods-enable /usr/local/bin/mods-enable
 # 4500/udp - IPSec NAT Traversal
 # 1701/udp - Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)
 # 1515/tcp - Webinterface
-EXPOSE 1723/tcp 1723/udp
-EXPOSE 500/udp 
-EXPOSE 4500/udp
-EXPOSE 1701/udp
-EXPOSE 1515/tcp
+EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp
 
 COPY firewall.sh /firewall.sh
 COPY auth.sh /auth.sh
