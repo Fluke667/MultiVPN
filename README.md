@@ -49,5 +49,5 @@ unsetpsk <psk>
 apply
 ```
 
-### Services running
+### Services
 
