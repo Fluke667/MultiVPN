@@ -55,6 +55,7 @@ COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
 # Strongswan Configuration
 COPY ./etc/ipsec.conf /etc/ipsec.conf
 COPY ./etc/strongswan.conf /etc/strongswan.conf
+COPY ./etc/strongswan.d/charon.conf /etc/strongswan.d/charon.conf
 # L2TP Configuration
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
