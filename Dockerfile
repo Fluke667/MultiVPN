@@ -75,5 +75,34 @@ RUN apk --update add build-base \
 # 1515/tcp - Webinterface
 EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp
 
+
+
+      
+      
+        
+
+# PPTP Configuration
+COPY ./etc/pptpd.conf /etc/pptpd.conf   
+COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options  
+# Strongswan Configuration  
+COPY ./etc/ipsec.conf /etc/ipsec.conf   
+COPY ./etc/strongswan.conf /etc/strongswan.conf 
+COPY ./etc/strongswan.d/charon.conf /etc/strongswan.d/charon.conf
+# L2TP Configuration  
+COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
+COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd 
+# Copy Scripts 
+COPY ./scripts/vpnadd /usr/local/bin/vpnadd 
+COPY ./scripts/vpndel /usr/local/bin/vpndel 
+COPY ./scripts/setpsk /usr/local/bin/setpsk 
+COPY ./scripts/unsetpsk /usr/local/bin/unsetpsk  
+COPY ./scripts/apply /usr/local/bin/apply  
+COPY ./scripts/mods-check /usr/local/bin/mods-check  
+COPY ./scripts/mods-enable /usr/local/bin/mods-enable
+      
+      
+        
+
+
 ENTRYPOINT ["/usr/sbin/ipsec"]
 CMD ["start", "--nofork"]
