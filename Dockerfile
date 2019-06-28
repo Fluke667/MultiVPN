@@ -43,14 +43,10 @@ RUN apk --update add build-base \
             --enable-shared \
             --enable-xauth-eap \
             --enable-md4 \
-		        --enable-openssl \
-            --enable-aesni \
             --enable-af-alg \
             --enable-ccm \
-            --enable-files \
-            --enable-gcm \
             --enable-sqlite \
-		        --enable-vici \
+	    --enable-vici \
             --enable-python-eggs \
             --disable-aes \
             --disable-des \
