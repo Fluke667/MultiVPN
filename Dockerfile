@@ -8,6 +8,8 @@ RUN apk --update add build-base \
             ip6tables \
             iproute2 \
             iptables-dev \
+	    pptpd \
+	    xl2tpd \
             openssl \
             openssl-dev && \
     mkdir -p /tmp/strongswan && \
@@ -64,8 +66,13 @@ RUN apk --update add build-base \
     apk del build-base curl-dev openssl-dev && \
     rm -rf /var/cache/apk/*
 
-EXPOSE 500/udp \
-       4500/udp
+### Expose Ports
+# 1723/tcp+udp - PPTP Protocol    
+# 500/udp  - Internet Key Exchange (IKE)   
+# 4500/udp - IPSec NAT Traversal
+# 1701/udp - Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)
+# 1515/tcp - Webinterface
+EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp
 
 ENTRYPOINT ["/usr/sbin/ipsec"]
 CMD ["start", "--nofork"]
