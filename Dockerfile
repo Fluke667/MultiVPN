@@ -1,4 +1,8 @@
-FROM alpine:3.9
+MAINTAINER Fluke667 <Fluke667@gmail.com>  
+ARG TZ='Europe/Berlin'
+ENV TZ ${TZ}
+
+
 ENV STRONGSWAN_RELEASE https://download.strongswan.org/strongswan.tar.bz2
 
 RUN apk --update add build-base \
