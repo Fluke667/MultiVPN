@@ -78,11 +78,6 @@ RUN apk --update add build-base \
 EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp
 
 
-
-      
-      
-        
-
 # PPTP Configuration
 COPY ./etc/pptpd.conf /etc/pptpd.conf   
 COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options  
@@ -102,9 +97,20 @@ COPY ./scripts/apply /usr/local/bin/apply
 COPY ./scripts/mods-check /usr/local/bin/mods-check  
 COPY ./scripts/mods-enable /usr/local/bin/mods-enable
       
-      
-        
+### Install Firewall/Iptables Rules
+COPY firewall.sh /firewall.sh
+RUN chmod 0700 /firewall.sh
+CMD ["/firewall.sh"]
+### Install Auth Files
+COPY auth.sh /auth.sh
+RUN chmod 0700 /auth.sh
+CMD ["/auth.sh"]
+### Generate Certificate
+COPY cert.sh /cert.sh
+RUN chmod 0700 /cert.sh
+CMD ["/cert.sh"]
 
 
-ENTRYPOINT ["/usr/sbin/ipsec"]
 CMD ["start", "--nofork"]
+ENTRYPOINT ["/usr/sbin/ipsec"]
+
