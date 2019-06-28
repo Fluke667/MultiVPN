@@ -50,7 +50,7 @@ RUN apk --update add build-base \
             --enable-md4 \
             --enable-af-alg \
             --enable-ccm \
-            --enable-sqlite \
+            #--enable-sqlite
 	    --enable-vici \
             --enable-python-eggs \
             --disable-aes \
