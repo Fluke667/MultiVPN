@@ -10,6 +10,7 @@ RUN apk --update add build-base \
             iptables-dev \
 	    pptpd \
 	    xl2tpd \
+	    sqlite \
             openssl \
             openssl-dev && \
     mkdir -p /tmp/strongswan && \
