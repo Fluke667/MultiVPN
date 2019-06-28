@@ -11,6 +11,7 @@ RUN apk --update add build-base \
 	    pptpd \
 	    xl2tpd \
 	    sqlite \
+	    sqlite-libs \
             openssl \
             openssl-dev && \
     mkdir -p /tmp/strongswan && \
