@@ -8,7 +8,7 @@ RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
-    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev xz-dev \
+    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev xz-dev gmp-dev \
     openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev \
     build-base gcc g++ git autoconf automake make wget linux-headers
 	
@@ -93,6 +93,8 @@ COPY ./etc/strongswan.d/charon.conf /etc/strongswan.d/charon.conf
 # L2TP Configuration  
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd 
+# TOR  Configuration
+COPY ./etc/tor/torrc /etc/tor/torrc
 # Copy Scripts 
 COPY ./scripts/* /usr/local/bin/
 
