@@ -16,7 +16,8 @@ RUN apk --update add build-base \
 	    sqlite-libs \
 	    sqlite-dev \
             openssl \
-            openssl-dev && \
+            openssl-dev \
+	    strongswan && \
     rm -rf /tmp/* && \
     apk del build-base curl-dev openssl-dev && \
     rm -rf /var/cache/apk/*
