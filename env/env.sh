@@ -17,7 +17,8 @@ export PLUGIN_V2RAY_DL=https://github.com/shadowsocks/v2ray-plugin/releases/down
 export PLUGIN_CLOAK_DL=https://github.com/cbeuw/cloak.git
 
 # TOR Relay Enviroment
-export TOR_USER=MyUser
+#export TOR_USER=MyUser
+export TOR_USER='MyUser'
 export TOR_NICK=MyNick
 export TOR_EMAIL=My@email.com
 export TOR_PASS=MyPass
