@@ -23,7 +23,7 @@ RUN apk upgrade \
 	go \
         libtool \
         tar \
-	python3 \
+	python3 py3-setuptools \
 	nodejs npm \
         ca-certificates \
         iptables ip6tables iproute2 \
@@ -45,12 +45,12 @@ RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux
       /tmp/* \
      /var/tmp/*
     
-    COPY config.sh /config.sh 
-    RUN chmod 0700 /config.sh
-    CMD ["./config.sh"]
+    #COPY config.sh /config.sh 
+    #RUN chmod 0700 /config.sh
+    #CMD ["./config.sh"]
     
-    RUN python3 -m ensurepip \
-    pip3 install --no-cache --upgrade pip setuptools wheel
+RUN pip3 install --no-cache --upgrade \
+    wheel setuptools cryptography asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
 
 
 ### Expose Ports
