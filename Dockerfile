@@ -120,6 +120,11 @@ CMD ["/config/cert.sh"]
 COPY pproxy.sh /config/pproxy.sh
 RUN chmod 0700 /config/pproxy.sh
 CMD ["/config/pproxy.sh"]
+### Configure pproxy
+COPY stunnel.sh /config/stunnel.sh
+RUN chmod 0700 /config/stunnel.sh
+CMD ["/config/stunnel.sh"]
+
 
 
 VOLUME ["/data/multivpn/pproxy"]
