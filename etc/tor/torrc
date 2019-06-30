@@ -42,5 +42,5 @@ HashedControlPassword $TOR_PASS
 #
 ServerTransportPlugin fte exec /usr/bin/fteproxy --mode server --managed
 #ServerTransportPlugin meek exec /usr/bin/meek-server --port 7002 --cert cert.pem --key key.pem
-#ServerTransportPlugin obfs3 exec /usr/bin/obfsproxy managed
+ServerTransportPlugin obfs3 exec /usr/bin/obfsproxy managed
 ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
