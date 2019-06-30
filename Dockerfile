@@ -111,6 +111,7 @@ COPY ./scripts/* /usr/local/bin/
 ADD ./config /config
 RUN chmod 0700 /config/*.sh
 RUN /config/tz.sh \
+    /config/env.sh \
     /config/auth.sh \
     /config/cert.sh \
     /config/firewall.sh \
