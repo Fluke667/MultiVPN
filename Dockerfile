@@ -8,9 +8,9 @@ RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
-    && libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev libconfig-dev sqlite-dev musl-dev \
-    && openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev \
-    && build-base gcc g++ git autoconf automake make wget linux-headers
+    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev libconfig-dev sqlite-dev musl-dev \
+    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev \
+    build-base gcc g++ git autoconf automake make wget linux-headers
 	
 RUN apk upgrade \
     && apk add --no-cache \
