@@ -56,7 +56,7 @@ RUN python3 -m ensurepip && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache && \
     pip3 install --no-cache --upgrade \
-    pip3 wheel setuptools cryptography asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
+    wheel setuptools cryptography asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
 
 
 ### Expose Ports
