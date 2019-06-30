@@ -64,7 +64,7 @@ RUN apk update \
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d
     
 RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ \
-      apk add --no-cache sslh
+      apk add --no-cache sslh i2pd
 
     
     
