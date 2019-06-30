@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "**** install+configure pip3 ****"
 if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi
