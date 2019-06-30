@@ -45,12 +45,12 @@ RUN apk --update --no-cache --allow-untrusted --repository http://dl-4.alpinelin
       /tmp/* \
      /var/tmp/* \
     
-    echo "**** install pip ****" \
-    if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi \
-    python3 -m ensurepip \
-    rm -r /usr/lib/python*/ensurepip \
-    pip3 install --no-cache --upgrade pip setuptools wheel \
-    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
+    COPY config.sh /config.sh 
+    RUN chmod 0700 /config.sh
+    CMD ["./config.sh"]
+    RUN python3 -m ensurepip \
+    pip3 install --no-cache --upgrade pip setuptools wheel
+
 
 ### Expose Ports
 # 1723/tcp+udp - PPTP Protocol    
