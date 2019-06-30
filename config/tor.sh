@@ -19,23 +19,23 @@ if [ ! -e /tor-config-done ]; then
 
     # Add Nickname from env variable or randomized, if none has been set
     if ! grep -q '^Nickname ' /etc/tor/torrc; then
-        if [ ${TOR_NICKNAME} == "Tor4" ] || [ -z "${TOR_NICKNAME}" ]; then
+        if [ ${TOR_NICK} == "Tor4" ] || [ -z "${TOR_NICK}" ]; then
             # if user did not change the default Nickname, genetrate a random pronounceable one
             RPW=$(pwgen -0A 8)
-            TOR_NICKNAME="Tor4${RPW}"
-            echo "Setting random Nickname: ${TOR_NICKNAME}"
+            TOR_NICK="Tor4${RPW}"
+            echo "Setting random Nickname: ${TOR_NICK}"
         else
-            echo "Setting chosen Nickname: ${TOR_NICKNAME}"
+            echo "Setting chosen Nickname: ${TOR_NICK}"
         fi
-        echo -e "\nNickname ${TOR_NICKNAME}" >> /etc/tor/torrc
+        echo -e "\nNickname ${TOR_NICK}" >> /etc/tor/torrc
     fi
 
-    # Add Contact_Email from env variable, if none has been set in torrc
+    # Add TOR_EMAIL from env variable, if none has been set in torrc
     if ! grep -q '^ContactInfo ' /etc/tor/torrc; then
-        # if CONTACT_EMAIL is not null
-        if [ -n "${CONTACT_EMAIL}" ]; then
-            echo "Setting Contact Email: ${CONTACT_EMAIL}"
-            echo -e "\nContactInfo ${CONTACT_EMAIL}" >> /etc/tor/torrc
+        # if TOR_EMAIL is not null
+        if [ -n "${TOR_EMAIL}" ]; then
+            echo "Setting Contact Email: ${TOR_EMAIL}"
+            echo -e "\nContactInfo ${TOR_EMAIL}" >> /etc/tor/torrc
         fi
     fi
 fi
