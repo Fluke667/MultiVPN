@@ -73,8 +73,8 @@ RUN python3 -m ensurepip && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache && \
     pip3 install --no-cache --upgrade \
-    wheel setuptools asn1crypto asyncssh pycparser pycryptodome pproxy fteproxy obfsproxy
-    #cffi six
+    wheel asn1crypto asyncssh pycparser pycryptodome pproxy fteproxy obfsproxy
+    #cffi six setuptools 
 
     
 RUN addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
