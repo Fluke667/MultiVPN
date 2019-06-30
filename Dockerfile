@@ -92,16 +92,8 @@ COPY ./etc/strongswan.d/charon.conf /etc/strongswan.d/charon.conf
 COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd 
 # Copy Scripts 
-COPY ./scripts/vpnadd /usr/local/bin/vpnadd 
-COPY ./scripts/vpndel /usr/local/bin/vpndel 
-COPY ./scripts/setpsk /usr/local/bin/setpsk 
-COPY ./scripts/unsetpsk /usr/local/bin/unsetpsk  
-COPY ./scripts/apply /usr/local/bin/apply  
-COPY ./scripts/mods-check /usr/local/bin/mods-check  
-COPY ./scripts/mods-enable /usr/local/bin/mods-enable
-      
-      
-      
+COPY ./scripts/* /usr/local/bin/
+
 ADD ./config /config
 RUN chmod 0700 /config/*.sh
 RUN /config/auth.sh \
