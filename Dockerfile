@@ -3,8 +3,8 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 ARG TZ='Europe/Berlin'
 ENV TZ ${TZ}
 
-RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub \
-    apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
+RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
+RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 
 RUN apk upgrade \
     && apk add bash tzdata rng-tools runit \
