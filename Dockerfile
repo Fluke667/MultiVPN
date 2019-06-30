@@ -93,6 +93,7 @@ COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd 
 # Copy Scripts 
 COPY ./scripts/* /usr/local/bin/
+RUN ls -al /usr/local/bin/
 
 ADD ./config /config
 RUN chmod 0700 /config/*.sh
