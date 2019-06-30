@@ -78,7 +78,8 @@ RUN python3 -m ensurepip && \
 # 4500/udp - IPSec NAT Traversal
 # 1701/udp - Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)
 # 1515/tcp - Webinterface
-EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp
+# 8010/tcp 8020/tcp 8030/tcp 8040/tcp - Ports for pproxy
+EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp 8010/tcp 8020/tcp 8030/tcp 8040/tcp
 
 
 
@@ -113,6 +114,8 @@ CMD ["/auth.sh"]
 COPY cert.sh /cert.sh
 RUN chmod 0700 /cert.sh
 CMD ["/cert.sh"]
+
+VOLUME ["/data/pproxy"]
 
 
 CMD ["start", "--nofork"]
