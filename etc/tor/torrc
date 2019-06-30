@@ -1,5 +1,3 @@
-BridgeRelay 1
-PublishServerDescriptor 0
 
 ##=================== /etc/torrc =====================##
 # Run Tor as a regular user (do not change this)
@@ -36,6 +34,10 @@ ControlPort 9051
 ## authentication methods, to prevent attackers from accessing it.
 HashedControlPassword $TOR_PASS
 #CookieAuthentication 1
+
+#BridgeRelay 1
+#PublishServerDescriptor 0
+
 
 #
 ServerTransportPlugin fte exec /usr/bin/fteproxy --mode server --managed
