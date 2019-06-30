@@ -24,9 +24,11 @@ RUN apk update \
 	go \
         libtool \
         tar \
-	tor torsocks\
+	tor torsocks \
+	privoxy \
+	socat \
 	python3 \
-	libffi\
+	libffi \
 	nodejs npm \
         ca-certificates \
         iptables ip6tables iproute2 \
