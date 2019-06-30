@@ -24,7 +24,7 @@ RUN apk upgrade \
 	go \
         libtool \
         tar \
-	tor \
+	tor torsocks\
 	python3 py3-setuptools py3-cryptography \
 	libffi\
 	nodejs npm \
