@@ -33,7 +33,6 @@ RUN apk upgrade \
         openssl \
         strongswan && \
     rm -rf /tmp/* && \
-    apk del build-dependencies && \
     rm -rf /var/cache/apk/*
 
 ### Expose Ports
@@ -77,6 +76,7 @@ COPY cert.sh /cert.sh
 RUN chmod 0700 /cert.sh
 CMD ["/cert.sh"]
 
+RUN apk del build-dependencies
 
 CMD ["start", "--nofork"]
 ENTRYPOINT ["/usr/sbin/ipsec"]
