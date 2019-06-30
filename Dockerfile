@@ -39,7 +39,7 @@ RUN apk upgrade \
     rm -rf /tmp/* \
     rm -rf /var/cache/apk/*
     
-RUN apk --update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ \
+RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ \
       && apk add --no-cache sslh \
       rm -rf /var/cache/apk/* \
       /tmp/* \
