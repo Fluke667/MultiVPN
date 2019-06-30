@@ -29,7 +29,7 @@ RUN apk update \
         libtool \
         tar \
 	tor torsocks\
-	i2pd \
+	#i2pd \
 	python3 \
 	libffi\
 	nodejs npm \
