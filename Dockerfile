@@ -9,7 +9,7 @@ RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev \
-    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev \
+    openssl-dev openssh-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev \
     build-base gcc g++ git autoconf automake make wget linux-headers
 	
 RUN apk upgrade \
@@ -17,6 +17,7 @@ RUN apk upgrade \
         bash \
 	tzdata \
 	rng-tools \
+	gnupg \
 	runit \
         curl \
 	nano \
@@ -32,11 +33,15 @@ RUN apk upgrade \
 	xl2tpd \
 	sqlite sqlite-libs \
         openssl \
+	openssh \
         strongswan \
-	libconfig libconfig-dev \
+	libsodium \
+	libconfig \
+	
 	stunnel \
 	gnupg \
 	libressl \
+	readline \
     rm -rf /tmp/* \
     rm -rf /var/cache/apk/*
     
@@ -46,9 +51,9 @@ RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux
       /tmp/* \
      /var/tmp/*
     
-    #COPY config.sh /config.sh 
-    #RUN chmod 0700 /config.sh
-    #CMD ["./config.sh"]
+COPY config.sh /config.sh 
+RUN chmod 0700 /config.sh
+CMD ["./config.sh"]
     
 RUN python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
@@ -67,6 +72,7 @@ RUN python3 -m ensurepip && \
 # 1701/udp - Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)
 # 1515/tcp - Webinterface
 EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp
+
 
 
 # PPTP Configuration
@@ -101,7 +107,6 @@ COPY cert.sh /cert.sh
 RUN chmod 0700 /cert.sh
 CMD ["/cert.sh"]
 
-#RUN apk del build-dependencies
 
 CMD ["start", "--nofork"]
 ENTRYPOINT ["/usr/sbin/ipsec"]
