@@ -12,7 +12,7 @@ RUN apk update \
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
 RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 	
-RUN apk upgrade \
+RUN apk update \
     && apk add --no-cache \
         bash \
 	tzdata \
