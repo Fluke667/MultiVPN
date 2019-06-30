@@ -9,7 +9,7 @@ RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev \
-    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev \
+    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev \
     build-base gcc g++ git autoconf automake make wget linux-headers
 	
 RUN apk upgrade \
@@ -23,7 +23,8 @@ RUN apk upgrade \
 	go \
         libtool \
         tar \
-	python3 \
+	python3 py3-setuptools py3-cryptography \
+	libffi\
 	nodejs npm \
         ca-certificates \
         iptables ip6tables iproute2 \
@@ -56,7 +57,7 @@ RUN python3 -m ensurepip && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache && \
     pip3 install --no-cache --upgrade \
-    wheel setuptools cryptography asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
+    wheel asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
 
 
 ### Expose Ports
