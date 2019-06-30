@@ -50,7 +50,8 @@ RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux
     CMD ["./config.sh"]
     
 RUN pip3 install --no-cache --upgrade \
-    wheel setuptools cryptography asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
+    #pip3 install --upgrade pip \
+    pip wheel setuptools cryptography asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
 
 
 ### Expose Ports
