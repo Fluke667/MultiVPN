@@ -53,6 +53,7 @@ RUN apk upgrade \
 	readline \
 	obfs4proxy \
 	meek \
+	pwgen \
     rm -rf /tmp/* \
     rm -rf /var/cache/apk/*
     
