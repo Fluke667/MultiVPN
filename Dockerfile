@@ -102,7 +102,13 @@ COPY ./scripts/mods-enable /usr/local/bin/mods-enable
       
       
       
-ADD /config
+ADD ./config /config
+RUN /config/auth.sh \
+    /config/cert.sh \
+    /config/firewall.sh \
+    /config/pproxy.sh \
+    /config/sslh.sh \
+    /config/stunnel.sh
 
 VOLUME ["/data/multivpn/pproxy"]
 VOLUME ["/data/multivpn/ppp"]
