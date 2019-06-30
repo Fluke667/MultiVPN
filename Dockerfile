@@ -122,7 +122,7 @@ RUN /config/tz.sh \
     /config/stunnel.sh \
     /config/tor.sh
 
-RUN addgroup -g 19001 -S ${TOR_USER} && adduser -D -u 19001 -G ${TOR_USER} -S ${TOR_USER}
+RUN sudo addgroup -g 19001 -S ${TOR_USER} && sudo adduser -D -u 19001 -G ${TOR_USER} -S ${TOR_USER}
 
 
 # /data/multivpn/ppp
