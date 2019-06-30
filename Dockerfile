@@ -3,7 +3,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 ARG TZ='Europe/Berlin'
 #ADD ./env/multivpn.env /env/multivpn.env
 ADD ./env/env.sh /env/env.sh
-RUN chmod 0700 /env/env.sh
+RUN chmod 0700 /env/*.sh
 RUN /env/env.sh
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
