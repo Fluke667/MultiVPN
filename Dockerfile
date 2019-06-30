@@ -33,8 +33,11 @@ RUN apk upgrade \
         openssl \
         strongswan \
 	libconfig \
+	stunnel \
+	gnupg \
+	libressl \
     rm -rf /tmp/* \
-    rm -rf /var/cache/apk/* \
+    rm -rf /var/cache/apk/*
     
 RUN apk --update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ add \
       sslh \
