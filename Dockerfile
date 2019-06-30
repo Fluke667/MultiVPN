@@ -3,21 +3,32 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 ARG TZ='Europe/Berlin'
 ENV TZ ${TZ}
 
-RUN apk --update add build-base \
-            ca-certificates \
-            curl \
-            curl-dev \
-            ip6tables \
-            iproute2 \
-            iptables-dev \
-	    pptpd \
-	    xl2tpd \
-	    sqlite \
-	    sqlite-libs \
-	    sqlite-dev \
-            openssl \
-            openssl-dev \
-	    strongswan && \
+RUN apk upgrade \
+    && apk add bash tzdata rng-tools runit \
+    && apk add --virtual .build-deps \
+        linux-headers \
+        build-base autoconf automake \
+        curl curl-dev \
+	nano \
+	go \
+	musl-dev \
+	gcc \
+        c-ares-dev \
+        libev-dev \
+        libtool \
+        libsodium-dev \
+        mbedtls-dev \
+        pcre-dev \
+        tar \
+        git \
+	nodejs npm \
+        ca-certificates \
+        iptables ip6tables iptables-dev iproute2 \
+	pptpd \
+	xl2tpd \
+	sqlite sqlite-libs sqlite-dev \
+        openssl openssl-dev \
+        strongswan && \
     rm -rf /tmp/* && \
     apk del build-base curl-dev openssl-dev && \
     rm -rf /var/cache/apk/*
