@@ -49,8 +49,8 @@ RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux
     RUN chmod 0700 /config.sh
     CMD ["./config.sh"]
     
-RUN pip3 install --no-cache --upgrade \
-    #pip3 install --upgrade pip \
+RUN pip install --upgrade pip \
+    pip3 install --no-cache --upgrade \
     pip3 wheel setuptools cryptography asn1crypto asyncssh cffi pycparser pycryptodome six pproxy
 
 
