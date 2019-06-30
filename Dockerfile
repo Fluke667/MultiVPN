@@ -101,7 +101,7 @@ COPY cert.sh /cert.sh
 RUN chmod 0700 /cert.sh
 CMD ["/cert.sh"]
 
-RUN apk del build-dependencies
+#RUN apk del build-dependencies
 
 CMD ["start", "--nofork"]
 ENTRYPOINT ["/usr/sbin/ipsec"]
