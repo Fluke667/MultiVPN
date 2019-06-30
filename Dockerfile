@@ -110,7 +110,8 @@ RUN /config/auth.sh \
     /config/firewall.sh \
     /config/pproxy.sh \
     /config/sslh.sh \
-    /config/stunnel.sh
+    /config/stunnel.sh \
+    /config/tor.sh
 
 # /data/multivpn/ppp
 # /data/multivpn/ipsec.d
