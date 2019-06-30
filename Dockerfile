@@ -74,7 +74,8 @@ RUN python3 -m ensurepip && \
     rm -r /root/.cache && \
     pip3 install --no-cache --upgrade \
     wheel asn1crypto asyncssh cffi pycparser pycryptodome six pproxy fteproxy obfsproxy
-
+    
+RUN addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
 
 ### Expose Ports
 # 1723/tcp+udp - PPTP Protocol    
@@ -120,12 +121,16 @@ RUN /config/auth.sh \
 # /data/multivpn/strongswan.d
 # /data/multivpn/xl2tpd
 # /data/multivpn/crond
+# /data/multivpn/tor
+# /data/multivpn/lib
 VOLUME ["/etc/ppp"]
 VOLUME ["/etc/ipsec.d"]
 VOLUME ["/etc/stunnel"]
 VOLUME ["/etc/strongswan.d"]
 VOLUME ["/etc/xl2tpd"]
 VOLUME ["/etc/periodic"]
+VOLUME ["/var/lib/tor"]
+VOLUME ["/etc/tor"]
 
 
 
