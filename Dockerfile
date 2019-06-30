@@ -58,9 +58,6 @@ RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux
       /tmp/* \
      /var/tmp/*
     
-COPY config.sh /config.sh 
-RUN chmod 0700 /config.sh
-CMD ["./config.sh"]
     
 RUN python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
@@ -124,13 +121,22 @@ CMD ["/config/pproxy.sh"]
 COPY stunnel.sh /config/stunnel.sh
 RUN chmod 0700 /config/stunnel.sh
 CMD ["/config/stunnel.sh"]
+### Configure sslh
+COPY sslh.sh /config/sslh.sh
+RUN chmod 0700 /config/sslh.sh
+CMD ["/config/sslh.sh"]
+
 
 
 
 VOLUME ["/data/multivpn/pproxy"]
 VOLUME ["/data/multivpn/ppp"]
 VOLUME ["/data/multivpn/ipsec.d"]
-VOLUME ["/data/multivpn/stunnel]
+VOLUME ["/data/multivpn/stunnel"]
+VOLUME ["/data/multivpn/strongswan.d"]
+VOLUME ["/data/multivpn/xltpd"]
+VOLUME ["/data/multivpn/crond"]
+
 
 
 
