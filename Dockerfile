@@ -8,8 +8,8 @@ RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
-    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev xz-dev gmp-dev \
-    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev \
+    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev xz-dev gmp-dev libressl-dev \
+    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev \
     build-base gcc g++ git autoconf automake make wget linux-headers
 	
 RUN apk upgrade \
@@ -24,6 +24,7 @@ RUN apk upgrade \
 	go \
         libtool \
         tar \
+	tor \
 	python3 py3-setuptools py3-cryptography \
 	libffi\
 	nodejs npm \
@@ -39,9 +40,12 @@ RUN apk upgrade \
 	libconfig \
 	bzip2 \
 	libbz2 \
+	zstd \
 	expat \
 	gdbm \
-	xz \
+	xz xz-libs \
+	zlib \
+	libevent \
 	dcron \
 	stunnel \
 	gnupg \
