@@ -1,10 +1,6 @@
 FROM alpine:3.9
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 ARG TZ='Europe/Berlin'
-#ADD ./env/multivpn.env /env/multivpn.env
-#ADD ./env/env.sh /env/env.sh
-#RUN chmod 0700 /env/*.sh
-#RUN /env/env.sh
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
 RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
@@ -29,7 +25,6 @@ RUN apk update \
         libtool \
         tar \
 	tor torsocks\
-	#i2pd \
 	python3 \
 	libffi\
 	nodejs npm \
@@ -123,7 +118,7 @@ RUN /config/tz.sh \
     /config/tor.sh
 
 #RUN sudo addgroup -g 19001 -S ${TOR_USER} && sudo adduser -D -u 19001 -G ${TOR_USER} -S ${TOR_USER}
-RUN sudo addgroup -g 19001 -S $TOR_USER && sudo adduser -D -u 19001 -G $TOR_USER -S $TOR_USER
+#RUN sudo addgroup -g 19001 -S $TOR_USER && sudo adduser -D -u 19001 -G $TOR_USER -S $TOR_USER
 
 # /data/multivpn/ppp
 # /data/multivpn/ipsec.d
