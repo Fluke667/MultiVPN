@@ -100,34 +100,9 @@ COPY ./scripts/apply /usr/local/bin/apply
 COPY ./scripts/mods-check /usr/local/bin/mods-check  
 COPY ./scripts/mods-enable /usr/local/bin/mods-enable
       
-WORKDIR /config
-### Install Firewall/Iptables Rules
-COPY firewall.sh /config/firewall.sh
-RUN chmod 0700 /config/firewall.sh
-CMD ["/config/firewall.sh"]
-### Install Auth Files
-COPY auth.sh /config/auth.sh
-RUN chmod 0700 /config/auth.sh
-CMD ["/config/auth.sh"]
-### Generate Certificate
-COPY cert.sh /config/cert.sh
-RUN chmod 0700 /config/cert.sh
-CMD ["/config/cert.sh"]
-### Configure pproxy
-COPY pproxy.sh /config/pproxy.sh
-RUN chmod 0700 /config/pproxy.sh
-CMD ["/config/pproxy.sh"]
-### Configure pproxy
-COPY stunnel.sh /config/stunnel.sh
-RUN chmod 0700 /config/stunnel.sh
-CMD ["/config/stunnel.sh"]
-### Configure sslh
-COPY sslh.sh /config/sslh.sh
-RUN chmod 0700 /config/sslh.sh
-CMD ["/config/sslh.sh"]
-
-
-
+      
+      
+ADD /config
 
 VOLUME ["/data/multivpn/pproxy"]
 VOLUME ["/data/multivpn/ppp"]
