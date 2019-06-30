@@ -23,7 +23,7 @@ RUN apk upgrade \
 	go \
         libtool \
         tar \
-	python3 py3-setuptools \
+	python3 \
 	nodejs npm \
         ca-certificates \
         iptables ip6tables iproute2 \
