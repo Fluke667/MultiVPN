@@ -77,7 +77,7 @@ RUN python3 -m ensurepip && \
     #asn1crypto asyncssh pycparser pycryptodome pproxy obfsproxy cffi six setuptools fteproxy
 
     
-RUN addgroup -g 19001 -S ${$TOR_USER} && adduser -D -u 19001 -G ${$TOR_USER} -S ${$TOR_USER}
+RUN addgroup -g 19001 -S ${TOR_USER} && adduser -D -u 19001 -G ${TOR_USER} -S ${TOR_USER}
 
 
 ### Expose Ports
