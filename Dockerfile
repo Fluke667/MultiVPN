@@ -39,15 +39,16 @@ RUN apk upgrade \
     rm -rf /tmp/* \
     rm -rf /var/cache/apk/*
     
-RUN apk --update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ add \
-      sslh \
-      && rm -rf /var/cache/apk/* \
+RUN apk --update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ \
+      && apk add --no-cache sslh \
+      rm -rf /var/cache/apk/* \
       /tmp/* \
-     /var/tmp/* \
+     /var/tmp/*
     
     COPY config.sh /config.sh 
     RUN chmod 0700 /config.sh
     CMD ["./config.sh"]
+    
     RUN python3 -m ensurepip \
     pip3 install --no-cache --upgrade pip setuptools wheel
 
