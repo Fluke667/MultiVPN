@@ -85,9 +85,9 @@ RUN python3 -m ensurepip && \
 # 1515/tcp - Webinterface
 # 8388/tcp 8388/udp - shadowsocks-libev Ports
 # 8010/tcp 8020/tcp 8030/tcp 8040/tcp - Ports for pproxy
-# 9001 9030 9050 54444 7002 - ORPort, DirPort, SocksPort, ObfsproxyPort, MeekPort
+# 9001 9030 9050 54444 9443 7002 - ORPort, DirPort, SocksPort, Obfsproxy, Obfs4Proxy MeekPort
 EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp 8388/tcp 8388/udp 8010/tcp 8020/tcp 8030/tcp 8040/tcp
-EXPOSE 9001 9030 9050 54444 7002
+EXPOSE 9001 9030 9050 54444 9443 7002
 
 
 # PPTP Configuration
@@ -117,7 +117,7 @@ RUN /config/tz.sh \
     /config/stunnel.sh \
     /config/tor.sh
 
-#RUN sudo addgroup -g 19001 -S ${TOR_USER} && sudo adduser -D -u 19001 -G ${TOR_USER} -S ${TOR_USER}
+RUN sudo addgroup -g 19001 -S tor && sudo adduser -D -u 19001 -G tor -S tor
 #RUN sudo addgroup -g 19001 -S $TOR_USER && sudo adduser -D -u 19001 -G $TOR_USER -S $TOR_USER
 
 # /data/multivpn/ppp
