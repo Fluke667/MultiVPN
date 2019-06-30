@@ -130,6 +130,7 @@ CMD ["/config/stunnel.sh"]
 VOLUME ["/data/multivpn/pproxy"]
 VOLUME ["/data/multivpn/ppp"]
 VOLUME ["/data/multivpn/ipsec.d"]
+VOLUME ["/data/multivpn/stunnel]
 
 
 
