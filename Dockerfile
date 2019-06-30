@@ -103,17 +103,23 @@ RUN /config/auth.sh \
     /config/sslh.sh \
     /config/stunnel.sh
 
-VOLUME ["/data/multivpn/pproxy"]
-VOLUME ["/data/multivpn/ppp"]
-VOLUME ["/data/multivpn/ipsec.d"]
-VOLUME ["/data/multivpn/stunnel"]
-VOLUME ["/data/multivpn/strongswan.d"]
-VOLUME ["/data/multivpn/xltpd"]
-VOLUME ["/data/multivpn/crond"]
+# /data/multivpn/ppp
+# /data/multivpn/ipsec.d
+# /data/multivpn/stunnel
+# /data/multivpn/strongswan.d
+# /data/multivpn/xl2tpd
+# /data/multivpn/crond
+VOLUME ["/etc/ppp"]
+VOLUME ["/etc/ipsec.d"]
+VOLUME ["/etc/stunnel"]
+VOLUME ["/etc/strongswan.d"]
+VOLUME ["/etc/xl2tpd"]
+VOLUME ["/etc/periodic"]
+
 
 
 
 
 CMD ["start", "--nofork"]
-ENTRYPOINT ["/usr/sbin/ipsec"]
+ENTRYPOINT ["multivpn"]
 
