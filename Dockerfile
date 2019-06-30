@@ -6,34 +6,34 @@ ENV TZ ${TZ}
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
 RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
 
+RUN apk update \
+    && apk add --no-cache --virtual build-dependencies \
+    && c-ares-dev libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev openssl-dev curl-dev python3-dev \
+    && build-base gcc g++ git autoconf automake make wget linux-headers
+	
+
 RUN apk upgrade \
-    && apk add bash tzdata rng-tools runit \
-    && apk add --virtual .build-deps \
-        linux-headers \
-        build-base autoconf automake \
-        curl curl-dev \
+    && apk add --no-cache \
+        bash \
+	tzdata \
+	rng-tools \
+	runit \
+        curl \
 	nano \
 	go \
-	musl-dev \
-	gcc \
-        c-ares-dev \
-        libev-dev \
         libtool \
-        libsodium-dev \
-        mbedtls-dev \
-        pcre-dev \
         tar \
-        git \
+	python3 \
 	nodejs npm \
         ca-certificates \
-        iptables ip6tables iptables-dev iproute2 \
+        iptables ip6tables iproute2 \
 	pptpd \
 	xl2tpd \
-	sqlite sqlite-libs sqlite-dev \
-        openssl openssl-dev \
+	sqlite sqlite-libs \
+        openssl \
         strongswan && \
     rm -rf /tmp/* && \
-    apk del build-base curl-dev openssl-dev && \
+    apk del build-dependencies && \
     rm -rf /var/cache/apk/*
 
 ### Expose Ports
