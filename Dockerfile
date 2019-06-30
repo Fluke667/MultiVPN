@@ -12,7 +12,6 @@ RUN apk update \
     && openssl-dev curl-dev python3-dev \
     && build-base gcc g++ git autoconf automake make wget linux-headers
 	
-
 RUN apk upgrade \
     && apk add --no-cache \
         bash \
@@ -36,6 +35,12 @@ RUN apk upgrade \
 	libconfig \
     rm -rf /tmp/* \
     rm -rf /var/cache/apk/* \
+    
+RUN apk --update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ add \
+      sslh \
+      && rm -rf /var/cache/apk/* \
+      /tmp/* \
+     /var/tmp/* \
     
     echo "**** install pip ****" \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi \
