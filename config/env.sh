@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#
+# https://github.com/moby/moby/issues/28617
+#
 export \
 # Basic Enviroment
 GOROOT=/usr/lib/go \
