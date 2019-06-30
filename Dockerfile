@@ -25,7 +25,7 @@ RUN apk upgrade \
         libtool \
         tar \
 	tor torsocks\
-	python3 py3-setuptools py3-cryptography \
+	python3 \
 	libffi\
 	nodejs npm \
         ca-certificates \
@@ -73,7 +73,7 @@ RUN python3 -m ensurepip && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache && \
     pip3 install --no-cache --upgrade \
-    wheel asn1crypto asyncssh pycparser pycryptodome pproxy fteproxy obfsproxy
+    wheel setuptools asn1crypto asyncssh pycparser pycryptodome pproxy fteproxy obfsproxy
     #cffi six
 
     
