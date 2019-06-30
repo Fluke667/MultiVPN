@@ -1,7 +1,7 @@
 FROM alpine:3.9
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 ARG TZ='Europe/Berlin'
-ENV TZ ${TZ}
+ADD ./env/multivpn.env /env/multivpn.env
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
 RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
