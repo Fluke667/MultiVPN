@@ -78,8 +78,9 @@ RUN python3 -m ensurepip && \
 # 4500/udp - IPSec NAT Traversal
 # 1701/udp - Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)
 # 1515/tcp - Webinterface
+# 8388/tcp 8388/udp - shadowsocks-libev Ports
 # 8010/tcp 8020/tcp 8030/tcp 8040/tcp - Ports for pproxy
-EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp 8010/tcp 8020/tcp 8030/tcp 8040/tcp
+EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp 1515/tcp 8388/tcp 8388/udp 8010/tcp 8020/tcp 8030/tcp 8040/tcp
 
 
 
@@ -104,19 +105,27 @@ COPY ./scripts/mods-enable /usr/local/bin/mods-enable
       
 WORKDIR /config
 ### Install Firewall/Iptables Rules
-COPY firewall.sh /firewall.sh
-RUN chmod 0700 /firewall.sh
-CMD ["/firewall.sh"]
+COPY firewall.sh /config/firewall.sh
+RUN chmod 0700 /config/firewall.sh
+CMD ["/config/firewall.sh"]
 ### Install Auth Files
-COPY auth.sh /auth.sh
-RUN chmod 0700 /auth.sh
-CMD ["/auth.sh"]
+COPY auth.sh /config/auth.sh
+RUN chmod 0700 /config/auth.sh
+CMD ["/config/auth.sh"]
 ### Generate Certificate
-COPY cert.sh /cert.sh
-RUN chmod 0700 /cert.sh
-CMD ["/cert.sh"]
+COPY cert.sh /config/cert.sh
+RUN chmod 0700 /config/cert.sh
+CMD ["/config/cert.sh"]
+### Configure pproxy
+COPY pproxy.sh /config/pproxy.sh
+RUN chmod 0700 /config/pproxy.sh
+CMD ["/config/pproxy.sh"]
 
-VOLUME ["/data/pproxy"]
+
+VOLUME ["/data/multivpn/pproxy"]
+VOLUME ["/data/multivpn/ppp"]
+VOLUME ["/data/multivpn/ipsec.d"]
+
 
 
 CMD ["start", "--nofork"]
