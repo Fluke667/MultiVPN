@@ -10,6 +10,9 @@ GOPATH=/go \
 PATH=/go/bin:$PATH \
 TZ=${TZ} \
 
+# Software Versions Enviroment
+
+
 # shadowsocks-libev Enviroment
 SS_LIBEV_VERSION=v3.2.5 \
 KCP_VERSION=20190424 \
