@@ -47,6 +47,8 @@ RUN apk upgrade \
 	gnupg \
 	libressl \
 	readline \
+	obfs4proxy \
+	meek \
     rm -rf /tmp/* \
     rm -rf /var/cache/apk/*
     
