@@ -3,15 +3,15 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 ARG TZ='Europe/Berlin'
 ADD ./env/multivpn.env /env/multivpn.env
 
+RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
+RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
+
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev xz-dev gmp-dev libressl-dev \
     openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev \
     build-base gcc g++ git autoconf automake make wget linux-headers
     
-RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
-RUN apk add --no-cache -X https://alpine-repo.sourceforge.io/packages
-	
 RUN apk update \
     && apk add --no-cache \
         bash \
