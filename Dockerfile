@@ -103,6 +103,7 @@ COPY ./scripts/mods-enable /usr/local/bin/mods-enable
       
       
 ADD ./config /config
+RUN chmod 0700 /config/*.sh
 RUN /config/auth.sh \
     /config/cert.sh \
     /config/firewall.sh \
