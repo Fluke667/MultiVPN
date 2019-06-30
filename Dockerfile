@@ -102,6 +102,7 @@ COPY ./scripts/apply /usr/local/bin/apply
 COPY ./scripts/mods-check /usr/local/bin/mods-check  
 COPY ./scripts/mods-enable /usr/local/bin/mods-enable
       
+WORKDIR /config
 ### Install Firewall/Iptables Rules
 COPY firewall.sh /firewall.sh
 RUN chmod 0700 /firewall.sh
