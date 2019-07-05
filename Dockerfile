@@ -76,8 +76,7 @@ RUN echo "**** install Python ****" && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
     
-RUN python3 -m pip install --upgrade pip \
-    pip3 install --no-cache --upgrade \
+RUN pip3 install --no-cache --upgrade \
     asn1crypto asyncssh pycparser pycryptodome pproxy obfsproxy cffi six setuptools fteproxy
     #wheel 
     
