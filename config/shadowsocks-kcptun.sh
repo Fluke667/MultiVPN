@@ -15,7 +15,7 @@ exec ss-server -v \
     -u
 && kcpserver \
     -l :${KCP_SERVER_ADDR:-0.0.0.0} \
-    -t 127.0.0.1:${KCP_SERVER_PORT:-9443} \
+    -t 127.0.0.1:${SS_SERVER_PORT:-8366} \
     --key ${KCP_PASSWORD:-MyPass} \
     --crypt ${KCP_ENCRYPT:-salsa20} \
     --mode ${KCP_MODE:-fast2} \
