@@ -156,5 +156,5 @@ RUN /config/tz.sh \
     /config/tor.sh
 
 #CMD ["start", "--nofork"]
-#ENTRYPOINT ["multivpn"]
+ENTRYPOINT ["/entrypoint.sh"]
 
