@@ -8,7 +8,7 @@ exec ss-server -v \
     -k ${SS_PASSWORD:-MyPass} \
     -t ${SS_TIMEOUT:-300} \
     -m ${SS_METHOD:-chacha20} \
-    -n ${SHADOWSOCKS_MAXOPENFILES:-1000} \
+    -n ${SS_MAXOPENFILES:-1000} \
     -d ${SS_DNS:-1.1.1.1,1.0.0.1}
     --fast-open \
     --reuse-port \
