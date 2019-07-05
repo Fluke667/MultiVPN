@@ -131,14 +131,23 @@ RUN /config/tz.sh \
 # /data/multivpn/crond
 # /data/multivpn/tor
 # /data/multivpn/lib
-VOLUME ["/etc/ppp"]
-VOLUME ["/etc/ipsec.d"]
-VOLUME ["/etc/stunnel"]
-VOLUME ["/etc/strongswan.d"]
-VOLUME ["/etc/xl2tpd"]
-VOLUME ["/etc/periodic"]
-VOLUME ["/var/lib/tor"]
-VOLUME ["/etc/tor"]
+
+VOLUME /data/multivpn/ppp:/etc/ppp \
+       /data/multivpn/ipsec.d:/etc/ipsec.d \
+       /data/multivpn/stunnel:/etc/stunnel \
+       /data/multivpn/strongswan.d:/etc/strongswan.d \
+       /data/multivpn/xl2tpd:/etc/xl2tpd \
+       /data/multivpn/crond:/etc/periodic \
+       /data/multivpn/tor:/etc/tor
+       
+#VOLUME ["/etc/ppp"]
+#VOLUME ["/etc/ipsec.d"]
+#VOLUME ["/etc/stunnel"]
+#VOLUME ["/etc/strongswan.d"]
+#VOLUME ["/etc/xl2tpd"]
+#VOLUME ["/etc/periodic"]
+#VOLUME ["/var/lib/tor"]
+#VOLUME ["/etc/tor"]
 
 
 RUN rm -rf /tmp/* \
