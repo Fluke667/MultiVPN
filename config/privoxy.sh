@@ -10,3 +10,6 @@ cat > /etc/shadowsocks-libev/privoxy.json <<EOF
     "method":"aes-256-gcm"
 }
 EOF
+
+	sed -i'' 's/127\.0\.0\.1:8118/0\.0\.0\.0:8118/' /etc/privoxy/privoxy.conf && \
+    echo 'forward-socks5  /       127.0.0.1:1080  .' >> /etc/privoxy/privoxy.conf
