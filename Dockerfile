@@ -83,11 +83,12 @@ RUN pip3 install --no-cache --upgrade \
 RUN groupadd -g 2000 privoxy \
 && useradd -m -u 2001 -g privoxy privoxy
 WORKDIR /root
-RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
-    cd Privoxy-Silent && \
-    autoconf && \
-    #--disable-image-blocking --disable-client-tags --enable-graceful-termination=no --enable-external-filters=no --enable-editor=no --enable-trust-files=no --enable-toggle=no --enable-fuzz=no --disable-force && \
-    make && \
+RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git \
+    cd Privoxy-Silent \
+    autoheader \
+    autoconf \
+    configure --disable-image-blocking --disable-client-tags --enable-graceful-termination=no --enable-external-filters=no --enable-editor=no --enable-trust-files=no --enable-toggle=no --enable-fuzz=no --disable-force \
+    make \
     make -n install USER=privoxy GROUP=privoxy
     
 
