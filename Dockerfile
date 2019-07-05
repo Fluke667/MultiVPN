@@ -129,13 +129,13 @@ COPY ./scripts/* /usr/local/bin/
 #VOLUME ["/etc/tor"]
 
 
-VOLUME /data/multivpn/ppp:/etc/ppp \
-       /data/multivpn/ipsec.d:/etc/ipsec.d \
-       /data/multivpn/stunnel:/etc/stunnel \
-       /data/multivpn/strongswan.d:/etc/strongswan.d \
-       /data/multivpn/xl2tpd:/etc/xl2tpd \
-       /data/multivpn/crond:/etc/periodic \
-       /data/multivpn/tor:/etc/tor
+VOLUME /etc/ppp \
+       /etc/ipsec.d \
+       /etc/stunnel \
+       /etc/strongswan.d \
+       /etc/xl2tpd \
+       /etc/periodic \
+       /etc/tor
        
 
 
@@ -147,7 +147,6 @@ RUN rm -rf /tmp/* \
 ADD ./config /config
 RUN chmod 0700 /config/*.sh
 RUN /config/tz.sh \
-    /config/env.sh \
     /config/auth.sh \
     /config/cert.sh \
     /config/firewall.sh \
