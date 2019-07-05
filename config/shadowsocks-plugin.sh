@@ -7,7 +7,7 @@ exec ss-server -v \
     -p ${SS_SERVER_PORT:-8377} \
     -k ${SS_PASSWORD:-MyPass} \
     -t ${SS_TIMEOUT:-300} \
-    -m ${SS_METHOD:-chacha20} \
+    -m ${SS_METHOD:-aes-256-gcm} \
     -n ${SS_MAXOPENFILES:-1000} \
     -d ${SS_DNS:-1.1.1.1,1.0.0.1}
     --fast-open \
