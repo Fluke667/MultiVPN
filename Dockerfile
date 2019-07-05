@@ -85,10 +85,10 @@ RUN groupadd -g 2000 privoxy && \
     useradd -m -u 2001 -g privoxy privoxy && \
     git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
     cd Privoxy-Silent && \
-    autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy && \
+    autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy
     #--disable-image-blocking --disable-client-tags --enable-graceful-termination=no --enable-external-filters=no --enable-editor=no --enable-trust-files=no --enable-toggle=no --enable-fuzz=no --disable-force \
     #make -n install USER=privoxy GROUP=privoxy \
-    chown privoxy.privoxy /etc/privoxy/*
+   # chown privoxy.privoxy /etc/privoxy/*
 
 
 
