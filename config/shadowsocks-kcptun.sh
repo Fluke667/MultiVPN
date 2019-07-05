@@ -12,9 +12,7 @@ exec ss-server -v \
     -d ${SS_DNS:-1.1.1.1,1.0.0.1}
     --fast-open \
     --reuse-port \
-    -u \
-    --plugin ${SS_PLUGIN} \
-    --plugin-opts ${SS_PLUGIN_OPTS}
+    -u
 && kcpserver \
     -l :${KCP_SERVER_ADDR:-0.0.0.0} \
     -t 127.0.0.1:${KCP_SERVER_PORT:-9443} \
