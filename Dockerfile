@@ -90,8 +90,8 @@ EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp
 EXPOSE 8010/tcp 8020/tcp 8030/tcp 8040/tcp
 # 9001 9030 9050 54444 9443 7002 - ORPort, DirPort, SocksPort, Obfsproxy, Obfs4Proxy MeekPort
 EXPOSE 9001 9030 9050 54444 7002
-# 8388/tcp 8388/udp - shadowsocks-libev 9443 (kcptun)
-EXPOSE 8388/tcp 8388/udp 9443/udp
+# 8388/8377/8366 (shadowsocks-libev) 9443 (kcptun) 
+EXPOSE 8388/tcp 8388/udp 8377/tcp 8377/udp 8366/tcp 8366/udp 9443/udp
 # 8118/tcp - Privoxy Port
 EXPOSE 8118/tcp
 # 1515/tcp - Webinterface
