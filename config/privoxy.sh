@@ -11,6 +11,7 @@ cat > /etc/shadowsocks-libev/privoxy.json <<EOF
 }
 EOF
 
-sed -i'' 's/127\.0\.0\.1:8118/0\.0\.0\.0:8118/' /etc/privoxy/config &&
-echo 'forward-socks5  /       127.0.0.1:1080  .' >> /etc/privoxy/config &&
+sed -i '/^listen-address.*/d' /etc/privoxy/config      
+echo "listen-address  ${PRV_SERVER}:${PRV_SERVER_PORT}" >> /etc/privoxy/config       
+echo "forward-socks5   /               ${PRV_LOCAL}:${PRV_LOCAL_PORT} ." >> /etc/privoxy/config
 chown privoxy.privoxy /etc/privoxy/*
