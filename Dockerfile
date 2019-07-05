@@ -77,8 +77,8 @@ RUN echo "**** install Python ****" && \
 
     
 RUN pip3 install --no-cache --upgrade \
-    asn1crypto asyncssh pycparser pycryptodome pproxy obfsproxy cffi six setuptools fteproxy
-    #wheel 
+    asn1crypto asyncssh pycparser pycryptodome pproxy obfsproxy cffi six setuptools 
+    #fteproxy
     
 
 
