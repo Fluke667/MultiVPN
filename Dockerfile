@@ -27,7 +27,6 @@ RUN apk update \
         libtool \
         tar \
 	tor torsocks \
-	privoxy \
 	#socat \
 	python3 \
 	libffi \
