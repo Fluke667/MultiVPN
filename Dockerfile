@@ -80,15 +80,16 @@ RUN pip3 install --no-cache --upgrade \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
     #cffi fteproxy
     
-RUN groupadd -g 2000 privoxy \
-&& useradd -m -u 2001 -g privoxy privoxy
 WORKDIR /root
-RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
+RUN groupadd -g 2000 privoxy && \
+    useradd -m -u 2001 -g privoxy privoxy && \
+    git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
     cd Privoxy-Silent && \
     autoheader && autoconf && ./configure && make && \
     #--disable-image-blocking --disable-client-tags --enable-graceful-termination=no --enable-external-filters=no --enable-editor=no --enable-trust-files=no --enable-toggle=no --enable-fuzz=no --disable-force \
-    make -n install USER=privoxy GROUP=privoxy
-    
+    make -n install USER=privoxy GROUP=privoxy \
+    chown privoxy.privoxy /etc/privoxy/*
+
 
 
 ### Expose Ports
@@ -171,8 +172,9 @@ RUN /config/tz.sh \
     /config/tor.sh \
     /config/shadowsocks.sh \
     /config/shadowsocks-kcptun.sh \
-    /config/shadowsocks-plugin.sh
+    /config/shadowsocks-plugin.sh \
+    /config/privoxy.sh
 
-RUN chown privoxy.privoxy /etc/privoxy/*
+
 #CMD ["start", "--nofork"]
 ENTRYPOINT ["/entrypoint.sh"]
