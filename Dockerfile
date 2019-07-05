@@ -158,7 +158,10 @@ RUN /config/tz.sh \
     /config/pproxy.sh \
     /config/sslh.sh \
     /config/stunnel.sh \
-    /config/tor.sh
+    /config/tor.sh \
+    /config/shadowsocks.sh \
+    /config/shadowsocks-kcptun.sh \
+    /config/shadowsocks-plugin.sh
 
 #CMD ["start", "--nofork"]
 ENTRYPOINT ["/entrypoint.sh"]
