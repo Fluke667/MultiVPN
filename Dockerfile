@@ -165,6 +165,7 @@ RUN /config/tz.sh \
     /config/shadowsocks-kcptun.sh \
     /config/shadowsocks-plugin.sh
 
+RUN chown privoxy.privoxy /etc/privoxy/*
 #CMD ["start", "--nofork"]
 ENTRYPOINT ["/entrypoint.sh"]
 
