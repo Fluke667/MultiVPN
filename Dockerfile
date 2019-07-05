@@ -2,8 +2,6 @@ FROM alpine:3.9
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 ARG TZ='Europe/Berlin'
 
-RUN groupadd -g 2000 privoxy \
-&& useradd -m -u 2001 -g privoxy privoxy
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
 RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
@@ -82,6 +80,8 @@ RUN pip3 install --no-cache --upgrade \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
     #cffi fteproxy
     
+RUN groupadd -g 2000 privoxy \
+&& useradd -m -u 2001 -g privoxy privoxy
 RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git \
     cd Privoxy-Silent \
     ./configure --with-user=privoxy --with-group=privoxy --disable-image-blocking --disable-client-tags --enable-graceful-termination=no --enable-external-filters=no --enable-editor=no --enable-trust-files=no --enable-toggle=no --enable-fuzz=no --disable-force \
