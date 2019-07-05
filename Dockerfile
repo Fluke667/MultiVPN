@@ -108,18 +108,6 @@ COPY ./etc/tor/torrc /etc/tor/torrc
 # Copy Scripts 
 COPY ./scripts/* /usr/local/bin/
 
-ADD ./config /config
-RUN chmod 0700 /config/*.sh
-RUN /config/tz.sh \
-    /config/env.sh \
-    /config/auth.sh \
-    /config/cert.sh \
-    /config/firewall.sh \
-    /config/pproxy.sh \
-    /config/sslh.sh \
-    /config/stunnel.sh \
-    /config/tor.sh
-
 #RUN sudo addgroup -g 19001 -S tor && sudo adduser -D -u 19001 -G tor -S tor
 #RUN sudo addgroup -g 19001 -S $TOR_USER && sudo adduser -D -u 19001 -G $TOR_USER -S $TOR_USER
 
@@ -131,15 +119,6 @@ RUN /config/tz.sh \
 # /data/multivpn/crond
 # /data/multivpn/tor
 # /data/multivpn/lib
-
-VOLUME /data/multivpn/ppp:/etc/ppp \
-       /data/multivpn/ipsec.d:/etc/ipsec.d \
-       /data/multivpn/stunnel:/etc/stunnel \
-       /data/multivpn/strongswan.d:/etc/strongswan.d \
-       /data/multivpn/xl2tpd:/etc/xl2tpd \
-       /data/multivpn/crond:/etc/periodic \
-       /data/multivpn/tor:/etc/tor
-       
 #VOLUME ["/etc/ppp"]
 #VOLUME ["/etc/ipsec.d"]
 #VOLUME ["/etc/stunnel"]
@@ -150,11 +129,32 @@ VOLUME /data/multivpn/ppp:/etc/ppp \
 #VOLUME ["/etc/tor"]
 
 
+VOLUME /data/multivpn/ppp:/etc/ppp \
+       /data/multivpn/ipsec.d:/etc/ipsec.d \
+       /data/multivpn/stunnel:/etc/stunnel \
+       /data/multivpn/strongswan.d:/etc/strongswan.d \
+       /data/multivpn/xl2tpd:/etc/xl2tpd \
+       /data/multivpn/crond:/etc/periodic \
+       /data/multivpn/tor:/etc/tor
+       
+
+
+
 RUN rm -rf /tmp/* \
     rm -rf /var/cache/apk/* \
      /var/tmp/*
 
-
+ADD ./config /config
+RUN chmod 0700 /config/*.sh
+RUN /config/tz.sh \
+    /config/env.sh \
+    /config/auth.sh \
+    /config/cert.sh \
+    /config/firewall.sh \
+    /config/pproxy.sh \
+    /config/sslh.sh \
+    /config/stunnel.sh \
+    /config/tor.sh
 
 #CMD ["start", "--nofork"]
 #ENTRYPOINT ["multivpn"]
