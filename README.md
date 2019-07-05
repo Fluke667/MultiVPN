@@ -13,6 +13,7 @@ sudo modprobe af_key
 ```
 docker run \
     --name multivpn \
+    --env-file ./vpn.env \
     -p 1723:1723/udp \
     -p 1515:1515/tcp \ 
     -p 500:500/udp \
@@ -26,6 +27,8 @@ docker run \
     -e VPN_DNS1=1.1.1.1 VPN_DNS2=1.0.0.1 \
     -e CRT_CN=DE CRT_ST=Bavaria CRT_LOC=Berlin CRT_NAME=TB CRT_ORG=ORG CRT_DOM=localhost CRT_P12=CertPass \
     fluke667/multvpn
+    
+    
 ```
 
 
