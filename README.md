@@ -67,3 +67,14 @@ docker run \
 ### Services
 
 Protocols: PPTP, L2TP, Ikev2, Shadowsocks, OpenVPN,
+
+
+Shadowsocks Plugin Options:
+#### Shadowsocks over websocket (HTTP)
+plugin v2ray-plugin plugin-opts "server"
+
+#### Shadowsocks over websocket (HTTPS)
+plugin v2ray-plugin plugin-opts "server;tls;host=mydomain.me"
+
+#### Shadowsocks over Quic
+plugin v2ray-plugin plugin-opts "server;mode=quic;host=mydomain.me"
