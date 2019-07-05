@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat > /etc/shadowsocks-libev/privoxy-socks.json <<EOF
+cat > /etc/shadowsocks-libev/privoxy.json <<EOF
 {
     "server":"0.0.0.0",
     "server_port":8118,
