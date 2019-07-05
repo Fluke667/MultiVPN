@@ -120,7 +120,7 @@ COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
 # TOR  Configuration
 COPY ./etc/tor/torrc /etc/tor/torrc
 # TOR  Configuration
-COPY ./etc/privoxy/privoxy.conf /etc/privoxy/privoxy.conf
+COPY ./etc/privoxy/config /etc/privoxy/config
 # Copy Scripts 
 COPY ./scripts/* /usr/local/bin/
 
