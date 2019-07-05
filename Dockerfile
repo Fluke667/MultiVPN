@@ -100,8 +100,8 @@ EXPOSE 8010/tcp 8020/tcp 8030/tcp 8040/tcp
 EXPOSE 9001 9030 9050 54444 7002
 # 8388/8377/8366 (shadowsocks-libev) 9443 (kcptun) 
 EXPOSE 8388/tcp 8388/udp 8377/tcp 8377/udp 8366/tcp 8366/udp 9443/udp
-# 8118/tcp - Privoxy Port
-EXPOSE 8118/tcp
+# 8118 (Privoxy) 1080 (Privoxy-Socks)
+EXPOSE 8118/tcp 1080/tcp
 # 1515/tcp - Webinterface
 EXPOSE 1515/tcp
 
