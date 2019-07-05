@@ -27,7 +27,7 @@ RUN apk update \
 	tor torsocks \
 	privoxy \
 	#socat \
-	#python3 \
+	python3 \
 	libffi \
 	nodejs npm \
         ca-certificates \
@@ -55,6 +55,7 @@ RUN apk update \
 	readline \
 	obfs4proxy \
 	meek \
+	simple-obfs \
 	pwgen
 
     
@@ -66,7 +67,6 @@ RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux
     
     
 RUN echo "**** install Python ****" && \
-    apk add --no-cache python3 && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     \
     echo "**** install pip ****" && \
@@ -78,7 +78,7 @@ RUN echo "**** install Python ****" && \
     
 RUN pip3 install --no-cache --upgrade \
     asn1crypto asyncssh pycparser pycryptodome pproxy 
-    #obfsproxy cffi six fteproxy
+    #cffi six fteproxy
     
 
 
