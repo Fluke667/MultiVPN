@@ -148,5 +148,5 @@ RUN rm -rf /tmp/* \
 
 
 CMD ["start", "--nofork"]
-ENTRYPOINT ["multivpn"]
+#ENTRYPOINT ["multivpn"]
 
