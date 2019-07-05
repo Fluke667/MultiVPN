@@ -2,6 +2,9 @@ FROM alpine:3.9
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 ARG TZ='Europe/Berlin'
 
+RUN groupadd -g 2000 privoxy \
+&& useradd -m -u 2001 -g privoxy privoxy
+
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
 RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
 
