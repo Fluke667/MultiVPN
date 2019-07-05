@@ -6,8 +6,9 @@ Protocols: PPTP, L2TP, Ikev2, Shadowsocks, OpenVPN,
 Start the VPN server
 VERY IMPORTANT ! First, run this command on the Docker host to load the IPsec NETKEY kernel module:
 
-
+### Before Start Container:
 sudo modprobe af_key
+sudo modprobe nf_nat_pptp
 
 
 ```
