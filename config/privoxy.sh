@@ -2,12 +2,12 @@
 
 cat > /etc/shadowsocks-libev/privoxy.json <<EOF
 {
-    "server":"0.0.0.0",
-    "server_port":8118,
-    "local_port":1080,
-    "password":"MyPass",
-    "timeout":180,
-    "method":"aes-256-gcm"
+    "server":"${PRV_SERVER:-0.0.0.0}",
+    "server_port":${PRV_SERVER_PORT:-8118},
+    "local_port":${PRV_LOCAL_PORT:-1080},
+    "password":"${PRV_PASS:-MyPass}",
+    "timeout":${PRV_TIMEOUT:-60},
+    "method":"${PRV_METHOD:-aes-256-gcm}"
 }
 EOF
 
