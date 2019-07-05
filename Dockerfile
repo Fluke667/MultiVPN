@@ -176,4 +176,3 @@ RUN /config/tz.sh \
 RUN chown privoxy.privoxy /etc/privoxy/*
 #CMD ["start", "--nofork"]
 ENTRYPOINT ["/entrypoint.sh"]
-
