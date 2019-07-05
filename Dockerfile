@@ -1,7 +1,7 @@
 FROM alpine:3.9
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 ARG TZ='Europe/Berlin'
-
+USER root
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
 RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
