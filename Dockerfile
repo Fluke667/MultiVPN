@@ -18,6 +18,7 @@ RUN apk update \
         bash \
 	tzdata \
 	rng-tools \
+	shadow \
 	gnupg \
 	runit \
         curl \
