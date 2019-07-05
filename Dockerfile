@@ -75,12 +75,16 @@ RUN echo "**** install Python ****" && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
-    
 RUN pip3 install --no-cache --upgrade \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
     #cffi fteproxy
     
-
+RUN git clone https://github.com/Fluke667/Privoxy-Silent.git \
+    cd Privoxy-Silent \
+    ./configure --with-user=daemon --with-group=daemon --disable-image-blocking --disable-client-tags --enable-graceful-termination=no --enable-external-filters=no --enable-editor=no --enable-trust-files=no --enable-toggle=no --enable-fuzz=no --disable-force \
+    make \
+    sudo make -n install 
+    
 
 
 ### Expose Ports
