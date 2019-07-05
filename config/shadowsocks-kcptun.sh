@@ -4,7 +4,7 @@ set -e
 
 exec ss-server -v \
     -s ${SS_SERVER_ADDR:-0.0.0.0} \
-    -p ${SS_SERVER_PORT:-8388} \
+    -p ${SS_SERVER_PORT:-8366} \
     -k ${SS_PASSWORD:-MyPass} \
     -t ${SS_TIMEOUT:-300} \
     -m ${SS_METHOD:-chacha20} \
