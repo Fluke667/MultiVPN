@@ -27,7 +27,7 @@ RUN apk update \
         libtool \
         tar \
 	tor torsocks \
-	openvpn \
+	openvpn openvpn-auth-pam \
 	#socat \
 	python3 \
 	libffi \
@@ -89,6 +89,7 @@ RUN groupadd -g 2000 privoxy && \
     autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy
 
 
+
 ### Expose Ports
 # 1723 (PPTP) 500 (IKE) 4500 (IPSec NAT Traversal) 1701 (L2F) & (L2TP)
 EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp
@@ -116,7 +117,9 @@ COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd 
 # TOR  Configuration
 COPY ./etc/tor/torrc /etc/tor/torrc
-# TOR  Configuration
+# Openvpn
+COPY ./templates/openvpn.tmpl $OVPN_TEMPLATE
+# Privoxy Configuration
 COPY ./etc/privoxy/config /etc/privoxy/config
 # Copy Scripts 
 COPY ./scripts/* /usr/local/bin/
