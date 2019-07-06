@@ -7,8 +7,9 @@ Start the VPN server
 VERY IMPORTANT ! First, run this command on the Docker host to load the IPsec NETKEY kernel module:
 
 ### Before Start Container:
-sudo modprobe af_key
-sudo modprobe nf_nat_pptp
+- sudo modprobe af_key
+- sudo modprobe nf_nat_pptp
+- sudo modprobe tun
 
 
 ```
