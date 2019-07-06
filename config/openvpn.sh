@@ -6,13 +6,13 @@ mode server
 port 1194
 proto udp
 dev tun
-crl-verify OPENVPNDIR/crl.pem
-ca CADIR/keys/ca.crt
-cert CADIR/keys/openvpn-server.crt
-key CADIR/keys/openvpn-server.key
-dh CADIR/keys/dh2048.pem
+crl-verify OVPN_DIR/crl.pem
+ca CRT_CERT_DIR/keys/ca.crt
+cert CRT_CERT_DIRopenvpn-server.crt
+key CRT_CERT_DIR/openvpn-server.key
+dh CRT_CERT_DIR/dh2048.pem
 tls-server
-tls-auth CADIR/ta.key 0
+tls-auth CRT_CERT_DIR/ta.key 0
 server LOCALPREFIX.0.0 255.255.255.0
 topology subnet
 local PUBLICIP
@@ -40,19 +40,19 @@ dev tun
 comp-lzo
 resolv-retry infinite
 <key>
-`cat key.pem`
+`cat CRT_CERT_DIR/openvpn-server.key
 </key>
 <cert>
-`cat cert.pem`
+`cat CRT_CERT_DIR/ca-cert.pem
 </cert>
 <ca>
-`cat cert.pem`
+`cat CRT_CERT_DIR/ca-cert.pem
 </ca>
 <dh>
-`cat dh.pem`
+`cat CRT_CERT_DIR/dh2048.pem
 </dh>
 <connection>
-remote $MY_IP_ADDR 1194 udp
+remote $IP_ADDR 1194 udp
 </connection>
 EOF
 
