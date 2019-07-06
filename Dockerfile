@@ -161,6 +161,5 @@ RUN /config/tz.sh \
     /config/openvpn.sh \
     /config/privoxy.sh
 
-
-#CMD ["start", "--nofork"]
-ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh /
+ENTRYPOINT ["entrypoint.sh"]
