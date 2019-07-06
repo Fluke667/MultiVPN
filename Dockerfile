@@ -81,9 +81,10 @@ RUN pip3 install --no-cache --upgrade \
     #cffi fteproxy
     
 WORKDIR /root
-RUN groupadd -g 2000 privoxy && \
-    useradd -m -u 2001 -g privoxy privoxy && \
-    git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
+RUN groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy && \
+    groupadd -g 2100 i2p && useradd -D -u 1100 -r -d /opt -G i2p i2p
+
+RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
     cd Privoxy-Silent && \
     autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy
 
