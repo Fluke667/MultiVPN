@@ -91,7 +91,7 @@ RUN groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy && \
 
 RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
     cd Privoxy-Silent && \
-    autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy && \
+    autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy && cd && \
     git clone https://github.com/PurpleI2P/i2pd.git && \
     cd i2pd && \
     cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=ON -DWITH_UPNP=ON -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
