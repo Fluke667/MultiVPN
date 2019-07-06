@@ -2,25 +2,33 @@
 
 
 cat > /etc/openvpn/server.conf <<EOF
-server 192.168.255.128 255.255.255.128
-verb 3
-duplicate-cn
-key key.pem
-ca cert.pem
-cert cert.pem
-dh dh.pem
-keepalive 10 60
+mode server
+port 1194
+proto udp
+dev tun
+crl-verify OPENVPNDIR/crl.pem
+ca CADIR/keys/ca.crt
+cert CADIR/keys/openvpn-server.crt
+key CADIR/keys/openvpn-server.key
+dh CADIR/keys/dh2048.pem
+tls-server
+tls-auth CADIR/ta.key 0
+server LOCALPREFIX.0.0 255.255.255.0
+topology subnet
+local PUBLICIP
+client-to-client
+cipher AES-256-CBC
+user nobody
+group NOBODYGROUP
+max-clients 100
+keepalive 10 120
 persist-key
 persist-tun
+mssfix
+push "route-gateway dhcp"
+push "redirect-gateway def1 bypass-dhcp"
 push "dhcp-option DNS 8.8.8.8"
 push "dhcp-option DNS 8.8.4.4"
-keepalive 10 120
-comp-lzo
-client-to-client
-proto udp
-port 1194
-dev tun
-status openvpn-status.log
 EOF
 
 
