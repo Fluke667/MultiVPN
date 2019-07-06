@@ -27,6 +27,7 @@ RUN apk update \
         libtool \
         tar \
 	tor torsocks \
+	openvpn \
 	#socat \
 	python3 \
 	libffi \
