@@ -88,16 +88,16 @@ RUN pip3 install --no-cache --upgrade \
     #cffi fteproxy
     
 RUN groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy && \
-    groupadd -g 2100 i2p && useradd -D -u 1100 -r -d /opt -G i2p i2p
+    groupadd -g 2100 i2pd && useradd -D -u 1100 --create-home --home-dir /home/i2pd -G i2pd i2pd
 
 RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
     cd Privoxy-Silent && \
     autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy && \
     git clone https://github.com/PurpleI2P/i2pd.git && \
     cd i2pd && \
-    cmake -DCMAKE_INSTALL_PREFIX=/opt/i2pd -DCMAKE_BUILD_TYPE=Release && \
+    cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=ON -DWITH_UPNP=ON -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
     make -j$(nproc) && make install && \
-    chown i2p:i2p -R /opt/*
+    chown i2pd:i2pd -R /home/i2pd
 
 
 ### Expose Ports
@@ -154,7 +154,8 @@ VOLUME /etc/ppp \
 
 RUN rm -rf /tmp/* \
     rm -rf /var/cache/apk/* \
-     /var/tmp/*
+     /var/tmp/* \
+     apk del --purge build-dependencies
 
 ADD ./config /config
 RUN chmod 0700 /config/*.sh
