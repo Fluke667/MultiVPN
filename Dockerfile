@@ -67,7 +67,8 @@ RUN apk update \
         libssl1.1 \
 	websocket++ \
 	miniupnpc \
-	libstdc++
+	libstdc++ \
+	ethtool
 
 
     
