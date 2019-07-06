@@ -102,8 +102,8 @@ EXPOSE 8388/tcp 8388/udp 8377/tcp 8377/udp 8366/tcp 8366/udp 9443/udp
 EXPOSE 1194:1194/udp
 # 8118 (Privoxy) 1080 (Privoxy-Socks)
 EXPOSE 8118/tcp 1080/tcp
-# 1515/tcp - Webinterface
-EXPOSE 1515/tcp
+# 1515 (Webinterface) 443 (sslh)
+EXPOSE 1515/tcp 443/tcp 443/udp
 
 
 # PPTP Configuration
@@ -162,4 +162,5 @@ RUN /config/tz.sh \
     /config/privoxy.sh
 
 COPY entrypoint.sh /
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+RUN chmod u+x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
