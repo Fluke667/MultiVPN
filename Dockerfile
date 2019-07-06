@@ -61,7 +61,6 @@ RUN apk update \
 	obfs4proxy \
 	meek \
 	simple-obfs \
-	sslh \
 	pwgen \
 	boost-filesystem \
         boost-program_options \
