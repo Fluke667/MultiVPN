@@ -5,7 +5,7 @@ USER root
 WORKDIR /root
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
-RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories \
+RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
 
 RUN apk update \
