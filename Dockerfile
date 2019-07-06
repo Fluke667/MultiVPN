@@ -120,6 +120,7 @@ COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd
 COPY ./etc/tor/torrc /etc/tor/torrc
 # Openvpn
 COPY ./templates/openvpn.tmpl $OVPN_TEMPLATE
+COPY ./etc/easyrsa/openssl-easyrsa.cnf /usr/share/easy-rsa/openssl-easyrsa.cnf
 # Privoxy Configuration
 COPY ./etc/privoxy/config /etc/privoxy/config
 # Copy Scripts 
