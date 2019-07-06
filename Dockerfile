@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.10
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 ARG TZ='Europe/Berlin'
 USER root
@@ -35,7 +35,7 @@ RUN apk update \
 	libffi \
 	nodejs npm \
         ca-certificates \
-        iptables ip6tables iproute2 \
+        iptables iproute2 \
 	pptpd \
 	xl2tpd \
 	sqlite sqlite-libs \
