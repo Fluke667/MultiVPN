@@ -1,5 +1,5 @@
 # For use with Easy-RSA 3.0+ and OpenSSL or LibreSSL
-
+# https://github.com/Aroaming/easyrsa-build
 ####################################################################
 [ ca ]
 default_ca	= CA_default		# The default ca section
