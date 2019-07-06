@@ -39,6 +39,7 @@ RUN apk update \
 	sqlite sqlite-libs \
         openssl \
 	openssh \
+	easy-rsa \
         strongswan \
 	libsodium \
 	libconfig \
