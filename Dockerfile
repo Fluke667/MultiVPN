@@ -118,33 +118,14 @@ COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd 
 # TOR  Configuration
 COPY ./etc/tor/torrc /etc/tor/torrc
-# Openvpn
-COPY ./templates/openvpn.tmpl $OVPN_TEMPLATE
+# easyrsa
 COPY ./etc/easyrsa/openssl-easyrsa.cnf /usr/share/easy-rsa/openssl-easyrsa.cnf
+COPY ./etc/easyrsa/x509-types /usr/share/easy-rsa/x509-types
 # Privoxy Configuration
 COPY ./etc/privoxy/config /etc/privoxy/config
 # Copy Scripts 
 COPY ./scripts/* /usr/local/bin/
 
-#RUN sudo addgroup -g 19001 -S tor && sudo adduser -D -u 19001 -G tor -S tor
-#RUN sudo addgroup -g 19001 -S $TOR_USER && sudo adduser -D -u 19001 -G $TOR_USER -S $TOR_USER
-
-# /data/multivpn/ppp
-# /data/multivpn/ipsec.d
-# /data/multivpn/stunnel
-# /data/multivpn/strongswan.d
-# /data/multivpn/xl2tpd
-# /data/multivpn/crond
-# /data/multivpn/tor
-# /data/multivpn/lib
-#VOLUME ["/etc/ppp"]
-#VOLUME ["/etc/ipsec.d"]
-#VOLUME ["/etc/stunnel"]
-#VOLUME ["/etc/strongswan.d"]
-#VOLUME ["/etc/xl2tpd"]
-#VOLUME ["/etc/periodic"]
-#VOLUME ["/var/lib/tor"]
-#VOLUME ["/etc/tor"]
 
 
 VOLUME /etc/ppp \
