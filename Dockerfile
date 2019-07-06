@@ -10,9 +10,9 @@ RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories 
 
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
-    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev xz-dev gmp-dev libressl-dev \
-    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev \
-    build-base gcc g++ git autoconf automake make wget linux-headers
+    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev \
+    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
+    build-base gcc g++ git autoconf automake cmake make wget linux-headers
     
 RUN apk update \
     && apk add --no-cache \
@@ -62,7 +62,13 @@ RUN apk update \
 	meek \
 	simple-obfs \
 	sslh \
-	pwgen
+	pwgen \
+	boost-filesystem \
+        boost-program_options \
+        boost-date_time \
+        libssl1.1 \
+	libstdc++
+
 
     
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d
@@ -81,13 +87,18 @@ RUN pip3 install --no-cache --upgrade \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
     #cffi fteproxy
     
-WORKDIR /root
 RUN groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy && \
     groupadd -g 2100 i2p && useradd -D -u 1100 -r -d /opt -G i2p i2p
 
 RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
     cd Privoxy-Silent && \
-    autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy
+    autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy && \
+    git clone https://github.com/PurpleI2P/i2pd.git && \
+    cd i2pd && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/i2pd -DCMAKE_BUILD_TYPE=Release && \
+    make -j$(nproc) && make install && \
+    chown i2p:i2p -R /opt/*
+
 
 ### Expose Ports
 # 1723 (PPTP) 500 (IKE) 4500 (IPSec NAT Traversal) 1701 (L2F) & (L2TP)
