@@ -66,6 +66,8 @@ RUN apk update \
         boost-program_options \
         boost-date_time \
         libssl1.1 \
+	websocket++ \
+	miniupnpc \
 	libstdc++
 
 
