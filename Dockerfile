@@ -101,20 +101,22 @@ RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
 
 
 ### Expose Ports
+# sslh Multiplexer
+EXPOSE 443
 # 1723 (PPTP) 500 (IKE) 4500 (IPSec NAT Traversal) 1701 (L2F) & (L2TP)
-EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp
+#EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp
 # 8010/tcp 8020/tcp 8030/tcp 8040/tcp - Ports for pproxy
-EXPOSE 8010/tcp 8020/tcp 8030/tcp 8040/tcp
+#EXPOSE 8010/tcp 8020/tcp 8030/tcp 8040/tcp
 # 9001 9030 9050 54444 9443 7002 - ORPort, DirPort, SocksPort, Obfsproxy, Obfs4Proxy MeekPort
-EXPOSE 9001 9030 9050 54444 7002
+#EXPOSE 9001 9030 9050 54444 7002
 # 8388/8377/8366 (shadowsocks-libev) 9443 (kcptun) 
-EXPOSE 8388/tcp 8388/udp 8377/tcp 8377/udp 8366/tcp 8366/udp 9443/udp
+#EXPOSE 8388/tcp 8388/udp 8377/tcp 8377/udp 8366/tcp 8366/udp 9443/udp
 # 1194 (Openvpn)
-EXPOSE 1194:1194/udp
+EXPOSE 1194/udp
 # 8118 (Privoxy) 1080 (Privoxy-Socks)
-EXPOSE 8118/tcp 1080/tcp
+#EXPOSE 8118/tcp 1080/tcp
 # 1515 (Webinterface) 443 (sslh)
-EXPOSE 1515/tcp 443/tcp 443/udp
+#EXPOSE 1515/tcp
 
 
 # PPTP Configuration
