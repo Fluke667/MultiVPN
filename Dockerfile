@@ -126,16 +126,16 @@ RUN chmod 0700 /usr/local/bin/*
 
 
 
-VOLUME /etc/ppp \
-       /etc/ipsec.d \
-       /etc/stunnel \
-       /etc/strongswan.d \
-       /etc/xl2tpd \
-       /etc/periodic \
-       /etc/tor \
-       /etc/ssl/certs \
-       /usr/share/easy-rsa \
-       /etc/openvpn 
+#VOLUME /etc/ppp \
+      # /etc/ipsec.d \
+      # /etc/stunnel \
+      # /etc/strongswan.d \
+      # /etc/xl2tpd \
+      # /etc/periodic \
+      # /etc/tor \
+      # /etc/ssl/certs \
+      # /usr/share/easy-rsa \
+      # /etc/openvpn 
        
 #VOLUME ["/data/openvpn", "/data/easyrsa"]
 
