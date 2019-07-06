@@ -4,7 +4,8 @@ ARG TZ='Europe/Berlin'
 USER root
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
-RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
+RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories \
+    echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
 
 RUN apk update \
     && apk add --no-cache --virtual build-dependencies \
@@ -59,15 +60,12 @@ RUN apk update \
 	obfs4proxy \
 	meek \
 	simple-obfs \
+	sslh \
 	pwgen
 
     
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d
-    
-RUN apk update --no-cache --allow-untrusted --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ \
-      apk add --no-cache sslh i2pd
 
-    
     
 RUN echo "**** install Python ****" && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
