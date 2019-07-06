@@ -1,0 +1,33 @@
+#!/bin/bash
+
+SERVER_CONF=/etc/openvpn/server.conf
+CLIENT_TEMPLATE=/etc/openvpn/client-template.txt
+
+newuser () {
+	CCF=/etc/openvpn/client/$1.ovpn
+
+	# Generates the custom client.ovpn
+	cp $CLIENT_TEMPLATE $CCF 
+	echo>>$CCF "<ca>"
+	cat >>$CCF /cert/easy-rsa/pki/ca.crt
+	echo>>$CCF "</ca>"
+	echo>>$CCF "<cert>"
+	cat >>$CCF /cert/easy-rsa/pki/issued/$1.crt
+	echo>>$CCF "</cert>"
+	echo>>$CCF "<key>"
+	cat >>$CCF /cert/easy-rsa/pki/private/$1.key
+	echo>>$CCF "</key>"
+	echo>>$CCF "key-direction 1"
+	echo>>$CCF "<tls-auth>"
+	cat >>$CCF /cert/tls-auth.key
+	echo>>$CCF "</tls-auth>"
+}
+
+if [[ -e $SERVER_CONF ]]; then
+	CLIENT=$1
+	[[ -z "$CLIENT" ]] && read -p "username (neither special char nor spaces): " CLIENT
+	cd /cert/easy-rsa/
+	./easyrsa build-client-full $CLIENT nopass
+	newuser "$CLIENT"
+	echo "user $CLIENT added, certs available at .../etc/openvpn/client/$CLIENT.ovpn"
+fi
