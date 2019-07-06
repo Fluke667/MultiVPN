@@ -32,9 +32,9 @@ your first entity certificate:
 
 
 
-        ./easyrsa init-pki
+        easyrsa init-pki
 
-        ./easyrsa build-ca
+        easyrsa build-ca
 
 
 
@@ -50,9 +50,9 @@ your first entity certificate:
 
 
 
-        ./easyrsa init-pki
+        easyrsa init-pki
 
-        ./easyrsa gen-req EntityName
+        easyrsa gen-req EntityName
 
 
 
@@ -62,7 +62,7 @@ your first entity certificate:
 
 
 
-        ./easyrsa import-req /tmp/path/to/import.req EntityName
+        easyrsa import-req /tmp/path/to/import.req EntityName
 
 
 
@@ -70,7 +70,7 @@ your first entity certificate:
 
 
 
-        ./easyrsa sign-req client EntityName
+        easyrsa sign-req client EntityName
 
 
 
