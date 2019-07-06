@@ -158,6 +158,7 @@ RUN /config/tz.sh \
     /config/shadowsocks.sh \
     /config/shadowsocks-kcptun.sh \
     /config/shadowsocks-plugin.sh \
+    /config/openvpn.sh \
     /config/privoxy.sh
 
 
