@@ -118,9 +118,6 @@ COPY ./etc/xl2tpd/xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 COPY ./etc/ppp/options.xl2tpd /etc/ppp/options.xl2tpd 
 # TOR  Configuration
 COPY ./etc/tor/torrc /etc/tor/torrc
-# easyrsa
-COPY ./etc/easyrsa/openssl-easyrsa.cnf /usr/share/easy-rsa/openssl-easyrsa.cnf
-COPY ./etc/easyrsa/x509-types /usr/share/easy-rsa/x509-types
 # Privoxy Configuration
 COPY ./etc/privoxy/config /etc/privoxy/config
 # Copy Scripts 
@@ -136,7 +133,10 @@ VOLUME /etc/ppp \
        /etc/xl2tpd \
        /etc/periodic \
        /etc/tor \
-       /etc/ssl/certs
+       /etc/ssl/certs \
+       /usr/share/easy-rsa \
+       /etc/openvpn 
+       
 #VOLUME ["/data/openvpn", "/data/easyrsa"]
 
 
