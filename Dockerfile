@@ -87,7 +87,7 @@ RUN pip3 install --no-cache --upgrade \
     #cffi fteproxy
     
 RUN groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy && \
-    groupadd -g 2100 i2pd && useradd -D -u 1100 --create-home --home-dir /home/i2pd -G i2pd i2pd
+    groupadd -g 2100 i2pd && useradd -u 1100 --create-home --home-dir /home/i2pd -g i2pd i2pd
 
 RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
     cd Privoxy-Silent && \
