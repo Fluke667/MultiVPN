@@ -156,7 +156,7 @@ VOLUME /etc/ppp \
 RUN rm -rf /tmp/* \
     rm -rf /var/cache/apk/* \
      /var/tmp/* \
-     apk del --purge build-dependencies
+     apk del build-dependencies
 
 ADD ./config /config
 RUN chmod 0700 /config/*.sh
