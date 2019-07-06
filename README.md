@@ -76,3 +76,25 @@ plugin v2ray-plugin plugin-opts "server;tls;host=mydomain.me"
 
 #### Shadowsocks over Quic
 plugin v2ray-plugin plugin-opts "server;mode=quic;host=mydomain.me"
+
+
+
+# Service                 Software           Port         Transport      Proto
+# -----------------------|------------------|------------|--------------|------------|
+# eepSite proxy                              4446
+# [socksproxy]                               4447
+# [bob]                                      2827
+# [sam]                                      7656
+# [i2pcontrol]                               7650
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
