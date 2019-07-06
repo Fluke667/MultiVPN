@@ -147,7 +147,8 @@ VOLUME /etc/ppp \
        /etc/strongswan.d \
        /etc/xl2tpd \
        /etc/periodic \
-       /etc/tor
+       /etc/tor \
+       /etc/ssl/certs
        
 
 
