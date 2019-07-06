@@ -1,4 +1,4 @@
-Easy-RSA 3 Quickstart README
+Easy-RSA 3 README
 ============================
 
 
