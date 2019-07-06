@@ -1,5 +1,34 @@
 #!/bin/sh
 
+cd /usr/share/easy-rsa
+./easyrsa init-pki
+./easyrsa gen-dh
+cd /usr/share/easy-rsa/pki
+cp dh.pem /etc/openvpn
+#
+cd /usr/share/easy-rsa
+
+./easyrsa build-ca nopass << EOF
+EOF
+# CA creation complete and you may now import and sign cert requests.
+# Your new CA certificate file for publishing is at:
+# /usr/share/easy-rsa/pki/ca.crt
+
+./easyrsa gen-req MyReq nopass << EOF2
+EOF2
+# Keypair and certificate request completed. Your files are:
+# req: /usr/share/easy-rsa/pki/reqs/MyReq.req
+# key: /usr/share/easy-rsa/pki/private/MyReq.key
+
+./easyrsa sign-req server MyReq << EOF3
+yes
+EOF3
+# Certificate created at: /usr/share/easy-rsa/pki/issued/MyReq.crt
+
+#Copy server keys and certificates
+cd /usr/share/easy-rsa/pki
+cp ca.crt issued/MyReq.crt private/MyReq.key /etc/openvpn
+
 
 cat > /etc/openvpn/server.conf <<EOF
 mode server
@@ -31,7 +60,6 @@ push "dhcp-option DNS 8.8.8.8"
 push "dhcp-option DNS 8.8.4.4"
 EOF
 
-
 cat > /etc/openvpn/client-emb.ovpn <<EOF
 client
 nobind
@@ -55,8 +83,6 @@ resolv-retry infinite
 remote $IP_ADDR 1194 udp
 </connection>
 EOF
-
-
 
 cat > /etc/openvpn/client-file.ovpn <<EOF
 client
