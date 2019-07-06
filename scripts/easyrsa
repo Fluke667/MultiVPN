@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Easy-RSA 3 -- A Shell-based CA Utility
-#
+# https://github.com/Aroaming/easyrsa-build
 # Copyright (C) 2018 by the Open-Source OpenVPN development community.
 # A full list of contributors can be found in the ChangeLog.
 #
