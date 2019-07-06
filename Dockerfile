@@ -162,4 +162,4 @@ RUN /config/tz.sh \
     /config/privoxy.sh
 
 COPY entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
