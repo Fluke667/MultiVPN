@@ -137,7 +137,7 @@ VOLUME /etc/ppp \
        /etc/periodic \
        /etc/tor \
        /etc/ssl/certs
-       
+#VOLUME ["/data/openvpn", "/data/easyrsa"]
 
 
 
