@@ -125,6 +125,7 @@ COPY ./etc/easyrsa/x509-types /usr/share/easy-rsa/x509-types
 COPY ./etc/privoxy/config /etc/privoxy/config
 # Copy Scripts 
 COPY ./scripts/* /usr/local/bin/
+RUN chmod 0700 /usr/local/bin/*
 
 
 
