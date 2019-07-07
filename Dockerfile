@@ -19,7 +19,7 @@ RUN apk update && apk add --no-cache \
     alpine-conf linux-headers bash shadow gnupg runit nano go tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
     strongswan ca-certificates iptables iproute2 pptpd xl2tpd sqlite sqlite-libs openssl openssh easy-rsa nodejs npm \
     readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl \
-    obfs4proxy meek simple-obfs ppcre wgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
+    obfs4proxy meek simple-obfs pcre pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
     miniupnpc libstdc++ ethtool rng-tools perl
     
 RUN pip3 install --no-cache --upgrade pip setuptools wheel \
