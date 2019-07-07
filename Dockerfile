@@ -5,12 +5,8 @@ USER root
 WORKDIR /root
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub && \
-    echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
-    echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-    
-RUN apk update && \
-    apk add --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ sslh && \
-    rm -rf /var/cache/apk/*
+    echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
+    #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
     
 RUN apk update && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
@@ -26,7 +22,7 @@ RUN apk update && apk add --no-cache \
     
 RUN pip3 install --no-cache --upgrade \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
-    #cffi fteproxy
+    #fteproxy
 ### Compile Section - Touch Files and Directories
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d && mkdir -p /tmp/build \
     mkdir -p /home/i2pd /home/i2pd/data && \
