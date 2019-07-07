@@ -18,20 +18,22 @@ RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.c
     echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
     apk update && apk add --no-cache obfs4proxy meek simple-obfs
     #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-RUN echo "**** install Python ****" && \
+    
+RUN apk update && apk add --no-cache --virtual build-dependencies \
+    libev-dev libsodium-dev mbedtls-dev python3-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
+    openssl-dev curl-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
+    build-base gcc g++ git autoconf automake cmake make w3m perl-dev && \
+    
+    echo "**** install Python ****" && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     echo "**** install pip ****" && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-    pip3 install --no-cache --upgrade asn1crypto asyncssh pycparser pycryptodome pproxy six
+    pip3 install --no-cache --upgrade asn1crypto asyncssh pycparser pycryptodome pproxy six && \
     #fteproxy
     
-RUN apk update && apk add --no-cache --virtual build-dependencies \
-    libev-dev libsodium-dev mbedtls-dev python3-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
-    openssl-dev curl-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
-    build-base gcc g++ git autoconf automake cmake make w3m perl-dev && \
     
 ### Compile Section 1 - Files & Directories
     mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d && \
