@@ -28,11 +28,13 @@ RUN apk update && apk add --no-cache \
 RUN pip3 install --no-cache --upgrade pip setuptools wheel \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
     #fteproxy
-### Compile Section - Touch Files and Directories
+### Compile Section 1 - Files & Directories
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d \
     mkdir -p /var/lib/i2pd /var/lib/i2pd/data && \
     touch /var/log/cron/cron.log
-### Compile Section - Add Groups and Users
+### Compile Section 2 - Add Groups and Users
+RUN groupadd -g 1200 i2pd && adduser -s /bin/false -D i2pd -G i2pd \
+    chown -R i2pd:i2pd /var/lib/i2pd
 #RUN groupadd -g 2100 i2pd && useradd -u 1100 --create-home --home-dir /home/i2pd -g i2pd i2pd 
     #groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy
 ### Compile Section - Get & Configure & Make Files
