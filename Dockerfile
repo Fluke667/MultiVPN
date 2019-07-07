@@ -3,8 +3,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 ARG TZ='Europe/Berlin'
 USER root
 WORKDIR /root
-CMD alias python=python3 \
-    alias pip=pip3
+CMD alias python=python3
 ENV PRVIVOXY_DL=https://github.com/Fluke667/Privoxy-Silent.git \
     PURPLEI2P_DL=https://github.com/PurpleI2P/i2pd.git \
     SSLH_DL=https://github.com/yrutschle/sslh.git
