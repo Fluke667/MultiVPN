@@ -41,7 +41,7 @@ RUN cd /tmp && git clone -q -b v1.20 ${SSLH_DL} && \
     cd sslh && \
     sed -i 's/^USELIBPCRE=.*/USELIBPCRE=1/' Makefile && \
     make sslh && \
-    cp ./sslh-fork /bin/sslh && \
+    cp ./sslh-fork /bin/sslh
 RUN cd /tmp && git clone -q ${PURPLEI2P_DL} && \
     cd i2pd/build && \
     cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=OFF -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
