@@ -12,12 +12,7 @@ ENV PRVIVOXY_DL=https://github.com/Fluke667/Privoxy-Silent.git \
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub && \
     echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
     #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-    
-RUN apk update && apk add --no-cache --virtual build-dependencies \
-    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
-    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
-    build-base gcc g++ git autoconf automake cmake make wget curl w3m perl-dev
-    
+
 RUN apk update && apk add --no-cache \
     alpine-conf linux-headers bash shadow gnupg runit nano go tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
     strongswan ca-certificates iptables iproute2 pptpd xl2tpd sqlite sqlite-libs openssl openssh easy-rsa nodejs npm \
@@ -28,32 +23,38 @@ RUN apk update && apk add --no-cache \
 RUN pip3 install --no-cache --upgrade pip setuptools wheel \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
     #fteproxy
+    
+RUN apk update && apk add --no-cache --virtual build-dependencies \
+    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
+    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
+    build-base gcc g++ git autoconf automake cmake make wget curl w3m perl-dev && \
+    
 ### Compile Section 1 - Files & Directories
-RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d \
+    mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d && \
     mkdir -p /var/lib/i2pd /var/lib/i2pd/data && \
-    touch /var/log/cron/cron.log
+    touch /var/log/cron/cron.log && \
 ### Compile Section 2 - Add Groups and Users
-RUN groupadd -g 1200 i2pd && adduser -s /bin/false -D i2pd -G i2pd \
-    chown -R i2pd:i2pd /var/lib/i2pd
+    groupadd -g 1200 i2pd && adduser -s /bin/false -D i2pd -G i2pd && \
+    chown -R i2pd:i2pd /var/lib/i2pd && \
 #RUN groupadd -g 2100 i2pd && useradd -u 1100 --create-home --home-dir /home/i2pd -g i2pd i2pd 
     #groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy
 ### Compile Section - Get & Configure & Make Files
-RUN cd /tmp && git clone -q ${PRVIVOXY_DL} && \
+    cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     cd Privoxy-Silent && \
     autoheader && autoconf && ./configure && make && \
-    make -n install USER=privoxy GROUP=privoxy
-RUN cd /tmp && git clone -q -b v1.20 ${SSLH_DL} && \
+    make -n install USER=privoxy GROUP=privoxy && \
+    cd /tmp && git clone -q -b v1.20 ${SSLH_DL} && \
     cd sslh && \
     sed -i 's/^USELIBPCRE=.*/USELIBPCRE=1/' Makefile && \
     make sslh && \
     cp ./sslh-fork /bin/sslh && \
-    cp basic.cfg /etc/sslh.cfg
-RUN cd /tmp && git clone -q -b openssl ${PURPLEI2P_DL} && \
+    cp basic.cfg /etc/sslh.cfg && \
+    cd /tmp && git clone -q -b openssl ${PURPLEI2P_DL} && \
     cd i2pd && \
     make && \
     cp i2pd /bin/i2pd && \
-    cp -R contrib/certificates /var/lib/i2pd/data
-
+    cp -R contrib/certificates /var/lib/i2pd/data && \
+    apk del build-dependencies
 
 ### Expose Ports
 # sslh Multiplexer
