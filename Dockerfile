@@ -4,10 +4,14 @@ ARG TZ='Europe/Berlin'
 USER root
 WORKDIR /root
 
-RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub
-RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
+RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub && \
+    echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-
+    
+RUN apk update && \
+    apk add --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ sslh && \
+    rm -rf /var/cache/apk/*
+    
 RUN apk update && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
     openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
@@ -19,6 +23,7 @@ RUN apk update && apk add --no-cache \
     readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl \
     obfs4proxy meek simple-obfs pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
     miniupnpc libstdc++ ethtool
+    
 
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d
 
