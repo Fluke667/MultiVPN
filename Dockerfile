@@ -37,7 +37,7 @@ RUN cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     cd Privoxy-Silent && \
     autoheader && autoconf && ./configure && make && \
     make -n install USER=privoxy GROUP=privoxy
-RUN cd /tmp && git clone -q ${SSLH_DL} && \
+RUN cd /tmp && git clone -q -b v1.20 ${SSLH_DL} && \
     cd sslh && \
     sed -i 's/^USELIBPCRE=.*/USELIBPCRE=1/' Makefile && \
     make sslh && \
