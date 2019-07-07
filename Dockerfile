@@ -42,7 +42,6 @@ RUN cd /tmp && git clone -q -b v1.20 ${SSLH_DL} && \
     sed -i 's/^USELIBPCRE=.*/USELIBPCRE=1/' Makefile && \
     make sslh && \
     cp ./sslh-fork ./sslh-select /bin && \
-    cp COPYING / && \
     ln /bin/sslh-select /bin/sslh
 RUN cd /tmp && git clone -q ${PURPLEI2P_DL} && \
     cd i2pd/build && \
