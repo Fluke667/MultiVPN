@@ -43,7 +43,7 @@ RUN cd /tmp && git clone -q -b v1.20 ${SSLH_DL} && \
     make sslh && \
     cp ./sslh-fork /bin/sslh && \
     cp basic.cfg /etc/sslh.cfg
-RUN cd /tmp && git clone -q ${PURPLEI2P_DL} && \
+RUN cd /tmp && git clone -q -b 2.27.0 ${PURPLEI2P_DL} && \
     cd i2pd/build && \
     cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=OFF -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
     make -j$(nproc) && make install && \
