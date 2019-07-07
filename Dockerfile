@@ -18,7 +18,7 @@ RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.c
     echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
     apk update && apk add --no-cache obfs4proxy meek simple-obfs
     #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-RUN RUN echo "**** install Python ****" && \
+RUN echo "**** install Python ****" && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     echo "**** install pip ****" && \
     python3 -m ensurepip && \
