@@ -15,18 +15,35 @@ RUN apk update && \
 RUN apk update && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
     openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
-    build-base gcc g++ git autoconf automake cmake make wget linux-headers
+    build-base gcc g++ git autoconf automake cmake make wget curl w3m
     
 RUN apk update && apk add --no-cache \
-    bash rng-tools shadow gnupg runit curl nano go libtool tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
+    linux-headers bash rng-tools shadow gnupg runit nano go tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
     strongswan ca-certificates iptables iproute2 pptpd xl2tpd sqlite sqlite-libs openssl openssh easy-rsa nodejs npm \
     readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl \
     obfs4proxy meek simple-obfs pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
     miniupnpc libstdc++ ethtool
     
-
-RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d
-
+RUN pip3 install --no-cache --upgrade \
+    asn1crypto asyncssh pycparser pycryptodome pproxy six
+    #cffi fteproxy
+### Compile Section - Touch Files and Directories
+RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d && mkdir -p /tmp/build \
+    mkdir -p /home/i2pd /home/i2pd/data && \
+    touch /var/log/cron/cron.log
+### Compile Section - Add Groups and Users
+RUN groupadd -g 2100 i2pd && useradd -u 1100 --create-home --home-dir /home/i2pd -g i2pd i2pd 
+    #groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy
+### Compile Section - Get & Configure & Make Files
+RUN cd /tmp/build && git clone -q ${PRVIVOXY_DL} && \
+    cd Privoxy-Silent && \
+    autoheader && autoconf && ./configure && make && \
+    make -n install USER=privoxy GROUP=privoxy
+RUN cd /tmp/build && git clone -q ${PURPLEI2P_DL} && \
+    cd i2pd/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=OFF -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
+    make -j$(nproc) && make install && \
+    chown i2pd:i2pd -R /home/i2pd
 RUN echo "**** install Python ****" && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     \
@@ -35,23 +52,6 @@ RUN echo "**** install Python ****" && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
-
-RUN pip3 install --no-cache --upgrade \
-    asn1crypto asyncssh pycparser pycryptodome pproxy six
-    #cffi fteproxy
-    
-RUN groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy && \
-    groupadd -g 2100 i2pd && useradd -u 1100 --create-home --home-dir /home/i2pd -g i2pd i2pd
-
-RUN git clone -q https://github.com/Fluke667/Privoxy-Silent.git && \
-    cd Privoxy-Silent && \
-    autoheader && autoconf && ./configure && make -n install USER=privoxy GROUP=privoxy
-WORKDIR /root
-RUN git clone https://github.com/PurpleI2P/i2pd.git && \
-    cd i2pd/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=OFF -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
-    make -j$(nproc) && make install && \
-    chown i2pd:i2pd -R /home/i2pd
 
 
 ### Expose Ports
