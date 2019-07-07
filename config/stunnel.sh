@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mkdir /etc/stunnel
-cd /etc/stunnel
+cd /etc/stunnel || exit
 
 cat > stunnel.conf <<_EOF_
 foreground = yes
