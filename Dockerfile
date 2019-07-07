@@ -50,7 +50,7 @@ RUN cd /tmp && git clone -q -b openssl ${PURPLEI2P_DL} && \
     cd i2pd && \
     make && \
     cp i2pd /bin/i2pd && \
-    cp -R contrib/certificates /var/lib/i2pd
+    cp -R contrib/certificates /var/lib/i2pd/data
 
 
 ### Expose Ports
