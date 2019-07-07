@@ -5,6 +5,9 @@ USER root
 WORKDIR /root
 CMD alias python=python3 \
     alias pip=pip3
+ENV PRVIVOXY_DL=https://github.com/Fluke667/Privoxy-Silent.git \
+    PURPLEI2P_DL=https://github.com/PurpleI2P/i2pd.git \
+    SSLH_DL=https://github.com/yrutschle/sslh.git
 
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub && \
     echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
@@ -27,10 +30,10 @@ RUN pip3 install --no-cache --upgrade pip setuptools wheel \
     #fteproxy
 ### Compile Section - Touch Files and Directories
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d \
-    mkdir -p /home/i2pd /home/i2pd/data && \
+    mkdir -p /var/lib/i2pd /var/lib/i2pd/data && \
     touch /var/log/cron/cron.log
 ### Compile Section - Add Groups and Users
-RUN groupadd -g 2100 i2pd && useradd -u 1100 --create-home --home-dir /home/i2pd -g i2pd i2pd 
+#RUN groupadd -g 2100 i2pd && useradd -u 1100 --create-home --home-dir /home/i2pd -g i2pd i2pd 
     #groupadd -g 2000 privoxy && useradd -m -u 2001 -g privoxy privoxy
 ### Compile Section - Get & Configure & Make Files
 RUN cd /tmp && git clone -q ${PRVIVOXY_DL} && \
@@ -44,10 +47,10 @@ RUN cd /tmp && git clone -q -b v1.20 ${SSLH_DL} && \
     cp ./sslh-fork /bin/sslh && \
     cp basic.cfg /etc/sslh.cfg
 RUN cd /tmp && git clone -q -b openssl ${PURPLEI2P_DL} && \
-    cd i2pd/build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=OFF -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
-    make -j$(nproc) && make install && \
-    chown i2pd:i2pd -R /home/i2pd
+    cd i2pd && \
+    make && \
+    cp i2pd /bin/i2pd && \
+    cp -R contrib/certificates /var/lib/i2pd
 
 
 ### Expose Ports
