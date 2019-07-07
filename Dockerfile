@@ -8,73 +8,20 @@ RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.c
 RUN echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
 
-RUN apk update \
-    && apk add --no-cache --virtual build-dependencies \
-    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev \
+RUN apk update && apk add --no-cache --virtual build-dependencies \
+    libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
     openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
     build-base gcc g++ git autoconf automake cmake make wget linux-headers
     
-RUN apk update \
-    && apk add --no-cache \
-        bash \
-	tzdata \
-	rng-tools \
-	shadow \
-	gnupg \
-	runit \
-        curl \
-	nano \
-	go \
-        libtool \
-        tar \
-	tor torsocks \
-	openvpn openvpn-auth-pam \
-	#socat \
-	python3 \
-	libffi \
-	nodejs npm \
-        ca-certificates \
-        iptables iproute2 \
-	pptpd \
-	xl2tpd \
-	sqlite sqlite-libs \
-        openssl \
-	openssh \
-	easy-rsa \
-        strongswan \
-	libsodium \
-	libconfig \
-	bzip2 \
-	libbz2 \
-	zstd \
-	expat \
-	gdbm \
-	xz xz-libs \
-	zlib \
-	libevent \
-	dcron \
-	stunnel \
-	gnupg \
-	libressl \
-	readline \
-	obfs4proxy \
-	meek \
-	simple-obfs \
-	pwgen \
-	boost-filesystem \
-        boost-program_options \
-        boost-date_time \
-        libssl1.1 \
-	websocket++ \
-	miniupnpc \
-	libstdc++ \
-	ethtool
+RUN apk update && apk add --no-cache \
+    bash rng-tools shadow gnupg runit curl nano go libtool tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
+    strongswan ca-certificates iptables iproute2 pptpd xl2tpd sqlite sqlite-libs openssl openssh easy-rsa nodejs npm \
+    readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl \
+    obfs4proxy meek simple-obfs pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
+    miniupnpc libstdc++ ethtool
 
-
-    
 RUN mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && touch /var/log/cron/cron.log && mkdir -m 0644 -p /etc/cron.d
 
-    
 RUN echo "**** install Python ****" && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     \
