@@ -13,7 +13,7 @@ RUN apk update && apk add --no-cache \
     strongswan ca-certificates iptables iproute2 pptpd xl2tpd sqlite sqlite-libs openssl openssh easy-rsa nodejs npm \
     readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl pcre \
     pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ miniupnpc libstdc++ ethtool \
-    rng-tools perl wget curl 
+    rng-tools perl wget curl python3-dev
 RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub && \
     echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
     apk update && apk add --no-cache obfs4proxy meek simple-obfs
@@ -30,7 +30,7 @@ RUN echo "**** install Python ****" && \
     
 RUN apk update && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
-    openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
+    openssl-dev curl-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
     build-base gcc g++ git autoconf automake cmake make w3m perl-dev && \
     
 ### Compile Section 1 - Files & Directories
