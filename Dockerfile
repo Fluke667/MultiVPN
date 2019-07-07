@@ -18,8 +18,8 @@ RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.c
     echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
     apk update && apk add --no-cache obfs4proxy meek simple-obfs
     #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-RUN pip3 install --no-cache --upgrade pip setuptools wheel \
-    asn1crypto asyncssh pycparser pycryptodome pproxy six
+RUN pip3 install --no-cache --upgrade pip setuptools wheel && \
+    pip3 install --no-cache --upgrade asn1crypto asyncssh pycparser pycryptodome pproxy six
     #fteproxy
     
 RUN apk update && apk add --no-cache --virtual build-dependencies \
