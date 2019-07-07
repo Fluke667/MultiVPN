@@ -1,12 +1,12 @@
 #!/bin/sh
 
-cd /usr/share/easy-rsa
+cd /usr/share/easy-rsa || exit
 ./easyrsa init-pki
 ./easyrsa gen-dh
-cd /usr/share/easy-rsa/pki
+cd /usr/share/easy-rsa/pki || exit
 cp dh.pem /etc/openvpn
 #
-cd /usr/share/easy-rsa
+cd /usr/share/easy-rsa || exit
 
 ./easyrsa build-ca nopass << EOF
 EOF
@@ -26,7 +26,7 @@ EOF3
 # Certificate created at: /usr/share/easy-rsa/pki/issued/MyReq.crt
 
 #Copy server keys and certificates
-cd /usr/share/easy-rsa/pki
+cd /usr/share/easy-rsa/pki || exit
 cp ca.crt issued/MyReq.crt private/MyReq.key /etc/openvpn
 
 
