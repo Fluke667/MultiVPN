@@ -13,14 +13,14 @@ RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.c
 RUN apk update && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
     openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
-    build-base gcc g++ git autoconf automake cmake make wget curl w3m
+    build-base gcc g++ git autoconf automake cmake make wget curl w3m perl-dev
     
 RUN apk update && apk add --no-cache \
-    linux-headers bash rng-tools shadow gnupg runit nano go tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
+    alpine-conf linux-headers bash shadow gnupg runit nano go tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
     strongswan ca-certificates iptables iproute2 pptpd xl2tpd sqlite sqlite-libs openssl openssh easy-rsa nodejs npm \
     readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl \
-    obfs4proxy meek simple-obfs pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
-    miniupnpc libstdc++ ethtool
+    obfs4proxy meek simple-obfs ppcre wgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
+    miniupnpc libstdc++ ethtool rng-tools perl
     
 RUN pip3 install --no-cache --upgrade pip setuptools wheel \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
@@ -37,6 +37,13 @@ RUN cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     cd Privoxy-Silent && \
     autoheader && autoconf && ./configure && make && \
     make -n install USER=privoxy GROUP=privoxy
+RUN cd /tmp && git clone -q ${SSLH_DL} && \
+    cd sslh && \
+    sed -i 's/^USELIBPCRE=.*/USELIBPCRE=1/' Makefile && \
+    make sslh && \
+    cp ./sslh-fork ./sslh-select /bin && \
+    cp COPYING / && \
+    ln /bin/sslh-select /bin/sslh
 RUN cd /tmp && git clone -q ${PURPLEI2P_DL} && \
     cd i2pd/build && \
     cmake -DCMAKE_INSTALL_PREFIX=/home/i2pd -DCMAKE_BUILD_TYPE=Release -DWITH_LIBRARY=OFF -DWITH_PCH=OFF -DWITH_AESNI=ON -DWITH_HARDENING=ON && \
