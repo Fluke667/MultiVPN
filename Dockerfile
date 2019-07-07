@@ -9,17 +9,16 @@ ENV PRVIVOXY_DL=https://github.com/Fluke667/Privoxy-Silent.git \
     PURPLEI2P_DL=https://github.com/PurpleI2P/i2pd.git \
     SSLH_DL=https://github.com/yrutschle/sslh.git
 
-RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub && \
-    echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories
-    #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
-
 RUN apk update && apk add --no-cache \
     alpine-conf linux-headers bash shadow gnupg runit nano go tar tor torsocks openvpn openvpn-auth-pam python3 libffi \ 
     strongswan ca-certificates iptables iproute2 pptpd xl2tpd sqlite sqlite-libs openssl openssh easy-rsa nodejs npm \
-    readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl \
-    obfs4proxy meek simple-obfs pcre pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ \
-    miniupnpc libstdc++ ethtool rng-tools perl
-    
+    readline libsodium libconfig bzip2 libbz2 zstd expat gdbm xz xz-libs zlib libevent dcron stunnel gnupg libressl pcre \
+    pwgen boost-filesystem boost-program_options boost-date_time libssl1.1 websocket++ miniupnpc libstdc++ ethtool \
+    rng-tools perl wget curl 
+RUN wget -P /etc/apk/keys https://alpine-repo.sourceforge.io/DDoSolitary@gmail.com-00000000.rsa.pub && \
+    echo "https://alpine-repo.sourceforge.io/packages" >> /etc/apk/repositories && \
+    apk update && apk add --no-cache obfs4proxy meek simple-obfs
+    #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories
 RUN pip3 install --no-cache --upgrade pip setuptools wheel \
     asn1crypto asyncssh pycparser pycryptodome pproxy six
     #fteproxy
@@ -27,7 +26,7 @@ RUN pip3 install --no-cache --upgrade pip setuptools wheel \
 RUN apk update && apk add --no-cache --virtual build-dependencies \
     libev-dev libsodium-dev mbedtls-dev pcre-dev iptables-dev sqlite-dev musl-dev boost-dev gmp-dev libressl-dev tzdata \
     openssl-dev curl-dev python3-dev libtool c-ares-dev zlib-dev libffi-dev libconfig-dev libevent-dev zstd-dev xz-dev \
-    build-base gcc g++ git autoconf automake cmake make wget curl w3m perl-dev && \
+    build-base gcc g++ git autoconf automake cmake make w3m perl-dev && \
     
 ### Compile Section 1 - Files & Directories
     mkdir -p /var/log/cron && mkdir -m 0644 -p /var/spool/cron/crontabs && mkdir -m 0644 -p /etc/cron.d && \
