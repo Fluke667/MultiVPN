@@ -68,7 +68,7 @@ EXPOSE 443
 # 1723 (PPTP) 500 (IKE) 4500 (IPSec NAT Traversal) 1701 (L2F) & (L2TP)
 #EXPOSE 1723/tcp 1723/udp 500/udp 4500/udp 1701/udp
 # 8010/tcp 8020/tcp 8030/tcp 8040/tcp - Ports for pproxy
-#EXPOSE 8010/tcp 8020/tcp 8030/tcp 8040/tcp
+#EXPOSE 8090/tcp 8080/tcp 8070/tcp 8060/tcp 8050/tcp
 # 9001 9030 9050 54444 9443 7002 - ORPort, DirPort, SocksPort, Obfsproxy, Obfs4Proxy MeekPort
 #EXPOSE 9001 9030 9050 54444 7002
 # 8388/8377/8366 (shadowsocks-libev) 9443 (kcptun) 
