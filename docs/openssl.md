@@ -14,20 +14,20 @@ the generated certificates:
 
 | VARIABLE | DESCRIPTION | DEFAULT |
 | :------- | :---------- | :------ |
-| COUNTY | Certificate subject country string | UK |
-| STATE | Certificate subject state string | Greater London |
-| LOCATION | Certificate subject location string | London |
-| ORGANISATION | Certificate subject organisation string | Example |
-| ROOT_CN | Root certificate common name | Root |
-| ISSUER_CN | Intermediate issuer certificate common name | Example Ltd |
-| PUBLIC_CN | Public certificate common name | *.example.com |
-| ROOT_NAME | Root certificate filename | root |
-| ISSUER_NAME | Intermediate issuer certificate filename | example |
-| PUBLIC_NAME | Public certificate filename | public |
-| RSA_KEY_NUMBITS | The size of the rsa keys to generate in bits | 2048 |
-| DAYS | The number of days to certify the certificates for | 365 |
-| KEYSTORE_NAME | Keystore filename | keystore |
-| KEYSTORE_PASS | Keystore password | changeit |
+| CRT_COUNTY | Certificate subject country string | DE |
+| CRT_STATE | Certificate subject state string | Bavaria |
+| CRT_LOCATION | Certificate subject location string | Nuremberg |
+| CRT_ORGANISATION | Certificate subject organisation string | Example Ltd |
+| CRT_ROOT_CN | Root certificate common name | root |
+| CRT_ISSUER_CN | Intermediate issuer certificate common name | Example Ltd |
+| CRT_PUBLIC_CN | Public certificate common name | *.example.com |
+| CRT_ROOT_NAME | Root certificate filename | root |
+| CRT_ISSUER_NAME | Intermediate issuer certificate filename | example |
+| CRT_PUBLIC_NAME | Public certificate filename | public |
+| CRT_RSA_KEY_NUMBITS | The size of the rsa keys to generate in bits | 2048 |
+| CRT_DAYS | The number of days to certify the certificates for | 365 |
+| CRT_KEYSTORE_NAME | Keystore filename | keystore |
+| CRT_KEYSTORE_PASS | Keystore password | changeit |
 
 For example, to run a container, customise variables and mount the certificates
 in a volume:
