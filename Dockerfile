@@ -63,6 +63,8 @@ RUN apk update && apk add --no-cache --virtual build-dependencies \
     apk del build-dependencies
 
 ### Expose Ports
+# ssh Openssh Port
+EXPOSE 22
 # sslh Multiplexer
 EXPOSE 443
 # 1723 (PPTP) 500 (IKE) 4500 (IPSec NAT Traversal) 1701 (L2F) & (L2TP)
