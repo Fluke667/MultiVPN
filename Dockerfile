@@ -82,7 +82,8 @@ EXPOSE 1194/udp
 # 1515 (Webinterface) 443 (sslh)
 #EXPOSE 1515/tcp
 
-
+# Openssh Config
+COPY ./etc/ssh/sshd_conf /etc/ssh/sshd_conf
 # PPTP Configuration
 COPY ./etc/pptpd.conf /etc/pptpd.conf   
 COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options  
@@ -111,11 +112,10 @@ VOLUME /etc/ppp \
        /etc/periodic \
        /etc/tor \
        /etc/ssl/certs \
+       /etc/ssh \
        /usr/share/easy-rsa \
        /etc/openvpn 
-       
-#VOLUME ["/data/openvpn", "/data/easyrsa"]
-
+      
 
 
 RUN rm -rf /tmp/* \
