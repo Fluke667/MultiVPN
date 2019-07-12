@@ -17,6 +17,19 @@ if [ ! -f "/etc/ssh/ssh_host_rsa_key" ]; then
         fi
 fi
 
+if [ ! -f "/etc/ssh/ssh_host_dsa_key" ]; then
+        if [ -z "$SSH_PRIV_KEY_DSA" ]; then
+            # Neuen DSA-Key erzeugen - Achtung, dieser ändert sich mit jedem neuen Container
+            ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa > /dev/null 2>&1
+            echo "***** PLEASE SET SSH_PRIV_KEY_DSA VARIABLE TO: *****"
+            cat /etc/ssh/ssh_host_dsa_key
+            echo "*****************************************************"
+        else
+            echo "$SSH_PRIV_KEY_DSA" > /etc/ssh/ssh_host_dsa_key
+            chown root.root /etc/ssh/ssh_host_dsa_key
+            chmod 600 /etc/ssh/ssh_host_dsa_key
+        fi
+fi
 
 if [ ! -f "/etc/ssh/ssh_host_ed25519_key" ]; then
         if [ -z "$HOST_PRIV_KEY_ED25519" ]; then
@@ -32,7 +45,20 @@ if [ ! -f "/etc/ssh/ssh_host_ed25519_key" ]; then
         fi
 
 fi
-unset HOST_PRIV_KEY_ED25519
+
+if [ ! -f "/etc/ssh/ssh_host_ecdsa_key" ]; then
+        if [ -z "$SSH_PRIV_KEY_ECDSA" ]; then
+            # Neuen ECDSA-Key erzeugen - Achtung, dieser ändert sich mit jedem neuen Container
+            ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa > /dev/null 2>&1
+            echo "***** PLEASE SET SSH_PRIV_KEY_ECDSA VARIABLE TO: *****"
+            cat /etc/ssh/ssh_host_ecdsa_key
+            echo "*****************************************************"
+        else
+            echo "$SSH_PRIV_KEY_ECDSA" > /etc/ssh/ssh_host_ecdsa_key
+            chown root.root /etc/ssh/ssh_host_ecdsa_key
+            chmod 600 /etc/ssh/ssh_host_ecdsa_key
+        fi
+fi
 
 mkdir -p /etc/ssh/authorized_keys
 # Add Public Keys to root account
