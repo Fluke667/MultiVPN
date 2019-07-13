@@ -34,17 +34,14 @@ mkdir -p /etc/ssh/keys
             echo "***** PLEASE SET SSH_PRIV_KEY_ED25519 VARIABLE TO: *****"
             cat /etc/ssh/keys/ssh_host_ed25519_key
             echo "*********************************************************"
-
             chown root.root /etc/ssh/keys/ssh_host_ed25519_key
             chmod 600 /etc/ssh/keys/ssh_host_ed25519_key
-
 
             # Neuen ECDSA-Key erzeugen - Achtung, dieser ändert sich mit jedem neuen Container
             ssh-keygen -f /etc/ssh/keys/ssh_host_ecdsa_key -N '' -t ecdsa > /dev/null 2>&1
             echo "***** PLEASE SET SSH_PRIV_KEY_ECDSA VARIABLE TO: *****"
             cat /etc/ssh/keys/ssh_host_ecdsa_key
             echo "*****************************************************"
-
             chown root.root /etc/ssh/keys/ssh_host_ecdsa_key
             chmod 600 /etc/ssh/keys/ssh_host_ecdsa_key
 
