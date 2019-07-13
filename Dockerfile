@@ -21,5 +21,5 @@ RUN chmod 0700 /config/*.sh
 RUN /config/sshd.sh \
     /config/ssl.sh \
     #/configs/sshd.sh \
-    /config/40.openvpn.sh
+    /config/openvpn.sh
     
