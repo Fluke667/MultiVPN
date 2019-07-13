@@ -39,14 +39,14 @@ mkdir -p /etc/ssh/keys
             chown root.root /etc/ssh/keys/ssh_host_ecdsa_key
             chmod 600 /etc/ssh/keys/ssh_host_ecdsa_key
 
-ssh-keygen -t "$SSH_KEYS_ROOT_TYPE" -b "$SSH_KEYS_ROOT_SIZE"  -f "$SSH_KEYS_ROOT_ID" -N "$SSH_ROOT_PASSWORD"
-chmod 0600 "$SSH_KEYS_ROOT_ID" "$SSH_KEYS_ROOT_CRT"
+ssh-keygen -t "$SSH_ROOTKEY_TYPE" -b "$SSH_ROOTKEY_SIZE"  -f "$SSH_ROOTKEY_ID" -N "$SSH_ROOTKEY_PASS"
+chmod 0600 "$SSH_ROOTKEY_ID" "$SSH_ROOTKEY_CRT"
 
 
 mkdir -p /etc/ssh/keys/authorized_keys
 # Add Public Keys to root account
-if [ -n "$SSH_KEYS_ROOT_CRT" ]; then
-		echo "$SSH_KEYS_ROOT_CRT" > /etc/ssh/keys/authorized_keys/root
+if [ -n "$SSH_ROOTKEY_CRT" ]; then
+		echo "$SSH_ROOTKEY_CRT" > /etc/ssh/keys/authorized_keys/root
 fi
 
 #prepare run dir
