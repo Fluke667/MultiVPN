@@ -50,8 +50,8 @@ fi
 
 mkdir -p /etc/ssh/keys/authorized_keys
 # Add Public Keys to root account
-if [ -n "$SSH_ROOTKEY_CRT" ]; then
-		echo "$SSH_ROOTKEY_CRT" > /etc/ssh/keys/authorized_keys/root
+if [ -n "$SSH_ROOTKEY_PUB" ]; then
+		echo "$SSH_ROOTKEY_PUB" > /etc/ssh/keys/authorized_keys/root
 fi
 
 #prepare run dir
