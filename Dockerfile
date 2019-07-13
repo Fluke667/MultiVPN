@@ -19,9 +19,7 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 COPY ./etc/openvpn/client.conf /etc/openvpn/client.conf
 COPY ./etc/openvpn/server.conf /etc/openvpn/server.conf
 
-# Add crontab file & give execution rights
-ADD vpnconf.cron /etc/crontabs/vpnconf.cron
-RUN chmod 0644 /etc/crontabs/vpnconf.cron
+
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
@@ -30,3 +28,4 @@ RUN /config/sshd.sh \
     #/configs/sslh.sh \
     #/config/openvpn.sh
     
+CMD ["/startup.sh"]
