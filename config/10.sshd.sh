@@ -3,13 +3,13 @@
 set -eu
 mkdir -p /etc/ssh/keys
 
-if [ ! -f "$SSH_ROOTKEY_PRIV" ]; then
-  /usr/bin/ssh-keygen -q -t rsa -N '' -f $SSH_ROOTKEY_PRIV
-  chmod 700 $SSH_ROOTKEY_PATH
-  chmod 644 $SSH_ROOTKEY_PUB
-  chmod 600 $SSH_ROOTKEY_PRIV
-  chown -R $SSH_ROOTKEY_PATH
-fi
+#if [ ! -f "$SSH_ROOTKEY_PRIV" ]; then
+#  /usr/bin/ssh-keygen -q -t rsa -N '' -f $SSH_ROOTKEY_PRIV
+#  chmod 700 $SSH_ROOTKEY_PATH
+#  chmod 644 $SSH_ROOTKEY_PUB
+#  chmod 600 $SSH_ROOTKEY_PRIV
+#  chown -R $SSH_ROOTKEY_PATH
+#fi
     
 
 
