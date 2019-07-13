@@ -17,6 +17,9 @@ COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 COPY ./etc/openvpn/client.conf /etc/openvpn/client.conf
 COPY ./etc/openvpn/server.conf /etc/openvpn/server.conf
+
+/etc/openvpn/vpnconf
+
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
 RUN /config/sshd.sh \
