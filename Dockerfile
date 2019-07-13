@@ -1,7 +1,7 @@
 FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 
-RUN apk add --update openssl make augeas shadow openssh openvpn bash && \ 
+RUN apk add --update openssl make augeas shadow openssh openvpn bash openrc && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     rm -rf /var/cache/apk/*
 
