@@ -1,3 +1,3 @@
 @reboot chmod 0777 /etc/openvpn/vpnconf >> /var/log/cron.log 2>&1
-@reboot /etc/openvpn/vpnconf server --server >> /var/log/cron.log 2>&1
-@reboot /etc/openvpn/vpnconf client --client >> /var/log/cron.log 2>&1
+@reboot cd /etc/openvpn && ./vpnconf server --server >> /var/log/cron.log 2>&1
+@reboot cd /etc/openvpn && ./vpnconf client --client >> /var/log/cron.log 2>&1
