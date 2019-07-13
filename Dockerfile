@@ -20,6 +20,6 @@ ADD ./config /config
 RUN chmod 0700 /config/*.sh
 RUN /config/sshd.sh \
     /config/ssl.sh \
-    #/configs/sshd.sh \
+    #/configs/sslh.sh \
     /config/openvpn.sh
     
