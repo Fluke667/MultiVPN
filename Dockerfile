@@ -19,6 +19,7 @@ COPY ./etc/openvpn/client.conf /etc/openvpn/client.conf
 COPY ./etc/openvpn/server.conf /etc/openvpn/server.conf
 COPY ./config /config
 RUN chmod 0700 /config/*.sh /etc/openvpn/vpnconf
+CMD ["bash", "/etc/openvpn/vpnconf server --server"]
 RUN /config/sshd.sh \
     /config/ssl.sh
     #/configs/sslh.sh \
