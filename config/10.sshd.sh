@@ -3,6 +3,15 @@
 set -eu
 mkdir -p /etc/ssh/keys
 
+if [ ! -f "$SSH_ROOTKEY_PRIV" ]; then
+  /usr/bin/ssh-keygen -q -t rsa -N '' -f $SSH_ROOTKEY_PRIV
+  chmod 700 $SSH_ROOTKEY_PATH
+  chmod 644 $SSH_ROOTKEY_PUB
+  chmod 600 $SSH_ROOTKEY_PRIV
+  chown -R $SSH_ROOTKEY_PATH
+fi
+    
+
 
             # Neuen RSA-Key erzeugen - Achtung, dieser ändert sich mit jedem neuen Container
             ssh-keygen -f $SSH_PRIV_KEY_RSA -N '' -t rsa > /dev/null 2>&1
