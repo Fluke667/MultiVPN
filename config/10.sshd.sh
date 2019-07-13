@@ -38,8 +38,8 @@ mkdir -p /etc/ssh/keys
 
             chown root.root /etc/ssh/keys/ssh_host_ecdsa_key
             chmod 600 /etc/ssh/keys/ssh_host_ecdsa_key
-
-ssh-keygen -f /root/.ssh/id_rsa -N $SSH_ROOTKEY_PASS -b $SSH_ROOTKEY_SIZE  -t $SSH_ROOTKEY_TYPE > /dev/null 2>&1
+su
+ssh-keygen -f $SSH_ROOTKEY_ID -N $SSH_ROOTKEY_PASS -b $SSH_ROOTKEY_SIZE  -t $SSH_ROOTKEY_TYPE > /dev/null 2>&1
 chmod 0600 $SSH_ROOTKEY_ID $SSH_ROOTKEY_CRT
 
 
