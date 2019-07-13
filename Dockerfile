@@ -3,6 +3,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update openssl make augeas shadow openssh openvpn bash openrc nano dcron && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
+    touch /var/log/cron.log && \
     rm -rf /var/cache/apk/*
 
 VOLUME ["/etc/certs/ssl"]
@@ -18,7 +19,9 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 COPY ./etc/openvpn/client.conf /etc/openvpn/client.conf
 COPY ./etc/openvpn/server.conf /etc/openvpn/server.conf
 
-/etc/openvpn/vpnconf
+# Add crontab file & give execution rights
+ADD vpnconf.cron /etc/crontabs/vpnconf.cron
+RUN chmod 0644 /etc/crontabs/vpnconf.cron
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
