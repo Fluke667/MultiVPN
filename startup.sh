@@ -1,12 +1,7 @@
 #!/bin/sh
 
-
-
-#if [ ! -f "/etc/openvpn/ca/ca.crt" ]
-
-
-
-if [ ! -f $OVPN_CA_CRT ]
+#if [ ! -f $OVPN_CA_CRT ]
+if [ ! -f "/etc/openvpn/ca/ca.crt" ]
 then
 chmod 0777 /etc/openvpn/vpnconf
 cd /etc/openvpn && ./vpnconf server --server
