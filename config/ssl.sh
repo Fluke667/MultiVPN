@@ -56,9 +56,7 @@ then
     
   echo " ---> Generate Diffie-Hellman Key"
   openssl dhparam \
-    -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_2048.dh" $CRT_DIFF_2048 \
-  openssl dhparam \
-    -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_4096.dh" $CRT_DIFF_4096
+    -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_LENGTH.dh" $CRT_DIFF_LENGTH
     
 else
   echo "ENTRYPOINT: $CRT_ISSUER_NAME.crt already exists"
