@@ -9,6 +9,7 @@ RUN apk add --update openssl openssl-dev ca-certificates make augeas shadow open
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
 
+#openvpn
 EXPOSE 1194
 
 
