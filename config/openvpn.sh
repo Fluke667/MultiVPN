@@ -27,6 +27,7 @@ fi
     #echo comp-lzo yes >> ${CLIENT_NAME}-emb.ovpn
     echo persist-key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo persist-tun >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    echo persist-remote-ip >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo user openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo group openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
@@ -59,6 +60,7 @@ fi
     #echo comp-lzo yes >> ${CLIENT_NAME}-file.ovpn
     echo persist-key >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo persist-tun >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo persist-remote-ip >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo user openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo group openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
