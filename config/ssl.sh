@@ -148,7 +148,7 @@ Public Certificate : $CRT_PUBLIC_NAME.crt
 Combine root and issuer Certificate: ca.pem
 PKCS12 keystore: $CRT_KEYSTORE_NAME.pfx
 Diffie Hellman Keys: $CRT_DIFF_NAME-$CRT_DIFF_2048.dh and $CRT_DIFF_NAME-$CRT_DIFF_4096.dh
-
+TLS Auth Key: (Only openvpn) $OVPN_TLSAUTH_KEY
 EOF
 
 
