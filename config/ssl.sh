@@ -25,8 +25,7 @@ then
     -days "$CRT_DAYS"
     
   echo " ---> Convert $CRT_CA_NAME.crt into $CRT_CA_NAME.pem Format"
-  openssl \
-     -x509 \
+  openssl x509 \
      -inform DER \
      -outform PEM \
      -in "$CRT_CERT_DIR/$CRT_CA_NAME.crt" \
