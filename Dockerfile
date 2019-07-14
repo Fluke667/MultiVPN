@@ -6,10 +6,11 @@ RUN apk add --update openssl openssl-dev make augeas shadow openssh openvpn bash
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/*
 
-VOLUME ["/etc/certs/ssl"]
+VOLUME ["/etc/certs"]
+VOLUME ["/etc/openvpn"]
 
 EXPOSE 1194
-EXPOSE 22
+
 
 COPY ./etc/ssl/issuer.ext /etc/ssl/issuer.ext
 COPY ./etc/ssl/public.ext /etc/ssl/public.ext
