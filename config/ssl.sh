@@ -66,11 +66,43 @@ then
   #openssl dhparam \
   #  -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_LENGTH.dh" $CRT_DIFF_LENGTH
   ####### Later turn ON ... Slow for Testing
-
-    
 else
   echo "ENTRYPOINT: $CRT_ISSUER_NAME.crt already exists"
 fi
+
+
+if [ ! -f "$CRT_CERT_DIR/$CRT_CLIENT_NAME.crt" ]
+then
+  # Generate Client Certificate
+
+  echo " ---> Generate Client private key"
+  openssl genrsa \
+    -out "$CRT_CERT_DIR/$CRT_CLIENT_NAME.key" \
+    "$CRT_KEY_LENGTH"
+
+  echo " ---> Generate Client certificate request"
+  openssl req \
+    -new \
+    -key "$CRT_CERT_DIR/$CRT_CLIENT_NAME.key" \
+    -out "$CRT_CERT_DIR/$CRT_CLIENT_NAME.csr" \
+    -subj "$CRT_CLIENT_SUBJ"
+
+  echo " ---> Generate Client certificate"
+  openssl x509 \
+    -req \
+    -in "$CRT_CERT_DIR/$CRT_CLIENT_NAME.csr" \
+    -CA "$CRT_CERT_DIR/$CRT_CA_NAME.crt" \
+    -CAkey "$CRT_CERT_DIR/$CRT_CA_NAME.key" \
+    -out "$CRT_CERT_DIR/$CRT_CLIENT_NAME.crt" \
+    -CAcreateserial \
+    -extfile "$CRT_CLIENT_EXT" \
+    -days "$CRT_DAYS"
+    
+    
+else
+  echo "ENTRYPOINT: $CRT_CLIENT_NAME.crt already exists"
+fi
+
 
 if [ ! -f "$CRT_CERT_DIR/$CRT_PUBLIC_NAME.key" ]
 then
