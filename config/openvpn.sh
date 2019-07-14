@@ -16,7 +16,10 @@ fi
     
     
 
-IP=$(grep '^server .*$' /etc/openvpn/server.conf | awk '{print $2}')
+#IP=$(grep '^server .*$' /etc/openvpn/server.conf | awk '{print $2}')
 
 
-/usr/sbin/openvpn --cd /etc/openvpn --config /etc/openvpn/server.conf --script-security 2
+#/usr/sbin/openvpn --cd /etc/openvpn --config /etc/openvpn/server.conf --script-security 2
+
+
+exec "$@"
