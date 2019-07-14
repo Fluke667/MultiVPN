@@ -41,6 +41,10 @@ fi
     echo '<key>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     cat ${CRT_CERT_DIR}/${CLIENT_NAME}.key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '</key>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    echo '<tls-auth>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    cat ${OVPN_TLSAUTH_KEY} >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    echo '</tls-auth>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    
 
   echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     echo client > ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
@@ -60,15 +64,10 @@ fi
     echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${CLIENT_NAME}-file.ovpn 
     #echo auth-user-pass >> ${CLIENT_NAME}-file.ovpn
-    echo '<ca>' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    cat ${CRT_CERT_DIR}/${CRT_CA_NAME}.pem >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo '</ca>' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo '<cert>' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    cat ${CRT_CERT_DIR}/${CLIENT_NAME}.crt >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo '</cert>' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo '<key>' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    cat ${CRT_CERT_DIR}/${CLIENT_NAME}.key >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo '</key>' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'ca {CRT_CA_NAME}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'cert ${CLIENT_NAME}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'key ${CLIENT_NAME}.key' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'tls-auth tlsauth.key' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
 
 
 
