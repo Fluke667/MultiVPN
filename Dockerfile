@@ -1,7 +1,7 @@
 FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 
-RUN apk add --update openssl openssl-dev make augeas shadow openssh openvpn bash openrc nano dcron && \ 
+RUN apk add --update openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash openrc nano dcron && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/*
@@ -26,9 +26,8 @@ COPY ./config /config
 RUN chmod 0700 /config/*.sh
 RUN /config/sshd.sh \
     /config/ssl.sh \
-    #/configs/sslh.sh \
     /config/openvpn.sh
-    
+    #/configs/sslh.sh
 
 
 
