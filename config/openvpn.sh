@@ -69,7 +69,7 @@ fi
     echo 'ca {CRT_CA_NAME}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo 'cert ${CLIENT_NAME}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo 'key ${CLIENT_NAME}.key' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo 'tls-auth tlsauth.key' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'tls-auth ta.key 1' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
 
 
 
