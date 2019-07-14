@@ -1,23 +1,20 @@
 #!/bin/sh
 
-SUBJ="/C=$CRT_COUNTY/ST=$CRT_STATE/L=$CRT_LOCATION/O=$CRT_ORGANISATION"
-
 if [ ! -f "$CRT_CERT_DIR/$CRT_ROOT_NAME.crt" ]
 then
   # generate root certificate
-  ROOT_SUBJ="$SUBJ/CN=$CRT_ROOT_CN"
 
   echo " ---> Generate Root CA private key"
   openssl genrsa \
     -out "$CRT_CERT_DIR/$CRT_ROOT_NAME.key" \
-    "$CRT_RSA_KEY_NUMBITS"
+    "$CRT_KEY_LENGTH"
 
   echo " ---> Generate Root CA certificate request"
   openssl req \
     -new \
     -key "$CRT_CERT_DIR/$CRT_ROOT_NAME.key" \
     -out "$CRT_CERT_DIR/$CRT_ROOT_NAME.csr" \
-    -subj "$ROOT_SUBJ"
+    -subj "$CRT_CA_SUBJ"
 
   echo " ---> Generate self-signed Root CA certificate"
   openssl req \
@@ -33,19 +30,18 @@ fi
 if [ ! -f "$CRT_CERT_DIR/$CRT_ISSUER_NAME.crt" ]
 then
   # generate issuer certificate
-  ISSUER_SUBJ="$SUBJ/CN=$CRT_ISSUER_CN"
 
   echo " ---> Generate Issuer private key"
   openssl genrsa \
     -out "$CRT_CERT_DIR/$CRT_ISSUER_NAME.key" \
-    "$CRT_RSA_KEY_NUMBITS"
+    "$CRT_KEY_LENGTH"
 
   echo " ---> Generate Issuer certificate request"
   openssl req \
     -new \
     -key "$CRT_CERT_DIR/$CRT_ISSUER_NAME.key" \
     -out "$CRT_CERT_DIR/$CRT_ISSUER_NAME.csr" \
-    -subj "$ISSUER_SUBJ"
+    -subj "$CRT_ISSUER_SUBJ"
 
   echo " ---> Generate Issuer certificate"
   openssl x509 \
@@ -62,7 +58,7 @@ then
   openssl dhparam \
     -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_2048.dh" $CRT_DIFF_2048 \
   openssl dhparam \
-      -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_4096.dh" $CRT_DIFF_4096
+    -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_4096.dh" $CRT_DIFF_4096
     
 else
   echo "ENTRYPOINT: $CRT_ISSUER_NAME.crt already exists"
@@ -74,7 +70,7 @@ then
   echo " ---> Generate private key"
   openssl genrsa \
     -out "$CRT_CERT_DIR/$CRT_PUBLIC_NAME.key" \
-    "$CRT_RSA_KEY_NUMBITS"
+    "$CRT_KEY_LENGTH"
 else
   echo "ENTRYPOINT: $CRT_PUBLIC_NAME.key already exists"
 fi
@@ -83,12 +79,11 @@ if [ ! -f "$CRT_CERT_DIR/$CRT_PUBLIC_NAME.crt" ]
 then
   # generate public certificate
   echo " ---> Generate public certificate request"
-  PUBLIC_SUBJ="$SUBJ/CN=$CRT_PUBLIC_CN"
   openssl req \
     -new \
     -key "$CRT_CERT_DIR/$CRT_PUBLIC_NAME.key" \
     -out "$CRT_CERT_DIR/$CRT_PUBLIC_NAME.csr" \
-    -subj "$PUBLIC_SUBJ"
+    -subj "$CRT_PUB_SUBJ"
 
   # append public cn to subject alt names
   echo "DNS.1 = $CRT_PUBLIC_CN" >> "$CRT_PUBLIC_EXT"
