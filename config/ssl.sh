@@ -57,6 +57,13 @@ then
     -CAcreateserial \
     -extfile "$CRT_ISSUER_EXT" \
     -days "$CRT_DAYS"
+    
+  echo " ---> Generate Diffie-Hellman Key"
+  openssl dhparam \
+    -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_2048.dh" $CRT_DIFF_2048 \
+  openssl dhparam \
+      -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_4096.dh" $CRT_DIFF_4096
+    
 else
   echo "ENTRYPOINT: $CRT_ISSUER_NAME.crt already exists"
 fi
@@ -140,6 +147,7 @@ Public Certificate : $CRT_PUBLIC_NAME.crt
 04. Other Things:
 Combine root and issuer Certificate: ca.pem
 PKCS12 keystore: $CRT_KEYSTORE_NAME.pfx
+Diffie Hellman Keys: $CRT_DIFF_NAME-$CRT_DIFF_2048.dh and $CRT_DIFF_NAME-$CRT_DIFF_4096.dh
 
 EOF
 
