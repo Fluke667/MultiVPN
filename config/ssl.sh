@@ -136,26 +136,5 @@ else
   echo "ENTRYPOINT: $CRT_KEYSTORE_NAME.pfx already exists"
 fi
 
-cat <<EOF > $CRT_CERT_DIR/certinfo.txt
-01. Root CA certificate Self-Signed
-Root CA Private key: $CRT_CA_NAME.key
-Root CA Certificate request: $CRT_CA_NAME.csr
-Root CA Certificate: $CRT_CA_NAME.crt
-02. Issuer certificate Self-Signed
-Issuer private key: $CRT_ISSUER_NAME.key
-Issuer Certificate request: $CRT_ISSUER_NAME.csr
-Issuer certificate: $CRT_ISSUER_NAME.crt
-03. Public certificate Signed by $CRT_ISSUER_CN
-Public RSA key: $CRT_PUBLIC_NAME.key
-Public Certificate request: $CRT_PUBLIC_NAME.csr
-Public Certificate : $CRT_PUBLIC_NAME.crt
-04. Other Things:
-Combine root and issuer Certificate: ca.pem
-PKCS12 keystore: $CRT_KEYSTORE_NAME.pfx
-Diffie Hellman Keys: $CRT_DIFF_NAME-$CRT_DIFF_2048.dh and $CRT_DIFF_NAME-$CRT_DIFF_4096.dh
-TLS Auth Key: (Only openvpn) $OVPN_TLSAUTH_KEY
-EOF
-
-
 # run command passed to docker run
 exec "$@"
