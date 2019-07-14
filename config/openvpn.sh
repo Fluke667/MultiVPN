@@ -21,10 +21,10 @@ fi
     echo remote ${IP_ADDR} 1194 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo cipher AES-256-CBC >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo auth SHA512 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    #echo resolv-retry infinite >> ${CLIENT_NAME}-emb.ovpn
-    #echo redirect-gateway def1 >> ${CLIENT_NAME}-emb.ovpn
+    echo resolv-retry infinite >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    echo redirect-gateway def1 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo nobind >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    #echo comp-lzo yes >> ${CLIENT_NAME}-emb.ovpn
+    echo comp-lzo yes >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo persist-key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo persist-tun >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo persist-remote-ip >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
@@ -54,10 +54,10 @@ fi
     echo remote ${IP_ADDR} 1194 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo cipher AES-256-CBC >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo auth SHA512 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    #echo resolv-retry infinite >> ${CLIENT_NAME}-file.ovpn
-    #echo redirect-gateway def1 >> ${CLIENT_NAME}-file.ovpn
+    echo resolv-retry infinite >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo redirect-gateway def1 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo nobind >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    #echo comp-lzo yes >> ${CLIENT_NAME}-file.ovpn
+    echo comp-lzo yes >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo persist-key >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo persist-tun >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo persist-remote-ip >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
