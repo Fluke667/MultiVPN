@@ -62,12 +62,11 @@ then
     -extfile "$CRT_ISSUER_EXT" \
     -days "$CRT_DAYS"
     
-  echo " ---> Generate Diffie-Hellman Key"
-  openssl dhparam \
-    -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_LENGTH.dh" $CRT_DIFF_LENGTH
-  # New Command:
-  #openssl genpkey -genparam -algorithm DH \
-  #  -out "$CRT_CERT_DIR/dhp4096.pem -pkeyopt dh_paramgen_prime_len:" $CRT_DIFF_LENGTH
+  #echo " ---> Generate Diffie-Hellman Key"
+  #openssl dhparam \
+  #  -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_LENGTH.dh" $CRT_DIFF_LENGTH
+  ####### Later turn ON ... Slow for Testing
+
     
 else
   echo "ENTRYPOINT: $CRT_ISSUER_NAME.crt already exists"
