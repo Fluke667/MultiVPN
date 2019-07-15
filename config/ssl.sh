@@ -18,8 +18,18 @@ else
 fi
 
 
-	openssl genrsa -out ${CertName}.key ${CertKeyLength}
-	openssl req  -new -key ${CertName}.key -out ${CertName}.csr -subj ${CertSubject} 
-	openssl x509 -req -extfile ${ConfigFile} -in ${CertName}.csr -CA ${CAname}.pem -CAkey ${CAname}.key \
-		     -CAcreateserial -out ${CertName}.crt -days ${CertExpire} -sha256
 
+
+if [ ! -f "$CRT_SRV.crt" ]
+        then
+echo " ---> Generate SRV private key"
+	openssl genrsa -out ${CRT_SRV}.key ${CRT_KEY_LENGTH}
+echo " ---> Generate SRV certificate request"
+	openssl req  -new -key ${CRT_SRV}.key -out ${CRT_SRV}.csr -subj ${CRT_SRV_SUBJ}
+echo " ---> Generate SRV certificate"
+	openssl x509 -req -extfile ${CRT_SRV_EXT} -in ${CRT_SRV}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+		     -CAcreateserial -out ${CRT_SRV}.crt -days ${CRT_DAYS} -sha256
+		     
+else
+  echo "ENTRYPOINT: $CRT_SRV.crt already exists"
+fi
