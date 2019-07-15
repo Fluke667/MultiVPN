@@ -73,7 +73,7 @@ fi
 
 
 
-#/usr/sbin/openvpn --cd /etc/openvpn --config /etc/openvpn/server.conf --script-security 2
+/usr/sbin/openvpn --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
 
 
 exec "$@"
