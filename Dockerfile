@@ -15,6 +15,8 @@ EXPOSE 1194
 
 COPY ./etc/ssl/issuer.ext /etc/ssl/issuer.ext
 COPY ./etc/ssl/public.ext /etc/ssl/public.ext
+COPY ./etc/ssl/client.ext /etc/ssl/client.ext
+COPY ./etc/ssl/server.ext /etc/ssl/server.ext
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
