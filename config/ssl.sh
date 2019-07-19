@@ -85,11 +85,11 @@ echo " ---> Later turn ON ... Slow for Testing"
   #  -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_LENGTH.dh" $CRT_DIFF_LENGTH
 
 
-if [ ! -f "$CRT_CERT_DIR/ca.pem" ]
+if [ ! -f "$CRT_CERT_DIR/ca-comb.pem" ]
 then
   # make combined root and issuer ca.pem
   echo " ---> Generate a combined root and issuer ca.pem"
-  cat "$CRT_CERT_DIR/$CRT_CLI.crt" "$CRT_CERT_DIR/$CRT_CA.crt" > "$CRT_CERT_DIR/ca.pem"
+  cat "$CRT_CERT_DIR/$CRT_CLI.crt" "$CRT_CERT_DIR/$CRT_CA.crt" > "$CRT_CERT_DIR/ca-comb.pem"
 else
   echo "ENTRYPOINT: ca.pem already exists"
 fi
