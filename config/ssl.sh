@@ -1,5 +1,19 @@
 #!/bin/sh
 
+  echo " ---> Generate External files *.ext"
+    echo client > ${CRT_CA_EXT}
+    echo basicConstraints = CA:FALSE >> ${CRT_SRV_EXT}
+    echo subjectKeyIdentifier=hash >> ${CRT_SRV_EXT}
+    echo authorityKeyIdentifier=keyid >> ${CRT_SRV_EXT}
+    echo basicConstraints = critical,CA:true >> ${CRT_ISS_EXT}
+    echo keyUsage = critical,keyCertSign >> ${CRT_ISS_EXT}
+    echo basicConstraints = CA:FALSE >> ${CRT_CLI_EXT}
+    echo subjectKeyIdentifier=hash >> ${CRT_CLI_EXT}
+    echo authorityKeyIdentifier=keyid >> ${CRT_CLI_EXT}
+    echo extendedKeyUsage = serverAuth,clientAuth >> ${CRT_PUB_EXT}
+    echo subjectAltName = @alt_names >> ${CRT_PUB_EXT}
+    echo [alt_names] >> ${CRT_PUB_EXT}
+
 if [ ! -f "$CRT_CA.crt" ]
         then
         
@@ -16,7 +30,6 @@ openssl req -x509 -key ${CRT_CA}.key -in ${CRT_CA}.csr -out ${CRT_CA}.crt -days 
 else
   echo "ENTRYPOINT: $CRT_CA.crt already exists"
 fi
-
 
 
 
