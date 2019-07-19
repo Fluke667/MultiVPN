@@ -24,8 +24,8 @@ RUN echo "**** install Python ****" && \
     #pip3 install --no-cache --upgrade asn1crypto pproxy[accelerated] asyncio pycryptodome six
     #cryptography cffi asyncssh
     #pip3 list
-    pip3 install --no-cache --upgrade  asn1crypto asyncssh cryptography pproxy pycryptodome six 
-    #pycparser
+    pip3 install --no-cache --upgrade  asn1crypto pycryptodome six pycparser pproxy
+    # cryptography asyncssh
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
