@@ -7,7 +7,7 @@ RUN apk add --update --no-cache openssl openssl-dev ca-certificates make augeas 
     #py3-pycryptodome py3-cryptography python3-dev gmp && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
-    rm -rf /var/cache/apk/* && \
+    rm -rf /var/cache/apk/*
 RUN echo "**** install Python ****" && \
     apk add --no-cache python3 && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
