@@ -76,3 +76,35 @@ echo " ---> Generate PUB certificate"
 else
   echo "ENTRYPOINT: $CRT_PUB.crt already exists"
 fi
+
+echo " ---> Generate Diffie-Hellman Key"
+echo " ---> Later turn ON ... Slow for Testing"
+  #openssl dhparam \
+  #  -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_LENGTH.dh" $CRT_DIFF_LENGTH
+
+
+if [ ! -f "$CRT_CERT_DIR/ca.pem" ]
+then
+  # make combined root and issuer ca.pem
+  echo " ---> Generate a combined root and issuer ca.pem"
+  cat "$CRT_CERT_DIR/$CRT_CLI.crt" "$CRT_CERT_DIR/$CRT_CA.crt" > "$CRT_CERT_DIR/ca.pem"
+else
+  echo "ENTRYPOINT: ca.pem already exists"
+fi
+
+
+
+if [ ! -f "$CRT_CERT_DIR/$CRT_KEYSTORE_NAME.pfx" ]
+then
+  # make PKCS12 keystore
+  echo " ---> Generate $CRT_KEYSTORE_NAME.pfx"
+  openssl pkcs12 \
+    -export \
+    -in "$CRT_CERT_DIR/$CRT_PUB.crt" \
+    -inkey "$CRT_CERT_DIR/$CRT_PUB.key" \
+    -certfile "$CRT_CERT_DIR/ca.pem" \
+    -password "pass:$CRT_KEYSTORE_PASS" \
+    -out "$CRT_CERT_DIR/$CRT_KEYSTORE_NAME.pfx"
+else
+  echo "ENTRYPOINT: $CRT_KEYSTORE_NAME.pfx already exists"
+fi
