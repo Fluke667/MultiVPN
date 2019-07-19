@@ -8,7 +8,8 @@ CMD alias python=python3
 #    openrc nano dcron gmp libffi musl gnupg readline bzip2 libbz2 expat gdbm xz && \
     #py3-pycryptodome py3-cryptography && \ 
 RUN apk add --update --no-cache openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
-    openrc nano dcron && \
+    openrc nano dcron python3 \
+    libbz2 xz-dev readline expat ncurses sqlite3 \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/*
@@ -21,9 +22,10 @@ RUN echo "**** install Python ****" && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-    pip3 install --no-cache --upgrade asn1crypto pproxy[accelerated] asyncio pycryptodome six
+    #pip3 install --no-cache --upgrade asn1crypto pproxy[accelerated] asyncio pycryptodome six
     #cryptography cffi asyncssh
     #pip3 list
+    pip3 install --no-cache --upgrade  asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome six 
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
