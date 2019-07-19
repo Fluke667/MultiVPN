@@ -65,19 +65,18 @@ else
 fi
 
 
-#if [ ! -f "$CRT_PUB.crt" ]
-#        then
-#echo " ---> Generate PUB private key"
-#	openssl genrsa -out ${CRT_PUB}.key ${CRT_KEY_LENGTH}
-#echo " ---> Generate PUB certificate request"
-#	openssl req  -new -key ${CRT_PUB}.key -out ${CRT_PUB}.csr -subj ${CRT_PUB_SUBJ}
-#echo " ---> Generate PUB certificate"
-#	openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
-#		     -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256
-		     
-#else
-#  echo "ENTRYPOINT: $CRT_PUB.crt already exists"
-#fi
+if [ ! -f "$CRT_PUB.crt" ]
+        then
+echo " ---> Generate PUB private key"
+	openssl genrsa -out ${CRT_PUB}.key ${CRT_KEY_LENGTH}
+echo " ---> Generate PUB certificate request"
+	openssl req  -new -key ${CRT_PUB}.key -out ${CRT_PUB}.csr -subj ${CRT_PUB_SUBJ}
+echo " ---> Generate PUB certificate"
+	openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+		     -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256     
+else
+  echo "ENTRYPOINT: $CRT_PUB.crt already exists"
+fi
 
 echo " ---> Generate Diffie-Hellman Key"
 echo " ---> Later turn ON ... Slow for Testing"
@@ -85,28 +84,28 @@ echo " ---> Later turn ON ... Slow for Testing"
   #  -out "$CRT_CERT_DIR/$CRT_DIFF_NAME-$CRT_DIFF_LENGTH.dh" $CRT_DIFF_LENGTH
 
 
-if [ ! -f "$CRT_CERT_DIR/ca-comb.pem" ]
+if [ ! -f "$CRT_CA_COMB.pem" ]
 then
   # make combined root and issuer ca.pem
   echo " ---> Generate a combined root and issuer ca.pem"
-  cat "$CRT_CERT_DIR/$CRT_CLI.crt" "$CRT_CERT_DIR/$CRT_CA.crt" > "$CRT_CERT_DIR/ca-comb.pem"
+  cat "$CRT_CLI.crt" "$CRT_CA.crt" > "$CRT_CA_COMB"
 else
-  echo "ENTRYPOINT: ca.pem already exists"
+  echo "ENTRYPOINT: $CRT_CA_COMB.pem already exists"
 fi
 
 
 
-if [ ! -f "$CRT_CERT_DIR/$CRT_KEYSTORE_NAME.pfx" ]
+if [ ! -f "$CRT_KEYSTORE.pfx" ]
 then
   # make PKCS12 keystore
-  echo " ---> Generate $CRT_KEYSTORE_NAME.pfx"
+  echo " ---> Generate $CRT_KEYSTORE.pfx"
   openssl pkcs12 \
     -export \
-    -in "$CRT_CERT_DIR/$CRT_PUB.crt" \
-    -inkey "$CRT_CERT_DIR/$CRT_PUB.key" \
+    -in "$CRT_PUB.crt" \
+    -inkey "$CRT_PUB.key" \
     -certfile "$CRT_CERT_DIR/ca.pem" \
     -password "pass:$CRT_KEYSTORE_PASS" \
-    -out "$CRT_CERT_DIR/$CRT_KEYSTORE_NAME.pfx"
+    -out "$CRT_KEYSTORE.pfx"
 else
-  echo "ENTRYPOINT: $CRT_KEYSTORE_NAME.pfx already exists"
+  echo "ENTRYPOINT: $CRT_KEYSTORE.pfx already exists"
 fi
