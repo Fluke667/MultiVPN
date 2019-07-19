@@ -20,8 +20,8 @@ RUN echo "**** install Python ****" && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     pip3 install --no-cache --upgrade asn1crypto pproxy asyncio pycryptodome six \
-    asyncssh 
-    #cryptography cffi
+    cryptography
+    #cryptography cffi asyncssh 
     #pip3 list
 
 VOLUME ["/etc/certs"]
