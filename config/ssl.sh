@@ -46,3 +46,33 @@ echo " ---> Generate SRV certificate"
 else
   echo "ENTRYPOINT: $CRT_SRV.crt already exists"
 fi
+
+
+if [ ! -f "$CRT_CLI.crt" ]
+        then
+echo " ---> Generate CLI private key"
+	openssl genrsa -out ${CRT_CLI}.key ${CRT_KEY_LENGTH}
+echo " ---> Generate CLI certificate request"
+	openssl req  -new -key ${CRT_CLI}.key -out ${CRT_CLI}.csr -subj ${CRT_CLI_SUBJ}
+echo " ---> Generate CLI certificate"
+	openssl x509 -req -extfile ${CRT_CLI_EXT} -in ${CRT_CLI}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+		     -CAcreateserial -out ${CRT_CLI}.crt -days ${CRT_DAYS} -sha256
+		     
+else
+  echo "ENTRYPOINT: $CRT_CLI.crt already exists"
+fi
+
+
+if [ ! -f "$CRT_PUB.crt" ]
+        then
+echo " ---> Generate PUB private key"
+	openssl genrsa -out ${CRT_PUB}.key ${CRT_KEY_LENGTH}
+echo " ---> Generate PUB certificate request"
+	openssl req  -new -key ${CRT_PUB}.key -out ${CRT_PUB}.csr -subj ${CRT_PUB_SUBJ}
+echo " ---> Generate PUB certificate"
+	openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+		     -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256
+		     
+else
+  echo "ENTRYPOINT: $CRT_PUB.crt already exists"
+fi
