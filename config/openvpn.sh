@@ -79,7 +79,7 @@ echo " ---> Generate openvpn.conf Config file "
     echo ca ${CRT_CA}.crt >> ${OVPN_CONFIG}.conf
     echo cert ${CRT_SRV}.crt >> ${OVPN_CONFIG}.conf
     echo key ${CRT_SRV}.crt.key >> ${OVPN_CONFIG}.conf
-    #echo dh ${CRT_DIFF}${CRT_DIFF_LENGTH}.dh >> ${OVPN_CONFIG}.conf
+    echo dh ${CRT_DIFF}.pem >> ${OVPN_CONFIG}.conf
     echo tls-auth {$OVPN_TLSAUTH_KEY}.key 0 >> ${OVPN_CONFIG}.conf
     echo server 10.8.0.0 255.255.255.0 >> ${OVPN_CONFIG}.conf
     echo ifconfig-pool-persist ipp.txt >> ${OVPN_CONFIG}.conf #maintain record client/virtual IP
