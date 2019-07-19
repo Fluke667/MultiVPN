@@ -3,7 +3,7 @@
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 
-if [ ! -f "$OVPN_TLSAUTH_KEY" ]
+if [ ! -f "${OVPN_TLSAUTH_KEY}.key" ]
 then
 
   echo " ---> Generate Openvpn TLS-Auth Key"
@@ -43,7 +43,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
     cat ${CRT_SRV}.key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '</key>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '<tls-auth>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    cat ${OVPN_TLSAUTH_KEY} >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    cat ${OVPN_TLSAUTH_KEY}.key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '</tls-auth>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
 echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     echo client > ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
@@ -79,7 +79,7 @@ echo " ---> Generate openvpn.conf Config file "
     echo ca ${CRT_CA}.crt >> ${OVPN_CONFIG}.conf
     echo cert ${CRT_SRV}.crt >> ${OVPN_CONFIG}.conf
     echo key ${CRT_SRV}.crt.key >> ${OVPN_CONFIG}.conf
-    echo dh ${CRT_DIFF}${CRT_DIFF_LENGTH}.dh >> ${OVPN_CONFIG}.conf
+    #echo dh ${CRT_DIFF}${CRT_DIFF_LENGTH}.dh >> ${OVPN_CONFIG}.conf
     echo tls-auth {$OVPN_TLSAUTH_KEY}.key 0 >> ${OVPN_CONFIG}.conf
     echo server 10.8.0.0 255.255.255.0 >> ${OVPN_CONFIG}.conf
     echo ifconfig-pool-persist ipp.txt >> ${OVPN_CONFIG}.conf #maintain record client/virtual IP
