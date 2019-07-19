@@ -75,7 +75,7 @@ echo " ---> Generate openvpn.conf Config file "
     echo ca /etc/certs/ca.crt >> ${OVPN_CONFIG}.conf
     echo cert /etc/certs/server.crt >> ${OVPN_CONFIG}.conf
     echo key /etc/certs/server.key >> ${OVPN_CONFIG}.conf
-    echo dh /etc/certs/dh4096.pem >> ${OVPN_CONFIG}.conf
+    echo dh /etc/certs/dhparam512.dh >> ${OVPN_CONFIG}.conf
     echo tls-auth /etc/certs/ta.key 0 >> ${OVPN_CONFIG}.conf
     echo server 10.8.0.0 255.255.255.0 >> ${OVPN_CONFIG}.conf
     echo ifconfig-pool-persist ipp.txt >> ${OVPN_CONFIG}.conf #maintain record client/virtual IP
