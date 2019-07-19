@@ -101,11 +101,11 @@ then
   echo " ---> Generate $CRT_KEYSTORE.pfx"
   openssl pkcs12 \
     -export \
-    -in "$CRT_PUB.crt" \
-    -inkey "$CRT_PUB.key" \
+    -in "${CRT_PUB}.crt" \
+    -inkey "${CRT_PUB}.key" \
     -certfile "${CRT_CA}.pem" \
-    -password "pass:$CRT_KEYSTORE_PASS" \
-    -out "$CRT_KEYSTORE.pfx"
+    -password "pass:${CRT_KEYSTORE_PASS}" \
+    -out "${CRT_KEYSTORE}.pfx"
 else
   echo "ENTRYPOINT: $CRT_KEYSTORE.pfx already exists"
 fi
