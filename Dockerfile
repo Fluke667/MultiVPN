@@ -3,7 +3,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 CMD alias python=python3
 
 RUN apk add --update --no-cache openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
-    openrc nano dcron \
+    openrc nano sudo dcron \
     build-base git linux-headers libsodium libsodium -dev python3 python3-dev gnupg sqlite sqlite-libs  sqlite-dev \
     readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev && \
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
