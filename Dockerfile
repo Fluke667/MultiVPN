@@ -16,10 +16,6 @@ EXPOSE 1194
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
-COPY ./etc/openvpn/client.conf /etc/openvpn/client.conf
-COPY ./etc/openvpn/openvpn.conf /etc/openvpn/openvpn.conf
-
-
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
