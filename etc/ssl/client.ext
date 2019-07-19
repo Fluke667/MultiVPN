@@ -1,3 +1,0 @@
-basicConstraints = CA:FALSE
-subjectKeyIdentifier=hash
-authorityKeyIdentifier=keyid
