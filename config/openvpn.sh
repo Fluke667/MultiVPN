@@ -3,15 +3,15 @@
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 
-if [ ! -f "${OVPN_TLSAUTH_KEY}.key" ]
+if [ ! -f ${OVPN_TLSAUTH_KEY}.key ]
 then
 
   echo " ---> Generate Openvpn TLS-Auth Key"
   openvpn \
-    --genkey --secret "${OVPN_TLSAUTH_KEY}.key"
+    --genkey --secret ${OVPN_TLSAUTH_KEY}.key
     
 else
-  echo "ENTRYPOINT: tlsauth.key already exists"       
+  echo "ENTRYPOINT: ta.key already exists"       
 fi
     
 echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
@@ -78,7 +78,7 @@ echo " ---> Generate openvpn.conf Config file "
     echo dev tun >> ${OVPN_CONFIG}.conf
     echo ca ${CRT_CA}.crt >> ${OVPN_CONFIG}.conf
     echo cert ${CRT_SRV}.crt >> ${OVPN_CONFIG}.conf
-    echo key ${CRT_SRV}.crt.key >> ${OVPN_CONFIG}.conf
+    echo key ${CRT_SRV}.key >> ${OVPN_CONFIG}.conf
     echo dh ${CRT_DIFF}.pem >> ${OVPN_CONFIG}.conf
     echo tls-auth {$OVPN_TLSAUTH_KEY}.key 0 >> ${OVPN_CONFIG}.conf
     echo server 10.8.0.0 255.255.255.0 >> ${OVPN_CONFIG}.conf
