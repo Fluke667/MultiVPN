@@ -72,7 +72,7 @@ echo " ---> Generate PUB private key"
 echo " ---> Generate PUB certificate request"
 	openssl req  -new -key ${CRT_PUB}.key -out ${CRT_PUB}.csr -subj ${CRT_PUB_SUBJ}
 echo " ---> Generate PUB certificate"
-	openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+	openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CLI}.pem -CAkey ${CRT_CLI}.key \
 		     -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256     
 else
   echo "ENTRYPOINT: $CRT_PUB.crt already exists"
