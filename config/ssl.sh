@@ -1,7 +1,7 @@
 #!/bin/sh
 
   echo " ---> Generate External files *.ext"
-    echo client > ${CRT_CA_EXT}
+    echo null > ${CRT_CA_EXT}
     echo basicConstraints = CA:FALSE >> ${CRT_SRV_EXT}
     echo subjectKeyIdentifier=hash >> ${CRT_SRV_EXT}
     echo authorityKeyIdentifier=keyid >> ${CRT_SRV_EXT}
