@@ -3,7 +3,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 CMD alias python=python3
 
 RUN apk add --update --no-cache openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
-    openrc nano dcron gmp && \
+    openrc nano dcron gmp gcc && \
     #py3-pycryptodome py3-cryptography python3-dev gmp && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
