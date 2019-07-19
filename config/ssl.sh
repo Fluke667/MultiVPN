@@ -23,6 +23,8 @@ echo " ---> Generate Root CA certificate request"
 openssl req -new -key ${CRT_CA}.key -out ${CRT_CA}.csr -subj $CRT_CA_SUBJ
 echo " ---> Generate self-signed Root CA certificate"
 openssl req -x509 -key ${CRT_CA}.key -in ${CRT_CA}.csr -out ${CRT_CA}.crt -days ${CRT_DAYS}
+openssl req -x509 -key ${CRT_CA}.key -in ${CRT_CA}.csr -out ${CRT_CA}.pem -days ${CRT_DAYS}
+
 
 #openssl genrsa -out ${CAname}.key ${CAkeyLength} 
 #openssl req -x509 -new -nodes -key ${CAname}.key -sha256 -days ${CAexpire} -out ${CAname}.pem -subj $CAsubject
