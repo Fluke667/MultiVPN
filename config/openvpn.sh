@@ -3,12 +3,12 @@
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 
-if [ ! -f ${OVPN_TLSAUTH_KEY}.key ]
+if [ ! -f $OVPN_TLSAUTH_KEY.key ]
 then
 
   echo " ---> Generate Openvpn TLS-Auth Key"
   openvpn \
-    --genkey --secret ${OVPN_TLSAUTH_KEY}.key
+    --genkey --secret $OVPN_TLSAUTH_KEY.key
     
 else
   echo "ENTRYPOINT: ta.key already exists"       
