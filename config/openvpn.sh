@@ -73,7 +73,6 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     cp ${CRT_SRV}.key ${OVPN_DIR}
     cp ${OVPN_TLSAUTH_KEY}.key ${OVPN_DIR}
 echo " ---> Generate openvpn.conf Config file "
-    rm ${OVPN_CONFIG}.conf
     echo port 1194 > ${OVPN_CONFIG}.conf
     echo proto udp >> ${OVPN_CONFIG}.conf
     echo dev tun >> ${OVPN_CONFIG}.conf
