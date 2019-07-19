@@ -8,7 +8,7 @@ then
 
   echo " ---> Generate Openvpn TLS-Auth Key"
   openvpn \
-    --genkey --secret "$OVPN_TLSAUTH_KEY"
+    --genkey --secret "${OVPN_TLSAUTH_KEY}.key"
     
 else
   echo "ENTRYPOINT: tlsauth.key already exists"       
@@ -71,16 +71,16 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     cp ${CRT_CA}.crt ${OVPN_DIR}
     cp ${CRT_SRV}.crt ${OVPN_DIR}
     cp ${CRT_SRV}.key ${OVPN_DIR}
-    cp ${OVPN_TLSAUTH_KEY} ${OVPN_DIR}
+    cp ${OVPN_TLSAUTH_KEY}.key ${OVPN_DIR}
 echo " ---> Generate openvpn.conf Config file "
     echo port 1194 >> ${OVPN_CONFIG}.conf
     echo proto udp >> ${OVPN_CONFIG}.conf
     echo dev tun >> ${OVPN_CONFIG}.conf
-    echo ca /etc/certs/ca.crt >> ${OVPN_CONFIG}.conf
-    echo cert /etc/certs/server.crt >> ${OVPN_CONFIG}.conf
-    echo key /etc/certs/server.key >> ${OVPN_CONFIG}.conf
-    echo dh /etc/certs/dhparam512.dh >> ${OVPN_CONFIG}.conf
-    echo tls-auth /etc/certs/ta.key 0 >> ${OVPN_CONFIG}.conf
+    echo ca ${CRT_CA}.crt >> ${OVPN_CONFIG}.conf
+    echo cert ${CRT_SRV}.crt >> ${OVPN_CONFIG}.conf
+    echo key ${CRT_SRV}.crt.key >> ${OVPN_CONFIG}.conf
+    echo dh ${CRT_DIFF}${CRT_DIFF_LENGTH}.dh >> ${OVPN_CONFIG}.conf
+    echo tls-auth {$OVPN_TLSAUTH_KEY}.key 0 >> ${OVPN_CONFIG}.conf
     echo server 10.8.0.0 255.255.255.0 >> ${OVPN_CONFIG}.conf
     echo ifconfig-pool-persist ipp.txt >> ${OVPN_CONFIG}.conf #maintain record client/virtual IP
     echo client-to-client >> ${OVPN_CONFIG}.conf
