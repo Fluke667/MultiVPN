@@ -34,13 +34,13 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${CLIENT_NAME}-emb.ovpn 
     #echo auth-user-pass >> ${CLIENT_NAME}-emb.ovpn
     echo '<ca>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    cat ${CRT_CERT_DIR}/${CRT_CA_NAME}.pem >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    cat ${CRT_CA}.pem >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '</ca>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '<cert>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    cat ${CRT_CERT_DIR}/${CLIENT_NAME}.crt >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    cat ${CRT_SRV}.crt >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '</cert>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '<key>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    cat ${CRT_CERT_DIR}/${CLIENT_NAME}.key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    cat ${CRT_SRV}.key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '</key>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '<tls-auth>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     cat ${OVPN_TLSAUTH_KEY} >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
