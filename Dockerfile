@@ -1,6 +1,6 @@
 FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
-#CMD alias python=python3
+CMD alias python=python3
 
 RUN apk add --update --no-cache openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash openrc nano dcron && \
     python3 gmp && \
