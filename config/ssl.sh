@@ -81,10 +81,11 @@ fi
 
 echo " ---> Generate Diffie-Hellman Key"
 echo " ---> Later turn ON ... Slow for Testing"
-  openssl dhparam \
+  #penssl dhparam \
+    #out ${CRT_DIFF}${CRT_DIFF_LENGTH}.pem ${CRT_DIFF_LENGTH}
+  openssl gendh
     -out ${CRT_DIFF}${CRT_DIFF_LENGTH}.pem ${CRT_DIFF_LENGTH}
-  #openssl dhparam \
-  #  -out "/etc/certs/dhparam-512.pem 512
+
 
 
 if [ ! -f "$CRT_CA_COMB.pem" ]
