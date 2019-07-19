@@ -65,15 +65,16 @@ else
 fi
 
 
-if [ ! -f "$CRT_PUB.crt" ]
+    if [ ! -f "$CRT_PUB.crt" ]
         then
 echo " ---> Generate PUB private key"
-	openssl genrsa -out ${CRT_PUB}.key ${CRT_KEY_LENGTH}
+    openssl genrsa -out ${CRT_PUB}.key ${CRT_KEY_LENGTH}
 echo " ---> Generate PUB certificate request"
-	openssl req  -new -key ${CRT_PUB}.key -out ${CRT_PUB}.csr -subj ${CRT_PUB_SUBJ}
+    openssl req  -new -key ${CRT_PUB}.key -out ${CRT_PUB}.csr -subj ${CRT_PUB_SUBJ}
 echo " ---> Generate PUB certificate"
-	openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CLI}.pem -CAkey ${CRT_CLI}.key \
-		     -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256     
+    openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+             -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256
+    
 else
   echo "ENTRYPOINT: $CRT_PUB.crt already exists"
 fi
