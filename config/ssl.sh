@@ -75,9 +75,9 @@ fi
 #	openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
 #		     -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256
 		     
-else
-  echo "ENTRYPOINT: $CRT_PUB.crt already exists"
-fi
+#else
+#  echo "ENTRYPOINT: $CRT_PUB.crt already exists"
+#fi
 
 echo " ---> Generate Diffie-Hellman Key"
 echo " ---> Later turn ON ... Slow for Testing"
