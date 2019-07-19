@@ -86,7 +86,7 @@ echo " ---> Later turn ON ... Slow for Testing"
 
 if [ ! -f "$CRT_CA_COMB.pem" ]
 then
-  # make combined root and issuer ca.pem
+  # make combined CA and issuer ca-comb.pem
   echo " ---> Generate a combined root and issuer ca.pem"
   cat "$CRT_CLI.crt" "$CRT_CA.crt" > "$CRT_CA_COMB"
 else
@@ -103,7 +103,7 @@ then
     -export \
     -in "$CRT_PUB.crt" \
     -inkey "$CRT_PUB.key" \
-    -certfile "$CRT_CERT_DIR/ca.pem" \
+    -certfile "${CRT_CA}.pem" \
     -password "pass:$CRT_KEYSTORE_PASS" \
     -out "$CRT_KEYSTORE.pfx"
 else
