@@ -3,10 +3,10 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 CMD alias python=python3
 
 RUN apk add --update --no-cache --virtual build-dependencies \
-    libffi-dev musl-dev openssl-dev gcc g++ build-base git libsodium-dev xz-dev
+    libffi-dev musl-dev openssl-dev gcc g++ build-base git libsodium-dev xz-dev python3-dev
 RUN apk add --update --no-cache openssl ca-certificates make augeas shadow openssh openvpn bash libsodium \
     openrc nano dcron gmp libffi musl gnupg readline bzip2 libbz2 expat gdbm xz && \
-    #py3-pycryptodome py3-cryptography python3-dev gmp && \ 
+    #py3-pycryptodome py3-cryptography && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/*
