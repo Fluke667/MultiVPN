@@ -8,7 +8,7 @@ CMD alias python=python3
 #    openrc nano dcron gmp libffi musl gnupg readline bzip2 libbz2 expat gdbm xz && \
     #py3-pycryptodome py3-cryptography && \ 
 RUN apk add --update --no-cache openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
-    openrc nano dcron python3 libbz2 xz-dev readline expat ncurses sqlite && \ 
+    openrc nano dcron python3 libbz2 xz-dev readline expat ncurses sqlite libffi && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/*
