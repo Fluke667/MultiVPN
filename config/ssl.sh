@@ -72,7 +72,7 @@ echo " ---> Generate PUB private key"
 echo " ---> Generate PUB certificate request"
     openssl req  -new -key ${CRT_PUB}.key -out ${CRT_PUB}.csr -subj ${CRT_PUB_SUBJ}
 echo " ---> Generate PUB certificate"
-    openssl x509 -req -extfile ${CRT_PUB_EXT} -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+    openssl x509 -req -in ${CRT_PUB}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
              -CAcreateserial -out ${CRT_PUB}.crt -days ${CRT_DAYS} -sha256
     
 else
@@ -96,17 +96,17 @@ fi
 
 
 
-#if [ ! -f "$CRT_KEYSTORE.pfx" ]
-#then
+if [ ! -f "$CRT_KEYSTORE.pfx" ]
+then
   # make PKCS12 keystore
-#  echo " ---> Generate $CRT_KEYSTORE.pfx"
-#  openssl pkcs12 \
-#    -export \
-#    -in "${CRT_PUB}.crt" \
-#    -inkey "${CRT_PUB}.key" \
-#    -certfile "${CRT_CA}.pem" \
-#    -password "pass:${CRT_KEYSTORE_PASS}" \
-#    -out "${CRT_KEYSTORE}.pfx"
-#else
-#  echo "ENTRYPOINT: $CRT_KEYSTORE.pfx already exists"
-#fi
+  echo " ---> Generate $CRT_KEYSTORE.pfx"
+  openssl pkcs12 \
+    -export \
+    -in "${CRT_PUB}.crt" \
+    -inkey "${CRT_PUB}.key" \
+    -certfile "${CRT_CA}.pem" \
+    -password "pass:${CRT_KEYSTORE_PASS}" \
+    -out "${CRT_KEYSTORE}.pfx"
+else
+  echo "ENTRYPOINT: $CRT_KEYSTORE.pfx already exists"
+fi
