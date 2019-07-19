@@ -29,7 +29,8 @@ VOLUME ["/etc/openvpn"]
 #openvpn
 EXPOSE 1194
 #python-proxy
-EXPOSE 8090 8080 8070 8060
+EXPOSE 8090 
+#8080 8070 8060
 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
