@@ -15,6 +15,7 @@ else
 fi
     
 echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
+    touch ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo client > ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo dev tun >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo proto udp >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
@@ -46,7 +47,8 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
     cat ${OVPN_TLSAUTH_KEY}.key >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo '</tls-auth>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
 echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
-    echo client > ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    touch ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo client >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo dev tun >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo proto udp >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo remote ${IP_ADDR} 1194 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
@@ -73,6 +75,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     cp ${CRT_SRV}.key ${OVPN_DIR}
     cp ${OVPN_TLSAUTH_KEY}.key ${OVPN_DIR}
 echo " ---> Generate openvpn.conf Config file "
+    touch ${OVPN_CONFIG}.conf
     echo port 1194 >> ${OVPN_CONFIG}.conf
     echo proto udp >> ${OVPN_CONFIG}.conf
     echo dev tun >> ${OVPN_CONFIG}.conf
