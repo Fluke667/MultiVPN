@@ -1,5 +1,6 @@
 FROM fluke667/alpine
-MAINTAINER Fluke667 <Fluke667@gmail.com>  
+MAINTAINER Fluke667 <Fluke667@gmail.com>
+CMD alias python=python3
 
 RUN apk add --update openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash openrc nano dcron && \
     python3 py3-pycryptodome py3-cryptography python3-dev gmp && \ 
