@@ -64,10 +64,14 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${CLIENT_NAME}-file.ovpn 
     #echo auth-user-pass >> ${CLIENT_NAME}-file.ovpn
-    echo 'ca {CRT_CA_NAME}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo 'cert ${CLIENT_NAME}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo 'key ${CLIENT_NAME}.key' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'ca ${CRT_CA_CN}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'cert ${CRT_SRV_CN}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo 'key ${CRT_SRV_CN}.key' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo 'tls-auth ta.key 1' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    cp ${CRT_CA}.crt ${OVPN_DIR}
+    cp ${CRT_SRV}.crt ${OVPN_DIR}
+    cp ${CRT_SRV}.key ${OVPN_DIR}
+    cp ${OVPN_TLSAUTH_KEY} ${OVPN_DIR}
 echo " ---> Generate openvpn.conf Config file "
     echo port 1194 >> ${OVPN_CONFIG}.conf
     echo proto udp >> ${OVPN_CONFIG}.conf
