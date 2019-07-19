@@ -81,8 +81,8 @@ fi
 
 echo " ---> Generate Diffie-Hellman Key"
 echo " ---> Later turn ON ... Slow for Testing"
-  openssl dhparam \
-    -out "${CRT_DIFF}${CRT_DIFF_LENGTH}.dh" $CRT_DIFF_LENGTH
+  #openssl dhparam \
+  #  -out "${CRT_DIFF}${CRT_DIFF_LENGTH}.dh" $CRT_DIFF_LENGTH
 
 
 if [ ! -f "$CRT_CA_COMB.pem" ]
