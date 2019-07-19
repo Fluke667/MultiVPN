@@ -8,12 +8,12 @@ CMD alias python=python3
 #    openrc nano dcron gmp libffi musl gnupg readline bzip2 libbz2 expat gdbm xz && \
     #py3-pycryptodome py3-cryptography && \ 
 RUN apk add --update --no-cache openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
-    openrc nano dcron python3 py3-cffi libbz2 xz-dev readline expat ncurses ncurses-dev sqlite libffi libffi-dev gcc musl-dev musl && \ 
+    openrc nano dcron libbz2 xz-dev readline expat ncurses ncurses-dev sqlite libffi libffi-dev gcc musl-dev musl && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/*
 RUN echo "**** install Python ****" && \
-    apk add --no-cache python3 && \
+    apk add --no-cache python3 py3-cffi && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     \
     echo "**** install pip ****" && \
