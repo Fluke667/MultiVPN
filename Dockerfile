@@ -2,7 +2,7 @@ FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>  
 
 RUN apk add --update openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash openrc nano dcron \
-    python3 py3-pycryptodome py3-cryptography gmp && \ 
+    python3 py3-pycryptodome py3-cryptography python3-dev gmp && \ 
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/* && \
