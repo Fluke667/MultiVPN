@@ -81,7 +81,7 @@ fi
 
 echo " ---> Generate Diffie-Hellman Key"
 echo " ---> Later turn ON ... Slow for Testing"
-  openssl dhparam -out ${CRT_DIFF}${CRT_DIFF_LENGTH}.pem ${CRT_DIFF_LENGTH}
+  openssl dhparam -out ${CRT_DIFF}.pem ${CRT_DIFF_LENGTH}
 
 
 
