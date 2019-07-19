@@ -94,7 +94,7 @@ echo " ---> Generate openvpn.conf Config file "
     echo explicit-exit-notify 1 >> ${OVPN_CONFIG}.conf
 
 
-#/usr/sbin/openvpn --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
+/usr/sbin/openvpn --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
 
 
 exec "$@"
