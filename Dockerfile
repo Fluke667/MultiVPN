@@ -19,9 +19,8 @@ RUN echo "**** install Python ****" && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-    pip3 install --no-cache --upgrade asn1crypto pproxy asyncio cryptography pycryptodome && \
-    # six cffi
-    #asyncssh
+    pip3 install --no-cache --upgrade asn1crypto pproxy asyncio pycryptodome && \
+    # six cffi cryptography asyncssh
     pip3 list
 
 VOLUME ["/etc/certs"]
