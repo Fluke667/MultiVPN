@@ -35,4 +35,5 @@ RUN chmod 0700 /config/*.sh
 
 ENTRYPOINT ["/config/sshd.sh \
              /config/ssl.sh \ 
-             /config/openvpn.sh"]
+             /config/openvpn.sh \
+             /config/pproxy.sh"]
