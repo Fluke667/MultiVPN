@@ -33,5 +33,5 @@ RUN chmod 0700 /config/*.sh
     #/configs/sslh.sh
 
 
-ENTRYPOINT ["/config/sshd.sh && /config/ssl.sh && /config/openvpn.sh"]
-
+#ENTRYPOINT ["/config/sshd.sh && /config/ssl.sh && /config/openvpn.sh"]
+ENTRYPOINT ["/config/openvpn.sh"]
