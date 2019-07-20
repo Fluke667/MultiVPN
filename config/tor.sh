@@ -22,14 +22,25 @@ echo " ---> Generate torrc Config File"
     echo #BridgeRelay 1 >> ${TOR_CONF}
     echo #PublishServerDescriptor 0 >> ${TOR_CONF}
 echo " ---> Generate Torsocks Config File"
-    echo TorAddress 127.0.0.1 > ${TOR_SOCKS}
-    echo TorPort 9050 >> ${TOR_SOCKS}
-    echo OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}
-    echo SOCKS5Username $TORSOCKS_USERNAME >> ${TOR_SOCKS}
-    echo SOCKS5Password $TORSOCKS_PASSWORD >> ${TOR_SOCKS}
-    echo #AllowInbound 1 >> ${TOR_SOCKS}
-    echo #AllowOutboundLocalhost 1 >> ${TOR_SOCKS}
-    echo #IsolatePID 1 >> ${TOR_SOCKS}
+    echo TorAddress 127.0.0.1 > ${TOR_SOCKS}.conf
+    echo TorPort 9050 >> ${TOR_SOCKS}.conf
+    echo OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}.conf
+    echo SOCKS5Username $TORSOCKS_USERNAME >> ${TOR_SOCKS}.conf
+    echo SOCKS5Password $TORSOCKS_PASSWORD >> ${TOR_SOCKS}.conf
+    echo #AllowInbound 1 >> ${TOR_SOCKS}.conf
+    echo #AllowOutboundLocalhost 1 >> ${TOR_SOCKS}.conf
+    echo #IsolatePID 1 >> ${TOR_SOCKS}.conf
+    echo $TOR_ADD fte exec $TOR_FTE $TOR_OPT_FTE >> ${TOR_SOCKS}.conf
+    echo $TOR_ADD meek exec $TOR_MEEK $TOR_OPT_MEEK >> ${TOR_SOCKS}.conf
+    echo $TOR_ADD obfs3 exec $TOR_OBFS3 $TOR_OPT_OBFS3 >> ${TOR_SOCKS}.conf
+    echo $TOR_ADD obfs4 exec $TOR_OBFS4 $TOR_OPT_OBFS4 >> ${TOR_SOCKS}.conf
+    echo $TOR_ADD snowflake exec $TOR_SNOW $TOR_OPT_SNOW >> ${TOR_SOCKS}.conf
+
+
+
+
+
+
 
 
 
