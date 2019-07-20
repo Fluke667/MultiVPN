@@ -100,6 +100,6 @@ echo " ---> Generate openvpn.conf Config file "
 
 
 
-#/usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf 
+/usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf 
 
-/etc/init.d/openvpn start
+#/etc/init.d/openvpn start
