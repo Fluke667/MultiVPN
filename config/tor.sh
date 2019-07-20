@@ -4,8 +4,8 @@ set -o errexit
 echo " ---> Generate torrc.conf Config File"
          rm ${TOR_CONF}.conf
     echo User tord > ${TOR_CONF}.conf
-    echo Nickname MyName >> ${TOR_CONF}.conf
-    echo ContactInfo noreply@mymail.com >> ${TOR_CONF}.conf
+    #echo Nickname MyName >> ${TOR_CONF}.conf
+    #echo ContactInfo noreply@mymail.com >> ${TOR_CONF}.conf
     echo DataDirectory /var/lib/tor >> ${TOR_CONF}.conf
     echo ORPort 9001 >> ${TOR_CONF}.conf
     echo #ORPort [IPv6-address]:9001 >> ${TOR_CONF}.conf
@@ -88,5 +88,4 @@ echo -e "========================================================\n"
 
 # execute from user
 USER ${TOR_USER}
-echo SOCKSPort 0.0.0.0:9050 > torrc
-exec tor --RunAsDaemon 0 -f torrc
+exec tor --RunAsDaemon 0 -f torrc.conf
