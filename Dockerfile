@@ -1,7 +1,7 @@
 FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
 
-RUN apk add --update --no-cache alpine-baselayout linux-headers openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
+RUN apk add --update --no-cache alpine-baselayout alpine-conf linux-headers openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
     nano sudo dcron build-base git linux-headers libsodium libsodium-dev python3 python3-dev gnupg sqlite sqlite-libs  sqlite-dev \
     readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev && \
     #openrc
