@@ -11,7 +11,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     touch /var/log/cron.log   && \
     rm -rf /var/cache/apk/* && \
     pip3 install --upgrade pip && \
-    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six
+    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six fteproxy obfsproxy
 
 
 VOLUME ["/etc/certs"]
