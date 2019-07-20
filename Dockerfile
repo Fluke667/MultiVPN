@@ -25,12 +25,14 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
-#RUN /config/sshd.sh \
- #   /config/ssl.sh
+#CMD /config/sshd.sh \
+    #/config/ssl.sh \
     #/config/system.sh \
-    #/config/openvpn.sh
+    #/config/openvpn.sh \
     #/config/pproxy.sh
     #/configs/sslh.sh
 
 
-ENTRYPOINT ["/config/sshd.sh && /config/ssl.sh && /config/openvpn.sh"]
+ENTRYPOINT ["/config/sshd.sh \
+             /config/ssl.sh \ 
+             /config/openvpn.sh"]
