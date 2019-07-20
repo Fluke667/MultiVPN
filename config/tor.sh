@@ -22,7 +22,7 @@ echo " ---> Generate torrc Config File"
     echo #BridgeRelay 1 >> ${TOR_CONF}
     echo #PublishServerDescriptor 0 >> ${TOR_CONF}
 echo " ---> Generate Torsocks Config File"
-    echo TorAddress 127.0.0.1 >> ${TOR_SOCKS}
+    echo TorAddress 127.0.0.1 > ${TOR_SOCKS}
     echo TorPort 9050 >> ${TOR_SOCKS}
     echo OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}
     echo SOCKS5Username $TORSOCKS_USERNAME >> ${TOR_SOCKS}
