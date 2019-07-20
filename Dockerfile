@@ -6,7 +6,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     python3 python3-dev gnupg sqlite sqlite-libs  sqlite-dev readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev runit && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
-    mkdir /etc/container_environment && chmod a+x /sbin/runit && \
+    mkdir /etc/container_environment && \
     touch /var/log/cron.log   && \
     rm -rf /var/cache/apk/* && \
     pip3 install --upgrade pip && \
@@ -26,6 +26,7 @@ COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 
 ADD runit /sbin/
+RUN chmod a+x /sbin/runit
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
