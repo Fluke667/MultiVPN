@@ -1,4 +1,3 @@
-[program:binsh]
 #!/bin/sh
 
   echo " ---> Generate External files *.ext"
