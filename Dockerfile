@@ -3,9 +3,9 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers openssl openssl-dev \
     ca-certificates make augeas shadow openssh openvpn bash nano sudo dcron build-base git linux-headers libsodium libsodium-dev \
-    python3 python3-dev gnupg sqlite sqlite-libs  sqlite-dev readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev supervisor && \
-    mkdir -p ~root/.ssh /etc/authorized_keys /var/log/supervisor/ && chmod 700 ~root/.ssh/ && \
-    touch /var/log/cron.log /var/log/supervisor/supervisord.log  && \
+    python3 python3-dev gnupg sqlite sqlite-libs  sqlite-dev readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev runit rsyslog logrotate && \
+    mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
+    touch /var/log/cron.log   && \
     rm -rf /var/cache/apk/* && \
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six
@@ -22,7 +22,6 @@ EXPOSE 1194
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
-COPY ./etc/supervisord.conf /etc/supervisord.conf
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
@@ -38,4 +37,4 @@ RUN chmod 0700 /config/*.sh
 #             /config/ssl.sh \ 
 #             /config/openvpn.sh \
 #             /config/pproxy.sh"]
-ENTRYPOINT ["/usr/bin/supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
+#ENTRYPOINT ["/usr/bin/supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
