@@ -33,6 +33,5 @@ RUN /config/sshd.sh \
     #/configs/sslh.sh
 
 
-ENTRYPOINT ["/config/openvpn.sh"]
-
+ENTRYPOINT ["/config/entrypoint.sh"]
 
