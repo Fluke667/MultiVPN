@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # Needed for openvpn
-mkdir -p /run/openvpn
-mkdir -p /dev/net
-mknod /dev/net/tun c 10 200
+#mkdir -p /run/openvpn
+#mkdir -p /dev/net
+#mknod /dev/net/tun c 10 200
 
 if [ ! -f $OVPN_TLSAUTH_KEY.key ]
 then
