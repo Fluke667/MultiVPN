@@ -3,7 +3,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers openssl openssl-dev \
     ca-certificates make augeas shadow openssh openvpn bash nano sudo dcron build-base git linux-headers libsodium libsodium-dev curl \
-    python3 python3-dev gnupg sqlite sqlite-libs  sqlite-dev readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev runit && \
+    python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev runit tor torsock && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     mkdir /etc/container_environment && \
@@ -16,10 +16,10 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
 
-#openvpn
-EXPOSE 1194
+# openvpn  # python-proxy # Tor
+EXPOSE 1194 8090 8080 8070 9050
 #python-proxy
-#EXPOSE 8090 8080 8070 8060
+#EXPOSE 8090 8080 8070
 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
@@ -30,17 +30,8 @@ RUN chmod a+x /sbin/runit
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
-#CMD /config/sshd.sh \
-    #/config/ssl.sh \
-    #/config/system.sh \
-    #/config/openvpn.sh \
-    #/config/pproxy.sh
-    #/configs/sslh.sh
 
 
-#ENTRYPOINT ["/config/sshd.sh \
-#             /config/ssl.sh \ 
-#             /config/openvpn.sh \
-#             /config/pproxy.sh"]
-#ENTRYPOINT ["/usr/bin/supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
+
+
 CMD ["/sbin/runit"]
