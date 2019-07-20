@@ -8,8 +8,8 @@ RUN apk add --update --no-cache linux-headers openssl openssl-dev ca-certificate
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log && \
     rm -rf /var/cache/apk/* && \
-    #pip3 install --upgrade pip && \
-    #pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six
+    pip3 install --upgrade pip && \
+    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six
 
 
 VOLUME ["/etc/certs"]
