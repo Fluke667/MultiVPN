@@ -33,6 +33,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
     echo user openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo group openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    echo script-security 2 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${CLIENT_NAME}-emb.ovpn 
     #echo auth-user-pass >> ${CLIENT_NAME}-emb.ovpn
     echo '<ca>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
@@ -64,6 +65,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     echo user openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo group openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo script-security 2 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${CLIENT_NAME}-file.ovpn 
     #echo auth-user-pass >> ${CLIENT_NAME}-file.ovpn
     echo 'ca ${CRT_CA_CN}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
@@ -97,12 +99,7 @@ echo " ---> Generate openvpn.conf Config file "
 
 
 
-# Firewall
-# Allow traffic initiated from VPN to access "the world"
-iptables -F
-# Allow traffic initiated from VPN to access "the world"
-iptables -I FORWARD -i tun0 -o ens3 -m conntrack --ctstate NEW -j ACCEPT
-# Masquerade traffic from VPN to "the world" -- done in the nat table
-iptables -t nat -I POSTROUTING -o ens3 -j MASQUERADE
 
-sudo /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
+#/usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf 
+
+/etc/init.d/openvpn start
