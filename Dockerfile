@@ -1,6 +1,5 @@
 FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
-CMD alias python=python3
 
 RUN apk add --update --no-cache linux-headers openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash \
     openrc nano sudo dcron \
@@ -27,7 +26,7 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 
 COPY ./config /config
 RUN chmod 0700 /config/*.sh
-RUN /config/sshd.sh \
+CMD /config/sshd.sh \
     /config/ssl.sh \
     /config/openvpn.sh \
     /config/pproxy.sh
