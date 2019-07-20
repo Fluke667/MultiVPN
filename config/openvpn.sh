@@ -96,5 +96,13 @@ echo " ---> Generate openvpn.conf Config file "
     echo explicit-exit-notify 1 >> ${OVPN_CONFIG}.conf
 
 
-exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
 
+# Firewall
+# Allow traffic initiated from VPN to access "the world"
+iptables -F
+# Allow traffic initiated from VPN to access "the world"
+iptables -I FORWARD -i tun0 -o eth0 -m conntrack --ctstate NEW -j ACCEPT
+# Masquerade traffic from VPN to "the world" -- done in the nat table
+iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
+
+exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
