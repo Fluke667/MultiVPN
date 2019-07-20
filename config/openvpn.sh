@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Needed for openvpn
+modprobe tun
 mkdir -p /run/openvpn
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
