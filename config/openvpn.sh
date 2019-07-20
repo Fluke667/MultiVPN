@@ -101,8 +101,8 @@ echo " ---> Generate openvpn.conf Config file "
 # Allow traffic initiated from VPN to access "the world"
 iptables -F
 # Allow traffic initiated from VPN to access "the world"
-iptables -I FORWARD -i tun0 -o eth0 -m conntrack --ctstate NEW -j ACCEPT
+iptables -I FORWARD -i tun0 -o ens3 -m conntrack --ctstate NEW -j ACCEPT
 # Masquerade traffic from VPN to "the world" -- done in the nat table
-iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -o ens3 -j MASQUERADE
 
 exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
