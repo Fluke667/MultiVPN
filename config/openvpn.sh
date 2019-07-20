@@ -105,4 +105,4 @@ iptables -I FORWARD -i tun0 -o ens3 -m conntrack --ctstate NEW -j ACCEPT
 # Masquerade traffic from VPN to "the world" -- done in the nat table
 iptables -t nat -I POSTROUTING -o ens3 -j MASQUERADE
 
-sudo exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
+sudo /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
