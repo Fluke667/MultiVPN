@@ -1,8 +1,9 @@
 #!/bin/sh
 
+# Needed for openvpn
+mkdir -p /run/openvpn
 mkdir -p /dev/net
-mknod /dev/net/tun 
-#c 10 200
+mknod /dev/net/tun c 10 200
 
 if [ ! -f $OVPN_TLSAUTH_KEY.key ]
 then
@@ -95,6 +96,5 @@ echo " ---> Generate openvpn.conf Config file "
     echo explicit-exit-notify 1 >> ${OVPN_CONFIG}.conf
 
 
-/usr/sbin/openvpn --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
+exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --script-security 2
 
-exec "$@"
