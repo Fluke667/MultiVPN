@@ -38,4 +38,4 @@ RUN chmod 0700 /config/*.sh
 #             /config/ssl.sh \ 
 #             /config/openvpn.sh \
 #             /config/pproxy.sh"]
-ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor.conf"]
+ENTRYPOINT ["/usr/bin/supervisord", "--nodaemon", "--configuration", "/etc/supervisor.conf"]
