@@ -37,15 +37,6 @@ echo " ---> Generate Torsocks Config File"
     echo $TOR_ADD snowflake exec $TOR_SNOW $TOR_OPT_SNOW >> ${TOR_SOCKS}.conf
 
 
-
-
-
-
-
-
-
-
-
 chmodf() { find $2 -type f -exec chmod -v $1 {} \;
 }
 chmodd() { find $2 -type d -exec chmod -v $1 {} \;
