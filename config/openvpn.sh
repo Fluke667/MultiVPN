@@ -97,8 +97,7 @@ echo " ---> Generate openvpn.conf Config file "
     echo verb 9 >> ${OVPN_CONFIG}.conf
     echo explicit-exit-notify 1 >> ${OVPN_CONFIG}.conf
 
-ip addr
 
-/usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf 
+exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf 
 
 #/etc/init.d/openvpn start
