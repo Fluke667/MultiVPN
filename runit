@@ -7,8 +7,8 @@ do
     echo "${K}=\"${VAL}\"" >> /etc/envvars
 done
 
-echo "Starting pre-service scripts in /etc/runit_init.d"
-for script in /etc/runit_init.d/*
+echo "Starting pre-service scripts in /config/init/"
+for script in /config/init/*
 do
     if [ -x "$script" ]; then
         echo >&2 "*** Running: $script"
