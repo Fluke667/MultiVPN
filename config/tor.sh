@@ -1,27 +1,29 @@
 #!/bin/sh
 set -o errexit
 
-echo " ---> Generate torrc Config File"
-    echo User tord > ${TOR_CONF}
-    echo Nickname MyName >> ${TOR_CONF}
-    echo ContactInfo noreply@mymail.com >> ${TOR_CONF}
-    echo DataDirectory /var/lib/tor >> ${TOR_CONF}
-    echo ORPort 9001 >> ${TOR_CONF}
-    echo #ORPort [IPv6-address]:9001 >> ${TOR_CONF}
-    echo #DirPort 9030 >> ${TOR_CONF}
-    echo ExitPolicy reject *:* >> ${TOR_CONF}
-    echo ExitPolicy reject6 *:* >> ${TOR_CONF}
-    echo SocksPort 9050 >> ${TOR_CONF}
-    echo #ControlSocket 0 >> ${TOR_CONF}
-    echo RelayBandwidthRate 1 MB >> ${TOR_CONF}
-    echo RelayBandwidthBurst 1 MB >> ${TOR_CONF}
-    echo AccountingMax 1 GBytes >> ${TOR_CONF}
-    echo ControlPort 9051 >> ${TOR_CONF}
-    echo HashedControlPassword $TOR_PASS >> ${TOR_CONF}
-    echo #CookieAuthentication 1 >> ${TOR_CONF}
-    echo #BridgeRelay 1 >> ${TOR_CONF}
-    echo #PublishServerDescriptor 0 >> ${TOR_CONF}
-echo " ---> Generate Torsocks Config File"
+echo " ---> Generate torrc.conf Config File"
+         rm ${TOR_CONF}.conf
+    echo User tord > ${TOR_CONF}.conf
+    echo Nickname MyName >> ${TOR_CONF}.conf
+    echo ContactInfo noreply@mymail.com >> ${TOR_CONF}.conf
+    echo DataDirectory /var/lib/tor >> ${TOR_CONF}.conf
+    echo ORPort 9001 >> ${TOR_CONF}.conf
+    echo #ORPort [IPv6-address]:9001 >> ${TOR_CONF}.conf
+    echo #DirPort 9030 >> ${TOR_CONF}.conf
+    echo ExitPolicy reject *:* >> ${TOR_CONF}.conf
+    echo ExitPolicy reject6 *:* >> ${TOR_CONF}.conf
+    echo SocksPort 9050 >> ${TOR_CONF}.conf
+    echo #ControlSocket 0 >> ${TOR_CONF}.conf
+    echo RelayBandwidthRate 1 MB >> ${TOR_CONF}.conf
+    echo RelayBandwidthBurst 1 MB >> ${TOR_CONF}.conf
+    echo AccountingMax 1 GBytes >> ${TOR_CONF}.conf
+    echo ControlPort 9051 >> ${TOR_CONF}.conf
+    echo HashedControlPassword $TOR_PASS >> ${TOR_CONF}.conf
+    echo #CookieAuthentication 1 >> ${TOR_CONF}.conf
+    echo #BridgeRelay 1 >> ${TOR_CONF}.conf
+    echo #PublishServerDescriptor 0 >> ${TOR_CONF}.conf
+echo " ---> Generate torsocks.conf Config File"
+         rm ${TOR_SOCKS}.conf
     echo TorAddress 127.0.0.1 > ${TOR_SOCKS}.conf
     echo TorPort 9050 >> ${TOR_SOCKS}.conf
     echo OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}.conf
@@ -29,7 +31,7 @@ echo " ---> Generate Torsocks Config File"
     echo SOCKS5Password $TORSOCKS_PASSWORD >> ${TOR_SOCKS}.conf
     echo #AllowInbound 1 >> ${TOR_SOCKS}.conf
     echo #AllowOutboundLocalhost 1 >> ${TOR_SOCKS}.conf
-    echo #IsolatePID 1 >> ${TOR_SOCKS}.conf
+    echo $COMMENT IsolatePID 1 >> ${TOR_SOCKS}.conf
     echo $TOR_ADD fte exec $TOR_FTE $TOR_OPT_FTE >> ${TOR_SOCKS}.conf
     echo $TOR_ADD meek exec $TOR_MEEK $TOR_OPT_MEEK >> ${TOR_SOCKS}.conf
     echo $TOR_ADD obfs3 exec $TOR_OBFS3 $TOR_OPT_OBFS3 >> ${TOR_SOCKS}.conf
