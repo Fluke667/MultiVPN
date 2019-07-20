@@ -32,7 +32,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
     echo persist-remote-ip >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo user openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo group openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    echo verb 9 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo script-security 2 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${CLIENT_NAME}-emb.ovpn 
     #echo auth-user-pass >> ${CLIENT_NAME}-emb.ovpn
@@ -64,7 +64,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     echo persist-remote-ip >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo user openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo group openvpn >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo verb 3 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo verb 9 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo script-security 2 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${CLIENT_NAME}-file.ovpn 
     #echo auth-user-pass >> ${CLIENT_NAME}-file.ovpn
@@ -94,7 +94,7 @@ echo " ---> Generate openvpn.conf Config file "
     echo persist-key >> ${OVPN_CONFIG}.conf
     echo persist-tun >> ${OVPN_CONFIG}.conf
     echo status openvpn-status.log >> ${OVPN_CONFIG}.conf
-    echo verb 3 >> ${OVPN_CONFIG}.conf
+    echo verb 9 >> ${OVPN_CONFIG}.conf
     echo explicit-exit-notify 1 >> ${OVPN_CONFIG}.conf
 
 
