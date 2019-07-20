@@ -29,7 +29,7 @@ RUN /config/sshd.sh \
     /config/ssl.sh \
     #/config/system.sh \
     #/config/openvpn.sh \
-    /config/pproxy.sh
+    #/config/pproxy.sh
     #/configs/sslh.sh
 
 
