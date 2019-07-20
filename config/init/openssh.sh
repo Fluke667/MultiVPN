@@ -1,3 +1,4 @@
+[program:binsh]
 #!/bin/sh
 
 set -eu
