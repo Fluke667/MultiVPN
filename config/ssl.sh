@@ -79,8 +79,16 @@ else
   echo "ENTRYPOINT: $CRT_PUB.crt already exists"
 fi
 
+
+
+    if [ ! -f "$CRT_DIFF.pem" ]
+        then
 echo " ---> Generate Diffie-Hellman Key"
   openssl dhparam -out "${CRT_DIFF}.pem" "${CRT_DIFF_LENGTH}"
+
+else
+  echo "ENTRYPOINT: $CRT_DIFF.pem already exists"
+fi
 
 
 
