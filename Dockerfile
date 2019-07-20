@@ -1,9 +1,10 @@
 FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
 
-RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers openssl openssl-dev \
-    ca-certificates make augeas shadow openssh openvpn bash nano sudo dcron build-base git linux-headers libsodium libsodium-dev curl \
-    python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 expat gdbm xz-dev libffi libffi-dev runit tor torsocks && \
+RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers \
+    openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash nano sudo dcron build-base git \
+    libsodium libsodium-dev curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
+    expat gdbm xz-dev libffi libffi-dev runit tor torsocks pwgen && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     mkdir /etc/container_environment && \
@@ -28,8 +29,8 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 ADD runit /sbin/
 RUN chmod a+x /sbin/runit
 
-COPY ./config /config
-RUN chmod 0700 /config/*.sh
+#COPY ./config /config
+#RUN chmod 0700 /config/*.sh
 
 
 
