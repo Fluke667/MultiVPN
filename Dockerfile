@@ -4,7 +4,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers \
     openssl openssl-dev ca-certificates make augeas shadow openssh openvpn bash nano go sudo dcron build-base git \
     libsodium libsodium-dev curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
-    expat gdbm xz-dev libffi libffi-dev runit tor torsocks pwgen shadowsocks-libev && \
+    expat gdbm xz-dev libffi libffi-dev libc-dev libc runit tor torsocks pwgen shadowsocks-libev && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     mkdir -p ~root/.ssh /etc/authorized_keys && chmod 700 ~root/.ssh/ && \
     mkdir /etc/container_environment && \
@@ -14,6 +14,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy
     #fteproxy
 
+# download kcptun binary file
+RUN cd /go/bin && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 server
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
