@@ -7,19 +7,22 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev nodejs npm \
     g++ libxslt-dev && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
-    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin && \
+    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log   && \
     rm -rf /var/cache/apk/* && \
-    # PYTHON SECTION
+### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy && \
     #fteproxy
-    # GOLANG Section
-    cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 kcptun_server && \
-    cp -f /tmp/kcptun_server /usr/bin/kcptun_server && \
-    cd /tmp && git clone ${V2RAY_DL} && cd v2ray-plugin && CGO_ENABLED=0 && go build -ldflags '-w -s' -o /v2ray-plugin && \
-    upx -9 /v2ray-plugin && cp -f /v2ray-plugin /usr/bin/v2ray-plugin
+### GOLANG Section
+    cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && mv -f server_linux_amd64 kcptun && \
+    chmod u+x kcptun && mv -f /tmp/kcptun /usr/bin/kcptun && \
+    
+    cd /tmp && git clone ${V2RAY_DL} && cd v2ray-plugin && CGO_ENABLED=0 && go build -ldflags '-w -s' -o /tmp/v2ray && \
+    upx -9 /tmp/v2ray && chmod u+x v2ray && cp -f /tmp/v2ray /usr/bin/v2ray && \
+    
+    cd /tmp && wget -q -O cloak ${CLOAK_DL} && chmod u+x cloak && mv -f cloak /usr/bin
 
 
 VOLUME ["/etc/certs"]
