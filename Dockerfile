@@ -2,7 +2,7 @@ FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers \
-    openssl openssl-dev ca-certificates make shadow openssh openvpn bash nano go sudo dcron build-base git \
+    openssl openssl-dev ca-certificates make shadow openssh openvpn bash nano go sudo dcron build-base git upx \
     libsodium libsodium-dev curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev nodejs npm \
     g++ libxslt-dev && \
@@ -11,11 +11,16 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log   && \
     rm -rf /var/cache/apk/* && \
+    # PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy && \
     #fteproxy
-    # download kcptun binary file
-    cd /go/bin && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 server
+    # GOLANG Section
+    cd /tmp && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 kcptun_server && \
+    cp -f /tmp/kcptun_server /usr/bin/kcptun_server && \
+    cd /tmp && git clone ${V2RAY_DL} && cd v2ray-plugin && CGO_ENABLED=0 && go build -ldflags '-w -s' -o /v2ray-plugin && \
+    upx -9 /v2ray-plugin && cp -f /v2ray-plugin /usr/bin/v2ray-plugin
+
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
@@ -27,6 +32,7 @@ EXPOSE 1194
 EXPOSE 8090 8080 8070
 # Tor & Torsocks
 EXPOSE 9050
+
 
 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
