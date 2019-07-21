@@ -1,10 +1,11 @@
 
-##=================== /etc/tor/torrc.conf =====================##
+##=================== /etc/tor/torrc =====================##
 # Run Tor as a regular user (do not change this)
-User tord
+User tor
 Nickname MyName
 ContactInfo noreply@mymail.com
 DataDirectory /var/lib/tor
+RunAsDaemon 1
 
 # Port to advertise for incoming Tor connections.
 ORPort 9001                 # common ports are 9001, 443
@@ -18,8 +19,12 @@ ExitPolicy reject *:*       # no exits allowed
 ExitPolicy reject6 *:*
 
 # Run Tor only as a server (no local applications)
-SocksPort 9050
+SocksPort 0
 #ControlSocket 0
+
+# Logfiles
+Log notice file /var/log/tor/notices.log
+Log debug file /var/log/tor/debug.log
 
 # Damit könnt ihr festlegen, wie viel Bandbreite das Relay maximal nutzen darf. Hier können auch KB usw. genutzt werden.
 RelayBandwidthRate 1 MB
@@ -40,8 +45,8 @@ HashedControlPassword $TOR_PASS
 
 
 #
-ServerTransportPlugin fte exec /usr/bin/fteproxy --mode server --managed
+#ServerTransportPlugin fte exec /usr/bin/fteproxy --mode server --managed
 #ServerTransportPlugin meek exec /usr/bin/meek-server --port 7002 --cert cert.pem --key key.pem
-ServerTransportPlugin obfs3 exec /usr/bin/obfsproxy managed
-ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
-ServerTransportPlugin snowflake exec /usr/bin/webrtc -http 127.0.0.1:8080
+#ServerTransportPlugin obfs3 exec /usr/bin/obfsproxy managed
+#ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
+#ServerTransportPlugin snowflake exec /usr/bin/webrtc -http 127.0.0.1:8080
