@@ -37,5 +37,4 @@ EXPOSE 8081
       
 ADD runit /sbin/
 RUN chmod a+x /sbin/runit
-CMD python -m scylla
 ENTRYPOINT ["/sbin/runit"]
