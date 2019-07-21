@@ -16,7 +16,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     #fteproxy
 
 # download kcptun binary file
-RUN cd /go/bin && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 server
+RUN mkdir /go/bin && cd /go/bin && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 server
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
