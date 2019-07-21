@@ -16,7 +16,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy && \
     #fteproxy
     # GOLANG Section
-    cd /tmp && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 kcptun_server && \
+    cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 kcptun_server && \
     cp -f /tmp/kcptun_server /usr/bin/kcptun_server && \
     cd /tmp && git clone ${V2RAY_DL} && cd v2ray-plugin && CGO_ENABLED=0 && go build -ldflags '-w -s' -o /v2ray-plugin && \
     upx -9 /v2ray-plugin && cp -f /v2ray-plugin /usr/bin/v2ray-plugin
