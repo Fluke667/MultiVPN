@@ -7,7 +7,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev nodejs npm \
     g++ libxslt-dev && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
-    mkdir -p ~root/.ssh /etc/authorized_keys /var/www/scylla /etc/container_environment && \
+    mkdir -p ~root/.ssh /etc/authorized_keys /var/www/scylla /etc/container_environment /go /go/bin && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log   && \
     rm -rf /var/cache/apk/* && \
@@ -16,7 +16,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     #fteproxy
 
 # download kcptun binary file
-RUN cd /usr/bin/go && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 server
+RUN cd /go/bin && wget ${KCP_DL} && tar -xf *.gz && cp -f server_linux_amd64 server
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
