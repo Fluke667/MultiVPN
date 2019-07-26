@@ -21,15 +21,15 @@ EOF
 
 
 
-sed -i '/^listen-address.*/d' /etc/privoxy/config      
-echo "listen-address  ${PRV_SERVER}:${PRV_SERVER_PORT}" >> /etc/privoxy/config       
-echo "forward-socks5   /            ${PRV_LOCAL}:${PRV_LOCAL_PORT} ." >> /etc/privoxy/config
+sed -i '/^listen-address.*/d' /etc/privoxy/privoxy.conf
+echo "listen-address  ${PRV_SERVER}:${PRV_SERVER_PORT}" >> /etc/privoxy/privoxy.conf
+echo "forward-socks5   /               ${PRV_LOCAL}:${PRV_LOCAL_PORT} ." >> /etc/privoxy/privoxy.conf
 chown privoxy.privoxy /etc/privoxy/*
 
 
 
 
-privoxy --no-daemon /etc/privoxy/config &
+privoxy --no-daemon /etc/privoxy/privoxy.conf &
 #ss-local -b 0.0.0.0 -u --fast-open -c /etc/shadowsocks-libev/privoxy.json
 ss-local -s $PRV_SERVER -p $PRV_SERVER_PORT -k $PRV_PASS -m $PRV_METHOD -b $PRV_LOCAL -l $PRV_LOCAL_PORT -t $PRV_TIMEOUT --fast-open -u
 $@
