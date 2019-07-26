@@ -32,7 +32,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     upx -9 /tmp/v2ray && chmod u+x /tmp/v2ray && cp -f /tmp/v2ray /usr/bin/v2ray && \
     cd /tmp && wget -q -O cloak ${CLOAK_DL} && chmod u+x /tmp/cloak && mv -f /tmp/cloak /usr/bin/cloak
 ### Clean Up all
-    rm -rf /var/cache/apk/*
+    #rm -rf /var/cache/apk/*
     #apk del build-dependencies
 
 VOLUME ["/etc/certs"]
