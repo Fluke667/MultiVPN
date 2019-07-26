@@ -3,8 +3,8 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano go sudo dcron upx \
-    libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
-    expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen nodejs npm rng-tools \
+    libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
+    expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
     g++ libxslt-dev w3m c-ares zlib && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     apk update && apk add --no-cache --virtual build-deps \
@@ -16,7 +16,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     py3-gfwlist2privoxy && \
     #fteproxy
 ### Compile Section 1 - Files & Directories
-    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn && \
+    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/privoxy && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Compile Section 2 - Add Groups and Users
