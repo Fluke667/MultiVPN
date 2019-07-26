@@ -23,7 +23,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     groupadd -g 2000 privoxy && useradd -u 2000 -g 2000 -d /dev/null -s /bin/false privoxy && \
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone -q ${PRVIVOXY_DL} && \
-    cd Privoxy-Silent && autoheader && autoconf && ./configure --prefix=/usr/ --sysconfdir=/etc/privoxy --localstatedir=/var --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
+    cd Privoxy-Silent && autoheader && autoconf && ./configure --prefix=/usr/ --sysconfdir=/etc/privoxy --sbindir=/usr/sbin  --libexecdir=/usr/bin --localstatedir=/var --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
     make -n install && \
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
