@@ -2,7 +2,7 @@ FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
-    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx privoxy  \
+    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx privoxy patch \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
     g++ libxslt-dev w3m c-ares zlib pcre &&\
