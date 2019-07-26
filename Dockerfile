@@ -4,7 +4,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano go sudo dcron upx \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
-    expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev nodejs npm \
+    expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen nodejs npm \
     g++ libxslt-dev w3m c-ares zlib && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     apk update && apk add --no-cache --virtual build-deps \
@@ -24,7 +24,9 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     cd Privoxy-Silent && autoheader && autoconf && ./configure --prefix=/usr/ --sysconfdir=/etc/privoxy --localstatedir=/var --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
-    make -n install USER=privoxy GROUP=privoxy && \
+    make -n install && \
+    cd /tmp && git clone --depth=1 ${SSLIBEV_DL} . && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
+    make install && \
 ### GOLANG Section
     #cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && mv -f server_linux_amd64 kcptun && \
     #chmod u+x kcptun && mv -f /tmp/kcptun /usr/bin/kcptun && \
