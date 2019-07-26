@@ -2,11 +2,11 @@ FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
-    openssl ca-certificates make shadow openssh openvpn bash nano go sudo dcron upx \
+    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
-    g++ libxslt-dev w3m c-ares zlib pcre && \
-    #rsyslog logrotate util-linux coreutils findutils grep && \
+    g++ libxslt-dev w3m c-ares zlib pcre &&\
+    #rsyslog logrotate util-linux coreutils findutils go grep && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev git \
     linux-headers curl openssl-dev zlib-dev && \
@@ -16,14 +16,14 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     py3-gfwlist2privoxy && \
     #fteproxy
 ### Compile Section 1 - Files & Directories
-    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/privoxy && \
+    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Compile Section 2 - Add Groups and Users
-    groupadd -g 2000 privoxy && useradd -u 2000 -g 2000 -d /dev/null -s /bin/false privoxy && \
+    #groupadd -g 2000 privoxy && useradd -u 2000 -g 2000 -d /dev/null -s /bin/false privoxy && \
 ### Compile Section 3A - Get & Configure & Make Files
-    cd /tmp && git clone -q ${PRVIVOXY_DL} && \
-    cd Privoxy-Silent && autoheader && autoconf && ./configure --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
+    #cd /tmp && git clone -q ${PRVIVOXY_DL} && \
+    #cd Privoxy-Silent && autoheader && autoconf && ./configure --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
     make -n install && \
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
@@ -55,7 +55,7 @@ EXPOSE 8118 1080
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
-COPY ./etc/privoxy/config /usr/local/etc/privoxy/config
+#COPY ./etc/privoxy/config /usr/local/etc/privoxy/config
 
 RUN find / -name privoxy
       
