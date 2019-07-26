@@ -46,4 +46,8 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
       
 ADD runit /sbin/
 RUN chmod a+x /sbin/runit
-ENTRYPOINT ["/sbin/runit"]
+CMD ["/sbin/runit"]
+
+ADD entry /sbin/
+RUN chmod a+x /sbin/entry
+ENTRYPOINT ["/sbin/entry"]
