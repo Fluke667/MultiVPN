@@ -24,7 +24,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     make -n install USER=privoxy GROUP=privoxy && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
-    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy && \
+    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy \
+    py3-gfwlist2privoxy && \
     #fteproxy
 ### GOLANG Section
     cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && mv -f server_linux_amd64 kcptun && \
