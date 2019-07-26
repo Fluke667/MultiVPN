@@ -16,7 +16,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     py3-gfwlist2privoxy && \
     #fteproxy
 ### Compile Section 1 - Files & Directories
-    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/privoxy && \
+    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Compile Section 2 - Add Groups and Users
