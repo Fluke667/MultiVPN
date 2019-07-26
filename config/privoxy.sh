@@ -27,9 +27,7 @@ echo "forward-socks5   /               ${PRV_LOCAL}:${PRV_LOCAL_PORT} ." >> /etc
 chown privoxy.privoxy /etc/privoxy/*
 
 
-
-
-privoxy --no-daemon /etc/privoxy/privoxy.conf &
+privoxy --no-daemon --user privoxy /etc/privoxy/privoxy.conf &
 #ss-local -b 0.0.0.0 -u --fast-open -c /etc/shadowsocks-libev/privoxy.json
 ss-local -s $PRV_SERVER -p $PRV_SERVER_PORT -k $PRV_PASS -m $PRV_METHOD -b $PRV_LOCAL -l $PRV_LOCAL_PORT -t $PRV_TIMEOUT --fast-open -u
 $@
