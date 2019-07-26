@@ -48,7 +48,7 @@ EXPOSE 1194
 EXPOSE 8090 8080 8070
 # Tor & Torsocks
 EXPOSE 9050 9051
-# 8118 (Privoxy) 1080 (Privoxy-Socks)
+# 8118 (HTTP-Privoxy) 1080 (SOCKS5-Privoxy)
 EXPOSE 8118 1080
 
 
