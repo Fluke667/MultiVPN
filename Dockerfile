@@ -1,12 +1,15 @@
 FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
 
-RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers \
-    openssl openssl-dev ca-certificates make shadow openssh openvpn bash nano go sudo dcron build-base git upx \
-    libsodium libsodium-dev curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
-    expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev pcre-dev nodejs npm \
-    g++ libxslt-dev autoconf automake w3m && \
+RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
+    openssl ca-certificates make shadow openssh openvpn bash nano go sudo dcron upx \
+    libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
+    expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev nodejs npm \
+    g++ libxslt-dev w3m c-ares && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
+    apk update && apk add --no-cache --virtual build-deps \
+    autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev git \
+    linux-headers curl openssl-dev && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy \
@@ -15,7 +18,6 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
 ### Compile Section 1 - Files & Directories
     mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/privoxy && \
     chmod 700 ~root/.ssh/ && \
-    chown privoxy.privoxy /etc/privoxy/* && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Compile Section 2 - Add Groups and Users
     groupadd -g 2000 privoxy && useradd -u 2000 -g 2000 -d /dev/null -s /bin/false privoxy && \
@@ -31,7 +33,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     #cd /tmp && wget -q -O cloak ${CLOAK_DL} && chmod u+x /tmp/cloak && mv -f /tmp/cloak /usr/bin/cloak
 ### Clean Up all
     #rm -rf /var/cache/apk/*
-    #apk del build-dependencies
+    apk del build-deps
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
