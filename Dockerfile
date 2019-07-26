@@ -20,9 +20,9 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     chmod u+x kcptun && mv -f /tmp/kcptun /usr/bin/kcptun && \
     
     cd /tmp && git clone ${V2RAY_DL} && cd v2ray-plugin && CGO_ENABLED=0 && go build -ldflags '-w -s' -o /tmp/v2ray && \
-    upx -9 /tmp/v2ray && chmod u+x v2ray && cp -f /tmp/v2ray /usr/bin/v2ray && \
+    upx -9 /tmp/v2ray && chmod u+x /tmp/v2ray && cp -f /tmp/v2ray /usr/bin/v2ray && \
     
-    cd /tmp && wget -q -O cloak ${CLOAK_DL} && chmod u+x cloak && mv -f cloak /usr/bin
+    cd /tmp && wget -q -O cloak ${CLOAK_DL} && chmod u+x /tmp/cloak && mv -f /tmp/cloak /usr/bin/cloak
 
 
 VOLUME ["/etc/certs"]
