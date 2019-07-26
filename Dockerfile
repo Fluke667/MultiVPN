@@ -4,7 +4,7 @@ MAINTAINER Fluke667 <Fluke667@gmail.com>
 RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybox openrc musl musl-dev linux-headers \
     openssl openssl-dev ca-certificates make shadow openssh openvpn bash nano go sudo dcron build-base git upx \
     libsodium libsodium-dev curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
-    expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev nodejs npm \
+    expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev pcre-dev nodejs npm \
     g++ libxslt-dev autoconf automake && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
 ### PYTHON SECTION
