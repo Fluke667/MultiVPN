@@ -25,7 +25,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     cd Privoxy-Silent && autoheader && autoconf && ./configure --prefix=/usr/ --sysconfdir=/etc/privoxy --localstatedir=/var --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
     make -n install && \
-    cd /tmp && git clone --depth=1 ${SSLIBEV_DL} . && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
+    cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
+    cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && rngd -r /dev/urandom && \
 ### GOLANG Section
     #cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && mv -f server_linux_amd64 kcptun && \
