@@ -5,11 +5,11 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     openssl ca-certificates make shadow openssh openvpn bash nano go sudo dcron upx \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev runit tor torsocks pwgen shadowsocks-libev nodejs npm \
-    g++ libxslt-dev w3m c-ares && \
+    g++ libxslt-dev w3m c-ares zlib && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev git \
-    linux-headers curl openssl-dev && \
+    linux-headers curl openssl-dev zlib-dev && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy \
