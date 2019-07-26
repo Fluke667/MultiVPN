@@ -20,7 +20,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Compile Section 2 - Add Groups and Users
-    #groupadd -g 2000 privoxy && useradd -u 2000 -g 2000 -d /dev/null -s /bin/false privoxy && \
+    groupadd -g 2000 privoxy && useradd -u 2000 -g 2000 -d /dev/null -s /bin/false privoxy && \
 ### Compile Section 3A - Get & Configure & Make Files
     #cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     #cd Privoxy-Silent && autoheader && autoconf && ./configure --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
