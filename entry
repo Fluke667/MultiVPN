@@ -16,7 +16,12 @@ pproxy -l http://:8080#$USER:$PASS &
 sleep 5 &
 pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8070 &
 sleep 5 &
-exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf
+/usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf &
+sleep 5 &
+privoxy --no-daemon /etc/privoxy/config &
+sleep 5 &
+#exec ss-local -s $PRV_SERVER -p $PRV_SERVER_PORT -k $PRV_PASS -m $PRV_METHOD -b $PRV_LOCAL -l $PRV_LOCAL_PORT -t $PRV_TIMEOUT --fast-open -u
+exec ss-local -u --fast-open -c /etc/shadowsocks-libev/privoxy.json
 $@
       
       
