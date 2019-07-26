@@ -5,7 +5,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     openssl ca-certificates make shadow openssh openvpn bash nano go sudo dcron upx \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
-    g++ libxslt-dev w3m c-ares zlib && \
+    g++ libxslt-dev w3m c-ares zlib pcre && \
     #rsyslog logrotate util-linux coreutils findutils grep && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev git \
