@@ -52,6 +52,7 @@ EXPOSE 8118 1080
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
+COPY ./etc/privoxy/privoxy.conf /etc/privoxy/privoxy.conf
 
       
       
