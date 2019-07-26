@@ -9,7 +9,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     #rsyslog logrotate util-linux coreutils findutils grep && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
-    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy && \
+    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy \
+    py3-gfwlist2privoxy && \
     #fteproxy
 ### Compile Section 1 - Files & Directories
     mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/privoxy && \
@@ -22,11 +23,6 @@ RUN apk add --update --no-cache alpine-baselayout alpine-conf alpine-base busybo
     cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     cd Privoxy-Silent && autoheader && autoconf && ./configure --prefix=/usr/ --sysconfdir=/etc/privoxy --localstatedir=/var --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
     make -n install USER=privoxy GROUP=privoxy && \
-### PYTHON SECTION
-    pip3 install --upgrade pip && \
-    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy \
-    py3-gfwlist2privoxy && \
-    #fteproxy
 ### GOLANG Section
     cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && mv -f server_linux_amd64 kcptun && \
     chmod u+x kcptun && mv -f /tmp/kcptun /usr/bin/kcptun && \
