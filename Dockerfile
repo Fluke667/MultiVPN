@@ -1,4 +1,4 @@
-FROM golang:alpine AS builder
+FROM golang:latest AS builder
 WORKDIR /go/src
 RUN mkdir -p /go /go/bin /go/src /go/pkg && \
     apk --no-cache add --update git && \
