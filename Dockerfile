@@ -5,8 +5,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx privoxy patch \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
-    g++ libxslt-dev w3m c-ares zlib pcre &&\
-    #rsyslog logrotate util-linux coreutils findutils go grep && \
+    g++ libxslt-dev w3m c-ares zlib pcre aclocal coreutils aclocal &&\
+    #rsyslog logrotate util-linux findutils go grep && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev git \
     linux-headers curl openssl-dev zlib-dev && \
@@ -22,9 +22,10 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Compile Section 2 - Add Groups and Users
     groupadd -g 2000 privoxy && useradd -u 2000 -g 2000 -d /dev/null -s /bin/false privoxy && \
 ### Compile Section 3A - Get & Configure & Make Files
-    #cd /tmp && git clone -q ${PRVIVOXY_DL} && \
-    #cd Privoxy-Silent && autoheader && autoconf && ./configure --with-docbook=no --with-user=privoxy --with-group=privoxy --enable-no-gifs --enable-compression && make && \
-    #make -n install && \
+    cd /tmp && git clone -q ${PRVIVOXY_DL} && \
+    cd Privoxy-Silent && aclocal && autoheader && autoconf && \
+    ./configure --build=Alpine --host=vps01 --prefix=/usr --localstatedir=/var/ --enable-zlib --enable-dynamic-pcre --with-user=privoxy --with-group=privoxy --sysconfdir=/etc/privoxy --docdir=/usr/share/doc/privoxy && make && \
+    chown -R privoxy:privoxy /var/log/privoxy /etc/privoxy && \
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && rngd -r /dev/urandom && \
