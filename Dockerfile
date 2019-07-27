@@ -2,8 +2,7 @@ FROM golang:alpine AS go-build
 RUN apk --no-cache add --update git && mkdir -p /go /go/bin /go/src /go/pkg && \
     go get -v ${OBFS4_DL} && \
     go get -v ${MEEK_DL} && \
-    git clone ${V2RAY_DL} && cd v2ray-plugin && go build -o /go/bin/v2ray-plugin && \
-    git clone ${SNOW_DL} && cd snowflake/server-webrtc/ && go build -o /go/bin/server-webrtc && \
+    git clone ${V2RAY_DL} && cd v2ray-plugin && go build && \
     cp -rv /go/bin /usr/local/
  
 FROM fluke667/alpine AS main-build
