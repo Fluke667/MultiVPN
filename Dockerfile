@@ -1,6 +1,4 @@
 FROM golang:latest AS builder
-ADD /go
-WORKDIR /go
 RUN mkdir -p /go /go/bin /go/src /go/pkg && \
     apk add --update --no-cache git && \
     go get -v ${OBFS4_DL} && \
