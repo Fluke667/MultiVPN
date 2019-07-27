@@ -1,17 +1,10 @@
-FROM golang:latest AS builder
-RUN mkdir -p /go /go/bin /go/src /go/pkg && \
-    go get -v ${OBFS4_DL} && \
-    go get -v ${MEEK_DL} && \
-    go get ${V2RAY_DL} && \
-    cp -rv /go/bin /usr/local/
- 
 FROM fluke667/alpine
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
-    expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
+    expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools \
     g++ libxslt-dev w3m c-ares zlib pcre coreutils && \
-    #rsyslog logrotate util-linux findutils grep && \
+    #rsyslog logrotate util-linux findutils grep nodejs npm && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev \
     linux-headers curl openssl-dev zlib-dev && \
