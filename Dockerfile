@@ -1,6 +1,5 @@
 FROM golang:latest AS builder
 RUN mkdir -p /go /go/bin /go/src /go/pkg && \
-    apk add --update --no-cache git && \
     go get -v ${OBFS4_DL} && \
     go get -v ${MEEK_DL} && \
     go get ${V2RAY_DL} && \
