@@ -1,5 +1,5 @@
 #FROM golang:latest AS builder
-FROM golang:alpine3.10 - linux; amd64 AS builder
+FROM golang:alpine3.10 AS builder
 WORKDIR /go
 RUN mkdir -p /go /go/bin /go/src /go/pkg && \
     apk add --update --no-cache git && \
