@@ -7,7 +7,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     #rsyslog logrotate util-linux findutils grep nodejs npm && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev \
-    linux-headers curl openssl-dev zlib-dev && \
+    linux-headers curl openssl-dev zlib-dev git && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy && \
