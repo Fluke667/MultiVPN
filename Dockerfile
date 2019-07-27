@@ -1,5 +1,5 @@
 FROM golang:alpine AS go-build
-RUN apk --no-cache add --update git && \
+RUN apk --no-cache add --update git && mkdir -p /go /go/bin /go/src /go/pkg && \
     go get -v ${OBFS4_DL} && \
     go get -v ${MEEK_DL} && \
     git clone ${V2RAY_DL} && cd v2ray-plugin && go build && \
