@@ -15,7 +15,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Compile Section 1 - Files & Directories
     mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn && \
     chmod 700 ~root/.ssh/ && \
-    touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
+    touch /var/log/cron.log  /run/openvpn/ovpn.pid /etc/shadowsocks-libev/shadowsocks.json && \
 ### Compile Section 2 - Add Groups and Users
     #addgroup -S privoxy 2>/dev/null && adduser -S -D -h /var/log/privoxy -s /sbin/nologin -G privoxy -g privoxy privoxy 2>/dev/null && \
 ### Compile Section 3A - Get & Configure & Make Files
