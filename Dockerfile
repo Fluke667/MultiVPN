@@ -1,11 +1,11 @@
-#FROM golang:latest AS builder
-FROM golang:alpine3.10 AS builder
+FROM golang:latest AS builder
+ADD /go
 WORKDIR /go
 RUN mkdir -p /go /go/bin /go/src /go/pkg && \
     apk add --update --no-cache git && \
     go get -v ${OBFS4_DL} && \
     go get -v ${MEEK_DL} && \
-    git clone ${V2RAY_DL} && cd v2ray-plugin && go build && \
+    go get ${V2RAY_DL} && \
     cp -rv /go/bin /usr/local/
  
 FROM fluke667/alpine
