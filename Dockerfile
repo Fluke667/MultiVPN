@@ -1,6 +1,7 @@
 FROM golang:alpine AS builder
 WORKDIR /go/src
-RUN apk --no-cache add --update git && mkdir -p /go /go/bin /go/src /go/pkg && \
+RUN mkdir -p /go /go/bin /go/src /go/pkg && \
+    apk --no-cache add --update git && \
     go get -v ${OBFS4_DL} && \
     go get -v ${MEEK_DL} && \
     git clone ${V2RAY_DL} && cd v2ray-plugin && go build && \
