@@ -1,4 +1,5 @@
 FROM golang:alpine AS go-build
+WORKDIR $GOPATH/src
 RUN apk --no-cache add --update git && mkdir -p /go /go/bin /go/src /go/pkg && \
     go get -v ${OBFS4_DL} && \
     go get -v ${MEEK_DL} && \
