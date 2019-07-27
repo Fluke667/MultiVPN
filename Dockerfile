@@ -55,9 +55,8 @@ EXPOSE 8118 1080
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
-#COPY ./etc/privoxy/config /usr/local/etc/privoxy/config
+COPY ./etc/privoxy/config /etc/privoxy/config
 
-RUN find / -name privoxy
       
 ADD runit /sbin/
 RUN chmod a+x /sbin/runit
