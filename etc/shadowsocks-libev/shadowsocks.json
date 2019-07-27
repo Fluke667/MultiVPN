@@ -1,9 +1,9 @@
 {
     "server": "${SS_SERVER_ADDR}",
-    "server_port": ${SS_SERVER_PORT},
+    "server_port": "${SS_SERVER_PORT}",
     "local_address": "${SS_LOCAL_ADDR}",
-    "local_port": ${SS_LOCAL_PORT},
+    "local_port": "${SS_LOCAL_PORT}",
     "password": "${SS_PASSWORD}",
-    "timeout": ${SS_TIMEOUT},
+    "timeout": "${SS_TIMEOUT}",
     "method": "${SS_LOCAL_PORT}"
 }
