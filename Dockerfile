@@ -1,7 +1,8 @@
-FROM golang:latest AS builder
-WORKDIR /go/src
+#FROM golang:latest AS builder
+FROM golang:alpine3.10 - linux; amd64 AS builder
+WORKDIR /go
 RUN mkdir -p /go /go/bin /go/src /go/pkg && \
-    apk --no-cache add --update git && \
+    apk add --update --no-cache git && \
     go get -v ${OBFS4_DL} && \
     go get -v ${MEEK_DL} && \
     git clone ${V2RAY_DL} && cd v2ray-plugin && go build && \
