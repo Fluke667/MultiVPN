@@ -2,7 +2,7 @@ FROM fluke667/alpine
 MAINTAINER Fluke667 <Fluke667@gmail.com>
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
-    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
+    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch privoxy \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
     g++ libxslt-dev w3m c-ares zlib pcre coreutils && \
@@ -20,12 +20,12 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Compile Section 2 - Add Groups and Users
-    addgroup -S privoxy 2>/dev/null && adduser -S -D -h /var/log/privoxy -s /sbin/nologin -G privoxy -g privoxy privoxy 2>/dev/null && \
+    #addgroup -S privoxy 2>/dev/null && adduser -S -D -h /var/log/privoxy -s /sbin/nologin -G privoxy -g privoxy privoxy 2>/dev/null && \
 ### Compile Section 3A - Get & Configure & Make Files
-    cd /tmp && git clone -q ${PRVIVOXY_DL} && \
-    cd Privoxy-Silent && aclocal && autoheader && autoconf && ./configure --build=x86_64-unknown-linux-gnu --host=x86_64-unknown-linux-gnu --prefix=/usr --localstatedir=/var/ --enable-zlib --enable-dynamic-pcre --with-user=privoxy --with-group=privoxy --sysconfdir=/etc/privoxy --docdir=/usr/share/doc/privoxy && make && \
-    make DESTDIR="/etc/privoxy" install && \
-    chown -R privoxy:privoxy /var/log/privoxy /etc/privoxy && \
+    #cd /tmp && git clone -q ${PRVIVOXY_DL} && \
+    #cd Privoxy-Silent && aclocal && autoheader && autoconf && ./configure --build=x86_64-unknown-linux-gnu --host=x86_64-unknown-linux-gnu --prefix=/usr --localstatedir=/var/ --enable-zlib --enable-dynamic-pcre --with-user=privoxy --with-group=privoxy --sysconfdir=/etc/privoxy --docdir=/usr/share/doc/privoxy && make && \
+    #make DESTDIR="/etc/privoxy" install && \
+    #chown -R privoxy:privoxy /var/log/privoxy /etc/privoxy && \
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && rngd -r /dev/urandom && \
