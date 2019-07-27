@@ -1,4 +1,4 @@
-FROM golang:alpine AS go-build
+FROM golang:alpine AS builder
 WORKDIR $GOPATH/src
 RUN apk --no-cache add --update git && mkdir -p /go /go/bin /go/src /go/pkg && \
     go get -v ${OBFS4_DL} && \
@@ -6,7 +6,7 @@ RUN apk --no-cache add --update git && mkdir -p /go /go/bin /go/src /go/pkg && \
     git clone ${V2RAY_DL} && cd v2ray-plugin && go build && \
     cp -rv /go/bin /usr/local/
  
-FROM fluke667/alpine AS main-build
+FROM fluke667/alpine
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
