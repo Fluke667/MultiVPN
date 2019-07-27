@@ -23,7 +23,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     addgroup -S privoxy 2>/dev/null && adduser -S -D -h /var/log/privoxy -s /sbin/nologin -G privoxy -g privoxy privoxy 2>/dev/null && \
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone -q ${PRVIVOXY_DL} && \
-    cd Privoxy-Silent && aclocal && autoheader && autoconf && ./configure --build=x86_64 --host=amd64 --prefix=/usr --localstatedir=/var/ --enable-zlib --enable-dynamic-pcre --with-user=privoxy --with-group=privoxy --sysconfdir=/etc/privoxy --docdir=/usr/share/doc/privoxy && make && \
+    cd Privoxy-Silent && aclocal && autoheader && autoconf && ./configure --build=x86_64-unknown-linux-gnu --host=amd64 --prefix=/usr --localstatedir=/var/ --enable-zlib --enable-dynamic-pcre --with-user=privoxy --with-group=privoxy --sysconfdir=/etc/privoxy --docdir=/usr/share/doc/privoxy && make && \
     make DESTDIR="/etc/privoxy" install && \
     chown -R privoxy:privoxy /var/log/privoxy /etc/privoxy && \
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
