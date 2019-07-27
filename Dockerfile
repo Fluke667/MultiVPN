@@ -1,14 +1,20 @@
-FROM fluke667/alpine
-MAINTAINER Fluke667 <Fluke667@gmail.com>
-
+FROM golang:alpine AS go-build
+RUN apk --no-cache add --update git && \
+    go get -v ${OBFS4_DL} && \
+    go get -v ${MEEK_DL} && \
+    git clone ${V2RAY_DL} && cd v2ray-plugin && go build && \
+    git clone ${SNOW_DL} && cd snowflake/server-webrtc/ && go build && \
+    cp -rv /go/bin /usr/local/
+ 
+FROM fluke667/alpine AS main-build
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen nodejs npm rng-tools \
     g++ libxslt-dev w3m c-ares zlib pcre coreutils && \
-    #rsyslog logrotate util-linux findutils go grep && \
+    #rsyslog logrotate util-linux findutils grep && \
     apk update && apk add --no-cache --virtual build-deps \
-    autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev git \
+    autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev \
     linux-headers curl openssl-dev zlib-dev && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
