@@ -2,7 +2,7 @@
 
 set -e
 
-
+rngd -r /dev/urandom
 
 cat > /etc/shadowsocks-libev/shadowsocks.json <<EOF
 {
