@@ -1,7 +1,7 @@
 #!/bin/bash
 
     cd /tmp
-    wget  -q -O ${CLOAK_FILE} §{CLOAK_URL}
+    wget  -q -O ${CLOAK_FILE} ${CLOAK_URL}
     chmod +x ${CLOAK_FILE}
     mv ${CLOAK_FILE} /usr/bin/ck-server
     if [ $? -eq 0 ]; then
