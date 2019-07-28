@@ -4,6 +4,7 @@ Protocols: PPTP, L2TP, Ikev2, Shadowsocks, OpenVPN,
 
 ### Before Start Container:
 VERY IMPORTANT ! First, run this command on the Docker host to load the kernel modules:
+First install mptcp kernel.
 - sudo modprobe af_key
 - sudo modprobe nf_nat_pptp
 - sudo modprobe tun
