@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
     cd ${DIR_TMP}
     tar zxf ${KCPTUN_FILE}-${KCPTUN_VER}.tar.gz
