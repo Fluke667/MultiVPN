@@ -19,7 +19,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six pyptlib fte \
-    obfsproxy fteproxy && \
+    obfsproxy && \
     #fteproxy
 ### Compile Section 1 - Files & Directories
     mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/shadowsocks-libev && \
