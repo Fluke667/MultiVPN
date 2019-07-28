@@ -1,4 +1,4 @@
-FROM golang:1.12.2-alpine3.10 AS builder
+FROM golang:1.12-alpine3.10 AS builder
 RUN apk --no-cache add build-base
 RUN mkdir -p /go /go/bin /go/src && \
     go get -v git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy && \
