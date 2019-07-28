@@ -26,15 +26,10 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && rngd -r /dev/urandom && \
-### GOLANG Section
-    #cd /tmp && wget -q ${KCP_DL} && tar -xf *.gz && mv -f server_linux_amd64 kcptun && \
-    #chmod u+x kcptun && mv -f /tmp/kcptun /usr/bin/kcptun && \
-    #cd /tmp && git clone ${V2RAY_DL} && cd v2ray-plugin && CGO_ENABLED=0 && go build -ldflags '-w -s' -o /tmp/v2ray && \
-    #upx -9 /tmp/v2ray && chmod u+x /tmp/v2ray && cp -f /tmp/v2ray /usr/bin/v2ray && \
-    #cd /tmp && wget -q -O cloak ${CLOAK_DL} && chmod u+x /tmp/cloak && mv -f /tmp/cloak /usr/bin/cloak
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
+RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /golang/obfs4
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
