@@ -5,7 +5,6 @@ RUN mkdir -p /go /go/bin /go/src && \
     go get -v git.torproject.org/pluggable-transports/meek.git/meek-server && \
     cp -rv /go/bin /usr/bin/
 
-
 FROM fluke667/alpine
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
