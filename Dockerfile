@@ -5,8 +5,8 @@ RUN mkdir -p /go /go/bin /go/src && \
     go get -v git.torproject.org/pluggable-transports/meek.git/meek-server
 
 FROM fluke667/alpine
-COPY --from=builder /go/bin/obfs4proxy /usr/bin/obfs4proxy && \
-     --from=builder /go/bin/meek-server /usr/bin/meek-server
+COPY --from=builder /go/bin/obfs4proxy /usr/bin/ && \
+     --from=builder /go/bin/meek-server /usr/bin/
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
