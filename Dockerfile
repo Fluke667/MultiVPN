@@ -1,5 +1,5 @@
 FROM golang:1.12-alpine3.10 AS builder
-RUN apk --no-cache add build-base
+RUN apk --no-cache add git build-base
 RUN mkdir -p /go /go/bin /go/src && \
     go get -v git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy && \
     go get -v git.torproject.org/pluggable-transports/meek.git/meek-server && \
