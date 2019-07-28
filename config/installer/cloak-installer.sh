@@ -2,12 +2,12 @@
 
 cat > /etc/shadowsocks-libev/ckconfig.json <<EOF
 {
-	"UID":"AdminUID",
-	"PublicKey":"PublicKey",
-	"ServerName":"ServerName",
-	"TicketTimeHint":3600,
-	"NumConn":4,
-	"MaskBrowser":"firefox"
+	"UID":"${CLOAK_UID}",
+	"PublicKey":"${CLOAK_PUBKEY}",
+	"ServerName":"${CLOAK_CLOAK_SERVNAME}",
+	"TicketTimeHint":${CLOAK_TTH},
+	"NumConn":${CLOAK_NUMMCONN},
+	"MaskBrowser":"${CLOAK_BROWSER}"
 }
 EOF
 
