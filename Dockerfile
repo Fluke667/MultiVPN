@@ -1,3 +1,11 @@
+FROM golang:1.12.2-alpine3.10 AS builder
+RUN apk --no-cache add build-base
+RUN mkdir -p /go /go/bin /go/src && \
+    go get -v git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy && \
+    go get -v git.torproject.org/pluggable-transports/meek.git/meek-server && \
+    cp -rv /go/bin /usr/bin/
+
+
 FROM fluke667/alpine
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
@@ -29,8 +37,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
-ADD /golang/obfs4 /golang/obfs4
-RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /golang/obfs4
+
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
