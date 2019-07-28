@@ -1,12 +1,5 @@
 #!/bin/bash
 
-cat > /etc/shadowsocks-libev/gqserver.json <<EOF
-{
-        "WebServerAddr":"${GQ_WEBSRVADDR}",
-        "Key":"${GQ_KEY}"
-}
-EOF
-
     cd ${DIR_TMP}
     wget  -q -O ${GQ_FILE} ${GQ_URL}
     chmod +x ${GQ_FILE}
