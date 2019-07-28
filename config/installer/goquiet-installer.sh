@@ -1,9 +1,16 @@
 #!/bin/bash
 
+cat > /etc/gqserver.json <<EOF
+{
+        "WebServerAddr":"${GQ_WEBSRVADDR}",
+        "Key":"${GQ_KEY}"
+}
+EOF
+
     cd ${DIR_TMP}
-    wget  -q -O ${GOQUIET_FILE} ${GOQUIET_URL}
-    chmod +x ${GOQUIET_FILE}
-    mv ${GOQUIET_FILE} /usr/bin/gq-server
+    wget  -q -O ${GQ_FILE} ${GQ_URL}
+    chmod +x ${GQ_FILE}
+    mv ${GQ_FILE} /usr/bin/gq-server
     if [ $? -eq 0 ]; then
         echo -e "\033[32m[INFO] GoQuiet Successful installation.."
     else
