@@ -29,6 +29,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
+ADD /golang/obfs4 /golang/obfs4
 RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /golang/obfs4
 
 VOLUME ["/etc/certs"]
