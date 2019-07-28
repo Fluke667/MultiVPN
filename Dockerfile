@@ -6,7 +6,7 @@ RUN mkdir -p /go /go/bin /go/src && \
     cp -rv /go/bin /usr/bin/
 
 FROM fluke667/alpine
-COPY --from=builder /go/bin /usr/bin
+COPY --from=builder -rv /go/bin /usr/bin
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
