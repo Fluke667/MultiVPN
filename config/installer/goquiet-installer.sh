@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat > /etc/gqserver.json <<EOF
+cat > /etc/shadowsocks-libev/gqserver.json <<EOF
 {
         "WebServerAddr":"${GQ_WEBSRVADDR}",
         "Key":"${GQ_KEY}"
