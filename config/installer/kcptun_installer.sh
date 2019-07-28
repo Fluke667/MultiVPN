@@ -25,12 +25,13 @@ cat > /etc/shadowsocks-libev/kcptun.json <<EOF
         "pprof":false,
         "quiet":false,
         "tcp":false
-}  
+}
 EOF
 
     cd ${DIR_TMP}
+    wget -q ${KCPTUN_DL}
     tar zxf ${KCPTUN_FILE}-${KCPTUN_VER}.tar.gz
-    mv server_linux_amd64 ${KCPTUN_DIR}
+    mv server_linux_amd64 /usr/bin/kcptun-server
     if [ $? -eq 0 ]; then
         echo -e "\033[32m[INFO] kcptun Successful installation.."
     else
