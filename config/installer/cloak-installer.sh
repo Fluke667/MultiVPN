@@ -1,5 +1,17 @@
 #!/bin/bash
 
+cat > /etc/shadowsocks-libev/ckconfig.json <<EOF
+{
+	"UID":"AdminUID",
+	"PublicKey":"PublicKey",
+	"ServerName":"ServerName",
+	"TicketTimeHint":3600,
+	"NumConn":4,
+	"MaskBrowser":"firefox"
+}
+EOF
+
+
     cd /tmp
     wget  -q -O ${CLOAK_FILE} ${CLOAK_URL}
     chmod +x ${CLOAK_FILE}
