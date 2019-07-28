@@ -12,7 +12,7 @@ cat > /etc/shadowsocks-libev/ckconfig.json <<EOF
 EOF
 
 
-    cd /tmp
+    cd ${DIR_TMP}
     wget  -q -O ${CLOAK_FILE} ${CLOAK_URL}
     chmod +x ${CLOAK_FILE}
     mv ${CLOAK_FILE} /usr/bin/ck-server
