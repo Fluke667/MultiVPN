@@ -27,7 +27,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     addgroup -S shadowsocks 2>/dev/null && adduser -S -D -h /var/log/shadowsocks -s /sbin/nologin -G shadowsocks -g shadowsocks shadowsocks 2>/dev/null && \
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
-    cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
+    cd shadowsocks-libev && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && rngd -r /dev/urandom && \
 ### Clean Up all
     #rm -rf /var/cache/apk/*
