@@ -18,7 +18,7 @@ pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8070 &
 sleep 5 &
 /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf &
 sleep 5 &
-exec ss-server -c /etc/shadowsocks-libev/ss_standalone.json
+exec ss-server -c /etc/shadowsocks-libev/standalone.json
 #sleep 5 &
 #exec ss-server -v -s ${SS_SERVER_ADDR} -p ${SS_SERVER_PORT} -l ${SS_LOCAL_PORT} -k ${SS_PASSWORD} -t ${SS_TIMEOUT} -m ${SS_METHOD} -n ${SS_MAXOPENFILES} -d ${SS_DNS} --fast-open --reuse-port -u 
 #exec ss-local -u --fast-open -c /etc/shadowsocks-libev/privoxy.json
