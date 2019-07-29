@@ -1,0 +1,9 @@
+#!/bin/sh
+
+/config/installer/v2rayplug_installer.sh &
+/config/installer/kcptun_installer.sh &
+/config/installer/goquiet-installer.sh &
+exec /config/installer/cloak-installer.sh
+
+
+
