@@ -4,7 +4,7 @@
 rngd -r /dev/urandom
 
 # ss config
-    cat > ${SSLIBEV_CONFIG}/ss_standalone.json<<-EOF
+    cat > ${SSLIBEV_CONFIG}/standalone.json<<-EOF
     {
         "server":"${SS_SERVER_ADDR:-0.0.0.0}",
         "server_port":${SS_SERVER_PORT:-8388},
