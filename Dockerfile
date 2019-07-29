@@ -24,7 +24,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid /etc/shadowsocks-libev/shadowsocks.json && \
 ### Compile Section 2 - Add Groups and Users
-    #addgroup -S privoxy 2>/dev/null && adduser -S -D -h /var/log/privoxy -s /sbin/nologin -G privoxy -g privoxy privoxy 2>/dev/null && \
+    addgroup -S shadowsocks 2>/dev/null && adduser -S -D -h /var/log/shadowsocks -s /sbin/nologin -G shadowsocks -g shadowsocks shadowsocks 2>/dev/null && \
 ### Compile Section 3A - Get & Configure & Make Files
     #cd /tmp && git clone -q ${PRVIVOXY_DL} && \
     #cd Privoxy-Silent && aclocal && autoheader && autoconf && ./configure --build=x86_64-unknown-linux-gnu --host=x86_64-unknown-linux-gnu --prefix=/usr --localstatedir=/var/ --enable-zlib --enable-dynamic-pcre --with-user=privoxy --with-group=privoxy --sysconfdir=/etc/privoxy --docdir=/usr/share/doc/privoxy && make && \
