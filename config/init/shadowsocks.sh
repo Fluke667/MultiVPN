@@ -1,6 +1,4 @@
 #!/bin/sh
-#!/bin/sh
-
 
 rngd -r /dev/urandom
 
