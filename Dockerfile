@@ -33,15 +33,6 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     #rm -rf /var/cache/apk/*
     apk del build-deps
    
-ADD ./config /config
-ADD ./config/installer /config/installer
-RUN chmod 0700 /config/installer/*.sh
-CMD /config/installer/*.sh
-
-
-VOLUME ["/etc/certs"]
-VOLUME ["/etc/openvpn"]
-VOLUME ["/var/www"]
 
 #openvpn
 EXPOSE 1194
@@ -56,6 +47,17 @@ EXPOSE 8388
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
+
+VOLUME ["/config"]
+VOLUME ["/etc/certs"]
+VOLUME ["/etc/openvpn"]
+VOLUME ["/var/www"]
+
+ADD ./config /config
+
+ADD installer /sbin/
+RUN chmod a+x /sbin/installer
+CMD ["/sbin/installer"]
 
 ADD runit /sbin/
 RUN chmod a+x /sbin/runit
