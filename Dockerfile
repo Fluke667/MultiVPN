@@ -36,6 +36,10 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
+    
+ADD ./config/installer /config/installer
+RUN chmod u+x /config/installer/*.sh
+RUN /config/installer/*.sh
 
 
 VOLUME ["/etc/certs"]
