@@ -55,10 +55,7 @@ EXPOSE 8388
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
-COPY ./etc/shadowsocks-libev/shadowsocks.json /etc/shadowsocks-libev/shadowsocks.json
-#COPY ./etc/privoxy/config /etc/privoxy/config
 
-      
 ADD runit /sbin/
 RUN chmod a+x /sbin/runit
 CMD ["/sbin/runit"]
