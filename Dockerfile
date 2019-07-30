@@ -11,7 +11,7 @@ COPY --from=builder /go/bin/obfs4proxy /usr/bin/
 COPY --from=builder /go/bin/meek-server /usr/bin/
 COPY --from=builder /go/bin/server /usr/bin/snowflake
 COPY --from=builder /go/bin/broker /usr/bin/
-RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev \
+RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev geoip \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch gmp \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools \
