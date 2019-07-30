@@ -18,7 +18,7 @@ rngd -r /dev/urandom
         "nameserver":"${SS_DNS:-1.1.1.1,1.0.0.1}",
         "mode":"${SS_MODE3:-tcp_and_udp}"
     }
-    EOF
+EOF
 
 # ss + v2ray-plugin config
    cat > ${SSLIBEV_CONFIG}/v2ray_ws_http.json <<EOF
@@ -38,7 +38,7 @@ rngd -r /dev/urandom
         "plugin":"v2ray-plugin",
         "plugin_opts":"server"
     }
-    EOF
+EOF
 
    cat > ${SSLIBEV_CONFIG}/v2ray_ws_tls_cdn.json <<EOF
     {
@@ -57,7 +57,7 @@ rngd -r /dev/urandom
         "plugin":"v2ray-plugin",
         "plugin_opts":"server;tls;host=${V2RAY_HOST};cert=${V2RAY_CRT};key=${V2RAY_KEY}"
     }
-    EOF
+EOF
 
     cat > ${SSLIBEV_CONFIG}/v2ray_quic_tls_cdn.json<<-EOF
     {
@@ -76,7 +76,7 @@ rngd -r /dev/urandom
         "plugin":"v2ray-plugin",
         "plugin_opts":"server;mode=quic;host=${V2RAY_HOST};cert=${V2RAY_CRT};key=${V2RAY_KEY}"
     }
-    EOF
+EOF
 
     cat > ${SSLIBEV_CONFIG}/v2ray_ws_tls_web.json<<-EOF
     {
@@ -95,7 +95,7 @@ rngd -r /dev/urandom
         "plugin":"v2ray-plugin",
         "plugin_opts":"server;path=${V2RAY_BIN};loglevel=none"
     }
-    EOF
+EOF
 
     cat > ${SSLIBEV_CONFIG}/v2ray_ws_tls_web_cdn.json<<-EOF
     {
@@ -114,7 +114,7 @@ rngd -r /dev/urandom
         "plugin":"v2ray-plugin",
         "plugin_opts":"server;path=${V2RAY_BIN};loglevel=none"
     }
-    EOF
+EOF
 
 # kcptun config (Standalone)
     cat > ${SSLIBEV_CONFIG}/kcptun_standalone.json<<-EOF
@@ -132,7 +132,7 @@ rngd -r /dev/urandom
         "dscp": ${KCP_DSCP},
         "nocomp": ${KCP_NOCOMP}
     }
-    EOF
+EOF
 
 # ss + simple-obfs
     cat > ${SSLIBEV_CONFIG}/obfs_http.json<<-EOF
@@ -152,7 +152,7 @@ rngd -r /dev/urandom
         "plugin":"obfs-server",
         "plugin_opts":"obfs=${OBFS_HTTP}"
     }
-    EOF
+EOF
 
     cat > ${SSLIBEV_CONFIG}/obfs_tls.json<<-EOF
     {
@@ -171,7 +171,7 @@ rngd -r /dev/urandom
         "plugin":"obfs-server",
         "plugin_opts":"obfs=${OBFS_TLS}"
     }
-    EOF
+EOF
 
 # ss + goquiet
     cat > ${SSLIBEV_CONFIG}/goquiet.json<<-EOF
@@ -191,7 +191,7 @@ rngd -r /dev/urandom
         "plugin":"gq-server",
         "plugin_opts":"WebServerAddr=${GQ_WEBSRVADDR};Key=${GQ_KEY}"
     }
-    EOF
+EOF
 
 # ss + cloak config
     cat > ${SSLIBEV_CONFIG}/cloak.json<<-EOF
@@ -211,7 +211,7 @@ rngd -r /dev/urandom
         "plugin":"ck-server",
         "plugin_opts":"WebServerAddr=${CLOAK_WEBSRVADDR};PrivateKey=${CLOAK_PRIVKEY};AdminUID=${CLOAK_UID};DatabasePath=${CLOAK_PATH}/userinfo.db;BackupDirPath=${CLOAK_PATH}/db-backup"
     }
-    EOF
+EOF
 
 cat > ${SSLIBEV_CONFIG}/cloak-server-NC.json <<EOF
 {
