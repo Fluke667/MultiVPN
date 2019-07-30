@@ -21,7 +21,7 @@ rngd -r /dev/urandom
     EOF
 
 # ss + v2ray-plugin config
-   cat > ${SSLIBEV_CONFIG}/v2ray_ws_http.json<<-EOF
+   cat > ${SSLIBEV_CONFIG}/v2ray_ws_http.json <<EOF
     {
         "server":"${SS_SERVER_ADDR:-0.0.0.0}",
         "server_port":${SS_SERVER_PORT:-8388},
@@ -38,9 +38,9 @@ rngd -r /dev/urandom
         "plugin":"v2ray-plugin",
         "plugin_opts":"server"
     }
-    EOF &
+    EOF
 
-   cat > ${SSLIBEV_CONFIG}/v2ray_ws_tls_cdn.json<<-EOF
+   cat > ${SSLIBEV_CONFIG}/v2ray_ws_tls_cdn.json <<EOF
     {
         "server":"${SS_SERVER_ADDR:-0.0.0.0}",
         "server_port":${SS_SERVER_PORT:-8388},
@@ -57,7 +57,7 @@ rngd -r /dev/urandom
         "plugin":"v2ray-plugin",
         "plugin_opts":"server;tls;host=${V2RAY_HOST};cert=${V2RAY_CRT};key=${V2RAY_KEY}"
     }
-    EOF &
+    EOF
 
     cat > ${SSLIBEV_CONFIG}/v2ray_quic_tls_cdn.json<<-EOF
     {
