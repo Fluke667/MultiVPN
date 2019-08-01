@@ -1,5 +1,15 @@
 #!/bin/sh
 
+chmod u+x /config/installer/v2rayplug_installer.sh &
+chmod u+x /config/installer/kcptun_installer.sh &
+chmod u+x /config/installer/goquiet-installer.sh &
+chmod u+x /config/installer/cloak-installer.sh &
+chmod u+x /config/init/openssh.sh &
+chmod u+x /config/init/openssl.sh &
+chmod u+x /config/init/openvpn.sh &
+chmod u+x /config/init/shadowsocks.sh &
+chmod u+x /config/init/tor.sh &
+
 /config/installer/v2rayplug_installer.sh &
 /config/installer/kcptun_installer.sh &
 /config/installer/goquiet-installer.sh &
