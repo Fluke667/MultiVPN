@@ -22,7 +22,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     linux-headers curl openssl-dev zlib-dev git libcork-dev libbloom-dev ipset-dev gcc g++ gmp-dev && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
-    pip3 install asn1crypto asyncssh cffi cryptography pproxy pycparser pycryptodome setuptools six obfsproxy && \
+    pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
+    obfsproxy proxybroker && \
 ### Compile Section 1 - Files & Directories
     mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/shadowsocks-libev && \
     chmod 700 ~root/.ssh/ && \
