@@ -46,6 +46,8 @@ EXPOSE 8090 8080 8070
 EXPOSE 9050 9051
 # shadowsocks-libev
 EXPOSE 8388
+#Proxybroker
+EXPOSE 8888
 
 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
