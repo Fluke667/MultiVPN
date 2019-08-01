@@ -5,9 +5,9 @@
 #/opt/i2pd/bin/i2pd --http.enabled=1 --http.address=0.0.0.0 --http.port=8080 --httpproxy.enabled=1 --httpproxy.address=0.0.0.0 --httpproxy.port=4444
 #i2pd --nat=true --service --http.enabled=true --http.address=0.0.0.0 --httpproxy.enabled=true --httpproxy.address=0.0.0.0 --socksproxy.enabled=true --socksproxy.address=0.0.0.0 --sam.enabled=true --sam.address=0.0.0.0 &
 
-pproxy -l socks4+socks5://:8090#$USER:$PASS &
+pproxy -l socks4+socks5://:8090#$PPROXY_USER:$PPROXY_PASS &
 #sleep 5 &
-pproxy -l http://:8080#$USER:$PASS &
+pproxy -l http://:8080#$PPROXY_USER:$PPROXY_PASS &
 #sleep 5 &
 pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8070 &
 #sleep 5 &
