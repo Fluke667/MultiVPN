@@ -14,7 +14,7 @@ COPY --from=builder /go/bin/broker /usr/bin/
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev geoip \
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch gmp \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
-    expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools \
+    expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static && \
     #rsyslog logrotate util-linux findutils grep nodejs npm && \
     apk update && apk add --no-cache --virtual build-deps \
