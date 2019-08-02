@@ -1,9 +1,10 @@
 #!/bin/sh
 
 # Needed for openvpn
-mkdir -p /run/openvpn
-mkdir -p /dev/net
-mknod /dev/net/tun c 10 200
+#mkdir -p /run/openvpn
+#mkdir -p /dev/net
+#mknod /dev/net/tun c 10 200
+#chmod 0666 /dev/net/tun
 
 if [ ! -f $OVPN_TLSAUTH_KEY.key ]
 then
@@ -18,7 +19,7 @@ fi
     
 echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
     echo client > ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
-    echo dev tun >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
+    echo dev tun1 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo proto udp >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo remote ${IP_ADDR} 1194 >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
     echo cipher AES-256-CBC >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
@@ -50,7 +51,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-emb.ovpn"
     echo '</tls-auth>' >> ${OVPN_DIR}/${CLIENT_NAME}-emb.ovpn
 echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     echo client > ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    echo dev tun >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
+    echo dev tun1 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo proto udp >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo remote ${IP_ADDR} 1194 >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo cipher AES-256-CBC >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
@@ -79,7 +80,7 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
 echo " ---> Generate openvpn.conf Config file "
     echo port 1194 > ${OVPN_CONFIG}.conf
     echo proto udp >> ${OVPN_CONFIG}.conf
-    echo dev tun >> ${OVPN_CONFIG}.conf
+    echo dev tun1 >> ${OVPN_CONFIG}.conf
     echo ca ${CRT_CA}.crt >> ${OVPN_CONFIG}.conf
     echo cert ${CRT_SRV}.crt >> ${OVPN_CONFIG}.conf
     echo key ${CRT_SRV}.key >> ${OVPN_CONFIG}.conf
@@ -98,6 +99,9 @@ echo " ---> Generate openvpn.conf Config file "
     echo explicit-exit-notify 1 >> ${OVPN_CONFIG}.conf
 
 
+openvpn --mktun --dev tun1
+ip link set tun1 up
+ip addr add 10.0.0.1/24 dev tun1
 exec /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf 
 
 #/etc/init.d/openvpn start
