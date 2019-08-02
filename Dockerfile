@@ -25,7 +25,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
     obfsproxy proxybroker && \
 ### Compile Section 1 - Files & Directories
-    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /go /go/bin /go/src /run/openvpn /etc/shadowsocks-libev && \
+    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /etc/tinc /etc/tinc/hosts /var/log/tinc /run/openvpn /etc/shadowsocks-libev && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid /etc/shadowsocks-libev/shadowsocks.json && \
 ### Compile Section 2 - Add Groups and Users
