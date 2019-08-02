@@ -1,27 +1,35 @@
 #!/bin/sh
 
 mkdir /etc/stunnel
-cd /etc/stunnel || exit
+rm $STUNNEL_CONF
 
-cat > stunnel.conf <<_EOF_
-foreground = yes
+cat > $STUNNEL_CONF <<-EOF
+cert = ${STUNNEL_CRT}
+key = ${STUNNEL_KEY}
+
 setuid = stunnel
 setgid = stunnel
+
+pid = /var/run/stunnel/stunnel.pid
+
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
-cert = /etc/stunnel/stunnel.pem
-client = ${CLIENT:-no}
 
-[${SERVICE}]
-accept = ${ACCEPT}
-connect = ${CONNECT}
-_EOF_
+CAfile = ${STUNNEL_CAFILE}
+verifyChain = ${STUNNEL_VERIFY_CHAIN}
 
-if ! [ -f stunnel.pem ]
-then
-    openssl req -x509 -nodes -newkey rsa:2048 -days 3650 -subj '/CN=stunnel' \
-                -keyout stunnel.pem -out stunnel.pem
-    chmod 600 stunnel.pem
-fi
+debug = ${STUNNEL_DEBUG}
+output = /var/log/stunnel/stunnel.log
+foreground = yes
+client = ${STUNNEL_CLIENT}
+
+[${STUNNEL_SERVICE}]
+accept = ${STUNNEL_ACCEPT}
+connect = ${STUNNEL_CONNECT}
+delay = ${STUNNEL_DELAY}
+
+EOF
+
+
 
 exec stunnel "$@"
