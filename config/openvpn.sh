@@ -4,6 +4,7 @@
 mkdir -p /run/openvpn
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
+chmod 0666 /dev/net/tun
 
 if [ ! -f $OVPN_TLSAUTH_KEY.key ]
 then
