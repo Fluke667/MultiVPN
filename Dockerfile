@@ -48,6 +48,10 @@ EXPOSE 9050 9051
 EXPOSE 8388
 #Proxybroker
 EXPOSE 8888
+#Tinc
+EXPOSE 6555
+                
+ 
 
 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
@@ -57,7 +61,9 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 VOLUME ["/config"]
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
+VOLUME ["/etc/tinc"]
 VOLUME ["/var/www"]
+
 
 ADD ./config /config
 
