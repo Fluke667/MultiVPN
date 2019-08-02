@@ -1,10 +1,14 @@
 #!/bin/sh
-
+                #Create Folders
+                mkdir -p /etc/tinc
+                mkdir -p /etc/tinc/$TINC_NETWORK/
+                mkdir -p /etc/tinc/$TINC_NETWORK/hosts
+		
 		# Declare public and private IPs in the host file, CONFIG/NET/hosts/HOST
 		echo "Address = "$TINC_PUB_IP >> /etc/tinc/$TINC_NETWORK/hosts/TINC_$NODE
 		echo "Subnet = "$TINC_PRIV_IP"/32" >> /etc/tinc/$TINC_NETWORK/hosts/$TINC_NODE
 		echo "Cipher = id-aes256-GCM" >> /etc/tinc/$TINC_NETWORK/hosts/$TINC_NODE
-		echo "Digest = whirlpool" >> /etc/tinc/$NETWORK/hosts/$TINC_NODE
+		echo "Digest = whirlpool" >> /etc/tinc/$TINC_NETWORK/hosts/$TINC_NODE
 		echo "MACLength = 16" >> /etc/tinc/$TINC_NETWORK/hosts/$TINC_NODE
 		echo "Compression = "$TINC_COMPRESSION >> /etc/tinc/$TINC_NETWORK/hosts/$TINC_NODE
 
@@ -22,8 +26,5 @@
 		chmod +x /etc/tinc/$TINC_NETWORK/tinc-up
 		chmod +x /etc/tinc/$TINC_NETWORK/tinc-down
 
-	### Grab latest hosts entries from Git
-	    echo "Grabbing latest Hosts from Repository..."
-	    git -C /etc/tinc/$TINC_NETWORK/hosts/ pull
                
 $@
