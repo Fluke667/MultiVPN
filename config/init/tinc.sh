@@ -18,6 +18,7 @@
                 echo "AddressFamily = ipv4" >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "Device = /dev/net/tun"  >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "Interface = "$TINC_INTERFACE  >> /etc/tinc/$TINC_NETNAME/tinc.conf
+		echo "PrivateKeyFile = /etc/tinc/rsa_key.priv" >> /etc/tinc/$TINC_NETNAME/tinc.conf
 
                 # Edit the tinc-up script
                 echo '#!/bin/sh' >/etc/tinc/$TINC_NETNAME/tinc-up
@@ -29,6 +30,8 @@
 
 		
 		#Generate Certificate
-                #tincd --generate-keys=2048
+		tinc -n $TINC_NETNAME generate-keys 2048 < /dev/null
+		
+		
                
 $@
