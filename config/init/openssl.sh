@@ -81,6 +81,23 @@ fi
 
 
 
+    if [ ! -f "$STUNNEL_CRT.pem" ]
+        then
+	
+    openssl req -x509 -nodes -newkey rsa:2048 -days 3650 -subj '/CN=stunnel' \
+                -keyout $STUNNEL_KEY.key -out $STUNNEL_CRT.pem
+    chmod 600 $STUNNEL_CRT.pem
+    
+    else
+  echo "ENTRYPOINT: $STUNNEL_CRT.pem already exists"
+fi
+
+
+
+
+
+
+
     if [ ! -f "$CRT_DIFF.pem" ]
         then
 echo " ---> Generate Diffie-Hellman Key"
