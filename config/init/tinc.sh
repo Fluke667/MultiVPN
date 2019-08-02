@@ -38,6 +38,7 @@
 		
 		#Add Interface
 		ip tuntap add tun1 mode tun
+		ip link set tun1 up
 		
 		
                
