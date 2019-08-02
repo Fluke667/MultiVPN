@@ -5,7 +5,6 @@
                 mkdir -p /etc/tinc/$TINC_NETNAME/hosts
                 mkdir -p /var/log/tinc/
 
-
                 # Declare public and private IPs in the host file, CONFIG/NET/hosts/HOST
                 echo "Address = "$TINC_PUB_IP >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
                 echo "Subnet = "$TINC_PRIV_IP"/32" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
@@ -30,6 +29,6 @@
 
 		
 		#Generate Certificate
-                tincd --generate-keys=2048
+                #tincd --generate-keys=2048
                
 $@
