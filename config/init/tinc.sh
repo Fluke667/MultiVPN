@@ -20,7 +20,7 @@
                 echo "AddressFamily = ipv4" >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "Device = /dev/net/tun"  >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "Interface = "$TINC_INTERFACE  >> /etc/tinc/$TINC_NETNAME/tinc.conf
-		echo "PrivateKeyFile = /etc/tinc/rsa_key.priv" >> /etc/tinc/$TINC_NETNAME/tinc.conf
+		echo "PrivateKeyFile = /etc/tinc/$TINC_NETNAME/rsa_key.priv" >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "#Mode = switch" >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "#ConnectTo = <other.client>" >> /etc/tinc/$TINC_NETNAME/tinc.conf     
                 echo "#ProcessPriority = high" >> /etc/tinc/$TINC_NETNAME/tinc.conf 
@@ -40,7 +40,7 @@
 		#Add Interface
                 ip tuntap add dev $TINC_INTERFACE mode tun
                 ip link set $TINC_INTERFACE up
-                ip addr add 10.0.0.2/24 dev $TINC_INTERFACE
+                ip addr add 10.0.0.2/32 dev $TINC_INTERFACE
 		
 		
                
