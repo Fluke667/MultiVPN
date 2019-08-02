@@ -18,7 +18,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static && \
     #rsyslog logrotate util-linux findutils grep nodejs npm && \
     apk update && apk add --no-cache --virtual build-deps \
-    autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev \
+    autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev \
     linux-headers curl openssl-dev zlib-dev git libcork-dev libbloom-dev ipset-dev gcc g++ gmp-dev lzo-dev libpcap-dev && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
