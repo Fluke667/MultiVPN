@@ -10,7 +10,7 @@ pproxy -l http://:8080#$PPROXY_USER:$PPROXY_PASS &
 pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8070 &
 /usr/sbin/openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf &
 proxybroker serve --host 0.0.0.0 --port 8888 --types HTTP HTTPS --lvl High &
-tincd --net=$TINC_NETNAME --config=$TINC_DIR/$TINC_NETNAME -D --debug=$TINC_DEBUG --logfile=$TINC_LOG &
+tinc --net=$TINC_NETNAME --config=$TINC_DIR/$TINC_NETNAME -D --debug=$TINC_DEBUG --logfile=$TINC_LOG &
 exec ss-server -c /etc/shadowsocks-libev/standalone.json
 #tinc --net=$NETWORK start --no-detach --debug=$DEBUG --logfile=/var/log/tinc/tinc.$NETWORK.log
 #exec ss-server -v -s ${SS_SERVER_ADDR} -p ${SS_SERVER_PORT} -l ${SS_LOCAL_PORT} -k ${SS_PASSWORD} -t ${SS_TIMEOUT} -m ${SS_METHOD} -n ${SS_MAXOPENFILES} -d ${SS_DNS} --fast-open --reuse-port -u 
