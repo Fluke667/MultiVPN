@@ -15,7 +15,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch gmp \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools \
-    libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ tinc && \
+    libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ && \
     #rsyslog logrotate util-linux findutils grep nodejs npm && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev \
@@ -34,6 +34,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && rngd -r /dev/urandom && \
+    cd /tmp && wget ${TINC_DL}${TINC_VER}.tar.gz -O tinc.tar.gz && tar -xf tinc.tar.gz --one-top-level --strip-components=1 && \
+    cd tinc && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var && make && sudo make install && \
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
@@ -49,7 +51,7 @@ EXPOSE 8388
 #Proxybroker
 EXPOSE 8888
 #Tinc
-EXPOSE 6555
+EXPOSE 6655
                 
  
 
