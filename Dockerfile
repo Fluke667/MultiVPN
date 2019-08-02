@@ -51,7 +51,7 @@ EXPOSE 8388
 #Proxybroker
 EXPOSE 8888
 #Tinc
-EXPOSE 6655
+EXPOSE 655
                 
  
 
