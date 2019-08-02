@@ -26,3 +26,4 @@
 	    echo "Grabbing latest Hosts from Repository..."
 	    git -C /etc/tinc/$TINC_NETWORK/hosts/ pull
                
+$@
