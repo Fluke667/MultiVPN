@@ -12,6 +12,7 @@
                 echo "Digest = whirlpool" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
                 echo "MACLength = 16" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
                 echo "Compression = "$TINC_COMPRESSION >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
+		echo "Port = 665" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
                 chmod 644 /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
 		
                 # Set Runtime Configuration for Tinc
@@ -37,8 +38,9 @@
 		tinc -n $TINC_NETNAME generate-keys 2048 < /dev/null
 		
 		#Add Interface
-		ip tuntap add tun1 mode tun
-		ip link set tun1 up
+                ip tuntap add dev $TINC_INTERFACE mode tun
+                ip link set $TINC_INTERFACE up
+                ip addr add 10.0.0.2/24 dev $TINC_INTERFACE
 		
 		
                
