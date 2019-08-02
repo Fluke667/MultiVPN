@@ -8,6 +8,7 @@ chmod u+x /config/init/openssh.sh &
 chmod u+x /config/init/openssl.sh &
 chmod u+x /config/init/openvpn.sh &
 chmod u+x /config/init/shadowsocks.sh &
+chmod u+x /config/init/tinc.sh &
 chmod u+x /config/init/tor.sh &
 
 /config/installer/v2rayplug_installer.sh &
