@@ -134,4 +134,6 @@ then
 else
   echo "ENTRYPOINT: $CRT_KEYSTORE.pfx already exists"
 fi
+
+sleep 3m
 exec "$@"
