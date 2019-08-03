@@ -1,8 +1,10 @@
 #!/bin/sh
 
-echo " ---> Generate torrc Config File"
+addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
+
 rm ${TOR_CONF}
 
+echo " ---> Generate torrc Config File"
 cat > ${TOR_CONF}<<-EOF
 User $TOR_USER
 #echo Nickname MyName
@@ -25,9 +27,10 @@ HashedControlPassword $TOR_PASS
 #PublishServerDescriptor 0
 EOF
 
-echo " ---> Generate torsocks.conf Config File"
+
 rm ${TOR_SOCKS}.conf
 
+echo " ---> Generate torsocks.conf Config File"
 cat > ${TOR_SOCKS}<<EOF
 TorAddress 127.0.0.1 
 TorPort 9050
