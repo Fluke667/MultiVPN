@@ -69,7 +69,11 @@ VOLUME ["/var/www"]
 
 
 
+#COPY ./config/installer.sh /config/installer.sh
+#COPY ./config/init/openssh.sh /config/init/openssh.sh && ./config/init/openssh.sh /config/init/openssh.sh && \
+#     ./config/init/openssl.sh /config/init/openssl.sh && ./config/init/openvpn.sh /config/init/openvpn.sh && \
 
+ADD config /config
 RUN sh /config/installer.sh && sh /config/init/openssh.sh && sh /config/init/openssl.sh && sh /config/init/openvpn.sh && \
 sh /config/init/shadowsocks.sh && sh /config/init/stunnel.sh && sh /config/init/tinc.sh && sh /config/init/tor.sh
 
