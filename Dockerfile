@@ -29,7 +29,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid /etc/shadowsocks-libev/shadowsocks.json && \
 ### Compile Section 2 - Add Groups and Users
-    addgroup -S shadowsocks 2>/dev/null && adduser -S -D -h /var/log/shadowsocks -s /sbin/nologin -G shadowsocks -g shadowsocks shadowsocks 2>/dev/null && \
+    #addgroup -S shadowsocks 2>/dev/null && adduser -S -D -h /var/log/shadowsocks -s /sbin/nologin -G shadowsocks -g shadowsocks shadowsocks 2>/dev/null && \
+    addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
@@ -44,10 +45,12 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 EXPOSE 1194
 # python-proxy
 EXPOSE 8090 8080 8070
-# Tor & Torsocks
-EXPOSE 9050 9051
+# ORPort, DirPort, SocksPort
+EXPOSE 9001 9030 9050
 # shadowsocks-libev
 EXPOSE 8388
+#ObfsproxyPort, MeekPort
+EXPOSE 54444 7002
 #Proxybroker
 EXPOSE 8888
 #Tinc
