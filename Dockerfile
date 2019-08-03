@@ -70,7 +70,7 @@ VOLUME ["/var/www"]
 
 ADD ./config /config
 #RUN chmod -R 0700 /config/installer/*.sh /config/init/*.sh
-RUN chmod -R 0700 /config
+RUN chmod -R u+x /config
 RUN /config/installer/goquiet-installer.sh \
     /config/installer/kcptun_installer.sh \
     /config/installer/cloak-installer.sh \
