@@ -1,9 +1,6 @@
 #!/bin/sh
                 #Create Folders
-                mkdir -p /etc/tinc/
-		mkdir -p /etc/tinc/$TINC_NETNAME
-                mkdir -p /etc/tinc/$TINC_NETNAME/hosts
-                mkdir -p /var/log/tinc/
+                mkdir -p /etc/tinc/ /etc/tinc/$TINC_NETNAME /etc/tinc/$TINC_NETNAME/hosts /var/log/tinc/
 
                 # Declare public and private IPs in the host file, CONFIG/NET/hosts/HOST
                 echo "Address = "$TINC_PUB_IP >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
