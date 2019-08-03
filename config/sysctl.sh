@@ -18,3 +18,6 @@ sysctl -e -q -w net.ipv4.conf.default.send_redirects=0
 sysctl -e -q -w net.ipv4.conf.default.rp_filter=0
 sysctl -e -q -w net.ipv4.conf.ens3.send_redirects=0
 sysctl -e -q -w net.ipv4.conf.ens3.rp_filter=0
+
+exec "$@"
+
