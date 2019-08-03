@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/sbin/openrc-run
 
     cd ${DIR_TMP}
     
