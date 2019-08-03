@@ -90,3 +90,6 @@ echo -e "========================================================\n"
 # execute from user
 #USER ${TOR_USER}
 #exec tor --RunAsDaemon 0 -f torrc
+
+sleep 3m
+$@
