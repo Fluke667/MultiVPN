@@ -4,50 +4,43 @@ set -o errexit
 echo " ---> Generate torrc Config File"
          rm ${TOR_CONF}
 cat > ${TOR_CONF}<<-EOF
-    echo User tord > ${TOR_CONF}.conf
-    #echo Nickname MyName >> ${TOR_CONF}.conf
-    #echo ContactInfo noreply@mymail.com >> ${TOR_CONF}.conf
-    echo DataDirectory /var/lib/tor >> ${TOR_CONF}.conf
-    echo ORPort 9001 >> ${TOR_CONF}.conf
-    echo #ORPort [IPv6-address]:9001 >> ${TOR_CONF}.conf
-    echo #DirPort 9030 >> ${TOR_CONF}.conf
-    echo ExitPolicy reject *:* >> ${TOR_CONF}.conf
-    echo ExitPolicy reject6 *:* >> ${TOR_CONF}.conf
-    echo SocksPort 9050 >> ${TOR_CONF}.conf
-    echo #ControlSocket 0 >> ${TOR_CONF}.conf
-    echo RelayBandwidthRate 1 MB >> ${TOR_CONF}.conf
-    echo RelayBandwidthBurst 1 MB >> ${TOR_CONF}.conf
-    echo AccountingMax 1 GBytes >> ${TOR_CONF}.conf
-    echo ControlPort 9051 >> ${TOR_CONF}.conf
-    echo HashedControlPassword $TOR_PASS >> ${TOR_CONF}.conf
-    echo #CookieAuthentication 1 >> ${TOR_CONF}.conf
-    echo #BridgeRelay 1 >> ${TOR_CONF}.conf
-    echo #PublishServerDescriptor 0 >> ${TOR_CONF}.conf
+           User tord > ${TOR_CONF}
+           #echo Nickname MyName >> ${TOR_CONF}
+           #ContactInfo noreply@mymail.com >> ${TOR_CONF}
+           DataDirectory /var/lib/tor >> ${TOR_CONF}
+           ORPort 9001 >> ${TOR_CONF}
+           #ORPort [IPv6-address]:9001 >> ${TOR_CONF}
+           #DirPort 9030 >> ${TOR_CONF}
+           ExitPolicy reject *:* >> ${TOR_CONF}
+           ExitPolicy reject6 *:* >> ${TOR_CONF}
+           SocksPort 9050 >> ${TOR_CONF}
+           #ControlSocket 0 >> ${TOR_CONF}
+           RelayBandwidthRate 1 MB >> ${TOR_CONF}
+           RelayBandwidthBurst 1 MB >> ${TOR_CONF}
+           AccountingMax 1 GBytes >> ${TOR_CONF}
+           ControlPort 9051 >> ${TOR_CONF}
+           HashedControlPassword $TOR_PASS >> ${TOR_CONF}
+           #CookieAuthentication 1 >> ${TOR_CONF}
+           #BridgeRelay 1 >> ${TOR_CONF}
+           #PublishServerDescriptor 0 >> ${TOR_CONF}
 EOF
 
 echo " ---> Generate torsocks.conf Config File"
          rm ${TOR_SOCKS}.conf
 cat > ${TOR_SOCKS}<<EOF
-    echo TorAddress 127.0.0.1 > ${TOR_SOCKS}.conf
-    echo TorPort 9050 >> ${TOR_SOCKS}.conf
-    echo OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}.conf
-    echo SOCKS5Username $TORSOCKS_USERNAME >> ${TOR_SOCKS}.conf
-    echo SOCKS5Password $TORSOCKS_PASSWORD >> ${TOR_SOCKS}.conf
-    echo #AllowInbound 1 >> ${TOR_SOCKS}.conf
-    echo #AllowOutboundLocalhost 1 >> ${TOR_SOCKS}.conf
-    echo $COMMENT IsolatePID 1 >> ${TOR_SOCKS}.conf
-    echo $TOR_ADD fte exec $TOR_FTE $TOR_OPT_FTE >> ${TOR_SOCKS}.conf
-    echo $TOR_ADD meek exec $TOR_MEEK $TOR_OPT_MEEK >> ${TOR_SOCKS}.conf
-    echo $TOR_ADD obfs3 exec $TOR_OBFS3 $TOR_OPT_OBFS3 >> ${TOR_SOCKS}.conf
-    echo $TOR_ADD obfs4 exec $TOR_OBFS4 $TOR_OPT_OBFS4 >> ${TOR_SOCKS}.conf
-    echo $TOR_ADD snowflake exec $TOR_SNOW $TOR_OPT_SNOW >> ${TOR_SOCKS}.conf
+         TorAddress 127.0.0.1 > ${TOR_SOCKS}.conf
+         TorPort 9050 >> ${TOR_SOCKS}.conf
+         OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}.conf
+         SOCKS5Username $TORSOCKS_USERNAME >> ${TOR_SOCKS}.conf
+         SOCKS5Password $TORSOCKS_PASSWORD >> ${TOR_SOCKS}.conf
+         #AllowInbound 1 >> ${TOR_SOCKS}.conf
+         #AllowOutboundLocalhost 1 >> ${TOR_SOCKS}.conf
+         $COMMENT IsolatePID 1 >> ${TOR_SOCKS}.conf
+         $TOR_ADD meek exec $TOR_MEEK $TOR_OPT_MEEK >> ${TOR_SOCKS}.conf
+         $TOR_ADD obfs3 exec $TOR_OBFS3 $TOR_OPT_OBFS3 >> ${TOR_SOCKS}.conf
+         $TOR_ADD obfs4 exec $TOR_OBFS4 $TOR_OPT_OBFS4 >> ${TOR_SOCKS}.conf
+         $TOR_ADD snowflake exec $TOR_SNOW $TOR_OPT_SNOW >> ${TOR_SOCKS}.conf
 EOF
-
-
-chmodf() { find $2 -type f -exec chmod -v $1 {} \;
-}
-chmodd() { find $2 -type d -exec chmod -v $1 {} \;
-}
 
 echo -e "\n========================================================"
 # If DataDirectory, identity keys or torrc is mounted here,
@@ -93,4 +86,4 @@ echo -e "========================================================\n"
 
 # execute from user
 USER ${TOR_USER}
-exec tor --RunAsDaemon 0 -f torrc.conf
+exec tor --RunAsDaemon 0 -f torrc
