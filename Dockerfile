@@ -68,7 +68,7 @@ VOLUME ["/etc/tinc"]
 VOLUME ["/var/www"]
 
 
-ADD ./config /config
+COPY ./config /config
 #RUN chmod -R 0700 /config/installer/*.sh /config/init/*.sh
 RUN chmod -R u+x /config
 RUN /config/installer/goquiet-installer.sh \
