@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
 
