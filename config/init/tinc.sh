@@ -40,5 +40,4 @@
                 ip addr add 10.0.0.2/32 dev $TINC_INTERFACE
 		
 		
-sleep 3m
 "$@"
