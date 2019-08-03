@@ -25,18 +25,15 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
     obfsproxy proxybroker && \
 ### Compile Section 1 - Files & Directories
-    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /etc/tinc /etc/tinc/hosts /var/log/tinc /run/openvpn /etc/shadowsocks-libev && \
+    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /run/openvpn /etc/shadowsocks-libev && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid /etc/shadowsocks-libev/shadowsocks.json && \
-### Compile Section 2 - Add Groups and Users
-    #addgroup -S shadowsocks 2>/dev/null && adduser -S -D -h /var/log/shadowsocks -s /sbin/nologin -G shadowsocks -g shadowsocks shadowsocks 2>/dev/null && \
-    #addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && rngd -r /dev/urandom && \
-    cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
-    cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var && make && sudo make install && \
+    cd /tmp && wget -q ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
+    cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var --disable-documentation && make && sudo make install && \
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
