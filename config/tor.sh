@@ -4,42 +4,42 @@ set -o errexit
 echo " ---> Generate torrc Config File"
          rm ${TOR_CONF}
 cat > ${TOR_CONF}<<-EOF
-           User tord > ${TOR_CONF}
-           #echo Nickname MyName >> ${TOR_CONF}
-           #ContactInfo noreply@mymail.com >> ${TOR_CONF}
-           DataDirectory /var/lib/tor >> ${TOR_CONF}
-           ORPort 9001 >> ${TOR_CONF}
-           #ORPort [IPv6-address]:9001 >> ${TOR_CONF}
-           #DirPort 9030 >> ${TOR_CONF}
-           ExitPolicy reject *:* >> ${TOR_CONF}
-           ExitPolicy reject6 *:* >> ${TOR_CONF}
-           SocksPort 9050 >> ${TOR_CONF}
-           #ControlSocket 0 >> ${TOR_CONF}
-           RelayBandwidthRate 1 MB >> ${TOR_CONF}
-           RelayBandwidthBurst 1 MB >> ${TOR_CONF}
-           AccountingMax 1 GBytes >> ${TOR_CONF}
-           ControlPort 9051 >> ${TOR_CONF}
-           HashedControlPassword $TOR_PASS >> ${TOR_CONF}
-           #CookieAuthentication 1 >> ${TOR_CONF}
-           #BridgeRelay 1 >> ${TOR_CONF}
-           #PublishServerDescriptor 0 >> ${TOR_CONF}
+           User $TOR_USER
+           #echo Nickname MyName
+           #ContactInfo noreply@mymail.com
+           DataDirectory /var/lib/tor
+           ORPort 9001
+           #ORPort [IPv6-address]:9001
+           #DirPort 9030
+           ExitPolicy reject *:*
+           ExitPolicy reject6 *:*
+           SocksPort 9050
+           #ControlSocket 0
+           RelayBandwidthRate 1 MB
+           RelayBandwidthBurst 1 MB
+           AccountingMax 1 GBytes
+           ControlPort 9051
+           HashedControlPassword $TOR_PASS
+           #CookieAuthentication 1
+           #BridgeRelay 1
+           #PublishServerDescriptor 0
 EOF
 
 echo " ---> Generate torsocks.conf Config File"
          rm ${TOR_SOCKS}.conf
 cat > ${TOR_SOCKS}<<EOF
-         TorAddress 127.0.0.1 > ${TOR_SOCKS}.conf
-         TorPort 9050 >> ${TOR_SOCKS}.conf
-         OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}.conf
-         SOCKS5Username $TORSOCKS_USERNAME >> ${TOR_SOCKS}.conf
-         SOCKS5Password $TORSOCKS_PASSWORD >> ${TOR_SOCKS}.conf
-         #AllowInbound 1 >> ${TOR_SOCKS}.conf
-         #AllowOutboundLocalhost 1 >> ${TOR_SOCKS}.conf
-         $COMMENT IsolatePID 1 >> ${TOR_SOCKS}.conf
-         $TOR_ADD meek exec $TOR_MEEK $TOR_OPT_MEEK >> ${TOR_SOCKS}.conf
-         $TOR_ADD obfs3 exec $TOR_OBFS3 $TOR_OPT_OBFS3 >> ${TOR_SOCKS}.conf
-         $TOR_ADD obfs4 exec $TOR_OBFS4 $TOR_OPT_OBFS4 >> ${TOR_SOCKS}.conf
-         $TOR_ADD snowflake exec $TOR_SNOW $TOR_OPT_SNOW >> ${TOR_SOCKS}.conf
+         TorAddress 127.0.0.1 
+         TorPort 9050
+         OnionAddrRange 127.42.42.0/24
+         SOCKS5Username $TORSOCKS_USER
+         SOCKS5Password $TORSOCKS_PASS
+         #AllowInbound 1
+         #AllowOutboundLocalhost 1
+         $COMMENT IsolatePID 1
+         $TOR_ADD meek exec $TOR_MEEK $TOR_OPT_MEEK
+         $TOR_ADD obfs3 exec $TOR_OBFS3 $TOR_OPT_OBFS3
+         $TOR_ADD obfs4 exec $TOR_OBFS4 $TOR_OPT_OBFS4
+         $TOR_ADD snowflake exec $TOR_SNOW $TOR_OPT_SNOW
 EOF
 
 echo -e "\n========================================================"
