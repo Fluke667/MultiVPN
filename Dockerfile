@@ -68,11 +68,14 @@ VOLUME ["/etc/tinc"]
 VOLUME ["/var/www"]
 
 
-RUN rc-update add local default
-COPY ./installer.sh /etc/local.d/installer.sh
 
 
+RUN sh /config/installer.sh && sh /config/init/openssh.sh && sh /config/init/openssl.sh && sh /config/init/openvpn.sh && \
+sh /config/init/shadowsocks.sh && sh /config/init/stunnel.sh && sh /config/init/tinc.sh && sh /config/init/tor.sh
 
+
+#RUN rc-update add local default
+#COPY ./installer.sh /etc/local.d/installer.sh
 
 
 #RUN multirun -v "sh /config/init/openssh.sh" "sh /config/init/openssl.sh" "sh /config/init/openvpn.sh" "sh /config/init/shadowsocks.sh" "sh /config/init/stunnel.sh" "sh /config/init/tinc.sh" "sh /config/init/tor.sh"
