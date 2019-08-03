@@ -12,7 +12,7 @@ FROM fluke667/alpine
 #COPY --from=builder /go/bin/server /usr/bin/snowflake
 #COPY --from=builder /go/bin/broker /usr/bin/
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl musl-dev geoip \
-    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch gmp \
+    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium curl python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz-dev libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static && \
@@ -68,20 +68,20 @@ VOLUME ["/etc/tinc"]
 VOLUME ["/var/www"]
 
 
-COPY ./config /config
+#COPY ./config /config
 #RUN chmod -R 0700 /config/installer/*.sh /config/init/*.sh
-RUN chmod -R u+x /config
-RUN /config/installer/goquiet-installer.sh \
-    /config/installer/kcptun_installer.sh \
-    /config/installer/cloak-installer.sh \
-    /config/installer/v2rayplug_installer.sh \
-    /config/init/openssh.sh \
-    /config/init/openssl.sh \
-    /config/init/openvpn.sh \
-    /config/init/shadowsocks.sh \
-    /config/init/stunnel.sh \
-    /config/init/tinc.sh \
-    /config/init/tor.sh
+#RUN chmod -R u+x /config
+multirun "/config/installer/goquiet-installer.sh" \
+         "/config/installer/kcptun_installer.sh" \
+         "/config/installer/cloak-installer.sh" \
+         "/config/installer/v2rayplug_installer.sh" \
+         "/config/init/openssh.sh" \
+         "/config/init/openssl.sh" \
+         "/config/init/openvpn.sh" \
+         "/config/init/shadowsocks.sh" \
+         "/config/init/stunnel.sh" \
+         "/config/init/tinc.sh" \
+         "/config/init/tor.sh"
 
 
 
