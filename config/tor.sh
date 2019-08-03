@@ -1,8 +1,9 @@
 #!/bin/sh
 set -o errexit
 
-echo " ---> Generate torrc.conf Config File"
-         rm ${TOR_CONF}.conf
+echo " ---> Generate torrc Config File"
+         rm ${TOR_CONF}
+cat > ${TOR_CONF}<<-EOF
     echo User tord > ${TOR_CONF}.conf
     #echo Nickname MyName >> ${TOR_CONF}.conf
     #echo ContactInfo noreply@mymail.com >> ${TOR_CONF}.conf
@@ -22,8 +23,11 @@ echo " ---> Generate torrc.conf Config File"
     echo #CookieAuthentication 1 >> ${TOR_CONF}.conf
     echo #BridgeRelay 1 >> ${TOR_CONF}.conf
     echo #PublishServerDescriptor 0 >> ${TOR_CONF}.conf
+EOF
+
 echo " ---> Generate torsocks.conf Config File"
          rm ${TOR_SOCKS}.conf
+cat > ${TOR_SOCKS}<<EOF
     echo TorAddress 127.0.0.1 > ${TOR_SOCKS}.conf
     echo TorPort 9050 >> ${TOR_SOCKS}.conf
     echo OnionAddrRange 127.42.42.0/24 >> ${TOR_SOCKS}.conf
@@ -37,6 +41,7 @@ echo " ---> Generate torsocks.conf Config File"
     echo $TOR_ADD obfs3 exec $TOR_OBFS3 $TOR_OPT_OBFS3 >> ${TOR_SOCKS}.conf
     echo $TOR_ADD obfs4 exec $TOR_OBFS4 $TOR_OPT_OBFS4 >> ${TOR_SOCKS}.conf
     echo $TOR_ADD snowflake exec $TOR_SNOW $TOR_OPT_SNOW >> ${TOR_SOCKS}.conf
+EOF
 
 
 chmodf() { find $2 -type f -exec chmod -v $1 {} \;
