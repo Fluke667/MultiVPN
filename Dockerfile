@@ -69,11 +69,25 @@ VOLUME ["/var/www"]
 
 
 ADD ./config /config
+RUN chmod 0700 /config/installer/*.sh /config/init/*.sh
+RUN /config/installer/cloak-installer.sh \
+    /config/installer/goquiet-installer.sh \
+    /config/installer/kcptun_installer.sh \
+    /config/installer/v2rayplug_installer.sh \
+    /config/init/openssh.sh \
+    /config/init/openssl.sh \
+    /config/init/openvpn.sh \
+    /config/init/shadowsocks.sh \
+    /config/init/stunnel.sh \
+    /config/init/tinc.sh \
+    /config/init/tor.sh \
 
-COPY /config/installer.sh /config/installer.sh
-RUN chmod a+x /config/installer.sh && /config/installer.sh
-COPY ./config/init.sh /config/init.sh
-RUN chmod a+x /config/init.sh && /config/init.sh
+
+
+#COPY /config/installer.sh /config/installer.sh
+#RUN chmod a+x /config/installer.sh && /config/installer.sh
+#COPY ./config/init.sh /config/init.sh
+#RUN chmod a+x /config/init.sh && /config/init.sh
 
 
 #ADD runit /sbin/
