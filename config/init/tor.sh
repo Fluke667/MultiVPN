@@ -7,8 +7,8 @@ rm ${TOR_CONF}
 echo " ---> Generate torrc Config File"
 cat > ${TOR_CONF}<<-EOF
 User $TOR_USER
-#echo Nickname MyName
-#ContactInfo noreply@mymail.com
+Nickname $TOR_NICK
+ContactInfo $TOR_EMAIL
 DataDirectory /var/lib/tor
 ORPort 9001
 #ORPort [IPv6-address]:9001
