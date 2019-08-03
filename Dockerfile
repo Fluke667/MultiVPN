@@ -30,7 +30,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     touch /var/log/cron.log  /run/openvpn/ovpn.pid /etc/shadowsocks-libev/shadowsocks.json && \
 ### Compile Section 2 - Add Groups and Users
     #addgroup -S shadowsocks 2>/dev/null && adduser -S -D -h /var/log/shadowsocks -s /sbin/nologin -G shadowsocks -g shadowsocks shadowsocks 2>/dev/null && \
-    addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
+    #addgroup -g 19001 -S $TOR_USER && adduser -u 19001 -G $TOR_USER -S $TOR_USER
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
