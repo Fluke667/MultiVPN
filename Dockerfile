@@ -54,8 +54,6 @@ EXPOSE 8888
 #Tinc
 EXPOSE 655
                 
- 
-
 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
