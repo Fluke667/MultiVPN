@@ -66,5 +66,4 @@ if [ ! -d "/var/run/sshd" ]; then
 	mkdir -p /var/run/sshd
 fi
 
-sleep 3m
 exec "$@"
