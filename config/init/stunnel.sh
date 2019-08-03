@@ -3,8 +3,8 @@
 rm $STUNNEL_CONF
 
 cat > ${STUNNEL_CONF} <<-EOF
-cert = ${STUNNEL_CRT}
-key = ${STUNNEL_KEY}
+cert = ${STUNNEL_CRT}.pem
+key = ${STUNNEL_KEY}.key
 
 setuid = stunnel
 setgid = stunnel
