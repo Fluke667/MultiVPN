@@ -31,10 +31,10 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
-    cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
+    cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation > /dev/null && make && \
     make install && \
     cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
-    cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var --disable-documentation && make && sudo make install && \
+    cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var > /dev/null && make && sudo make install && \
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
@@ -69,10 +69,11 @@ VOLUME ["/var/www"]
 
 
 ADD ./config /config
-RUN chmod 0700 /config/installer/*.sh /config/init/*.sh
-RUN /config/installer/cloak-installer.sh \
-    /config/installer/goquiet-installer.sh \
+#RUN chmod -R 0700 /config/installer/*.sh /config/init/*.sh
+RUN chmod -R 0700 /config
+RUN /config/installer/goquiet-installer.sh \
     /config/installer/kcptun_installer.sh \
+    /config/installer/cloak-installer.sh \
     /config/installer/v2rayplug_installer.sh \
     /config/init/openssh.sh \
     /config/init/openssl.sh \
@@ -80,7 +81,7 @@ RUN /config/installer/cloak-installer.sh \
     /config/init/shadowsocks.sh \
     /config/init/stunnel.sh \
     /config/init/tinc.sh \
-    /config/init/tor.sh \
+    /config/init/tor.sh
 
 
 
