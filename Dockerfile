@@ -12,13 +12,13 @@ FROM fluke667/alpine
 #COPY --from=builder /go/bin/server /usr/bin/snowflake
 #COPY --from=builder /go/bin/broker /usr/bin/
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
-    openssl ca-certificates make shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
+    openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs && \
     #rsyslog logrotate util-linux findutils grep nodejs npm && \
     apk update && apk add --no-cache --virtual build-deps \
-    autoconf automake build-base libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
+    autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
     linux-headers curl openssl-dev zlib-dev git libcork-dev libbloom-dev ipset-dev gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
     musl-dev curl  && \
 ### PYTHON SECTION
@@ -44,8 +44,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 EXPOSE 1194
 # python-proxy
 EXPOSE 8090 8080 8070
-# ORPort, DirPort, SocksPort
-EXPOSE 9001 9030 9050
+# SocksPort, Control, ORPort, DirPort, 
+EXPOSE 9050 9051 9001 9030
 # shadowsocks-libev
 EXPOSE 8388
 #ObfsproxyPort, MeekPort
@@ -68,27 +68,11 @@ VOLUME ["/var/www"]
 
 
 
-#COPY ./config/installer.sh /config/installer.sh
-#COPY ./config/init/openssh.sh /config/init/openssh.sh && ./config/init/openssh.sh /config/init/openssh.sh && \
-#     ./config/init/openssl.sh /config/init/openssl.sh && ./config/init/openvpn.sh /config/init/openvpn.sh && \
-
 ADD config /config
 RUN sh /config/installer.sh && sh /config/init/openssh.sh && sh /config/init/openssl.sh && sh /config/init/openvpn.sh && \
-sh /config/init/shadowsocks.sh && sh /config/init/stunnel.sh && sh /config/init/tinc.sh && sh /config/init/tor.sh
+    sh /config/init/shadowsocks.sh && sh /config/init/stunnel.sh && sh /config/init/tinc.sh && sh /config/init/tor.sh
 
 
-#RUN rc-update add local default
-#COPY ./installer.sh /etc/local.d/installer.sh
-#RUN multirun -v "sh /config/init/openssh.sh" "sh /config/init/openssl.sh" "sh /config/init/openvpn.sh" "sh /config/init/shadowsocks.sh" "sh /config/init/stunnel.sh" "sh /config/init/tinc.sh" "sh /config/init/tor.sh"
-#RUN multirun -v "sh /config/installer.sh" "sh /config/init/tinc.sh" 
-#"sh /config/init/tor.sh"
-#COPY /config/installer.sh /config/installer.sh
-#RUN chmod a+x /config/installer.sh && /config/installer.sh
-#COPY ./config/init.sh /config/init.sh
-#RUN chmod a+x /config/init.sh && /config/init.sh
-#ADD runit /sbin/
-#RUN chmod a+x /sbin/runit
-#CMD ["runit"]
 
 
 COPY entrypoint.sh /entrypoint.sh
