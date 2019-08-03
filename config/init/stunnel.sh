@@ -1,6 +1,5 @@
 #!/bin/sh
 
-mkdir /etc/stunnel
 rm $STUNNEL_CONF
 
 cat > ${STUNNEL_CONF} <<-EOF
