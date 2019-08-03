@@ -72,12 +72,12 @@ ADD ./config /config
 
 ADD installer /sbin/
 RUN chmod a+x /sbin/installer
-CMD ["/sbin/installer"]
+CMD ["installer"]
 
 ADD runit /sbin/
 RUN chmod a+x /sbin/runit
-CMD ["/sbin/runit"]
+CMD ["runit"]
 
 ADD entry /sbin/
 RUN chmod a+x /sbin/entry
-ENTRYPOINT ["/sbin/entry"]
+ENTRYPOINT ["entry"]
