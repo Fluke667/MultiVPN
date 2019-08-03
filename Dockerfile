@@ -33,8 +33,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation && make && \
     make install && \
-    cd /tmp && wget -q $TINC_DL && tar -xzvf tinc-$TINC_VER.tar.gz && \
-    cd tinc-$TINC_VER && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var --disable-documentation && make && sudo make install && \
+    cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
+    cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var --disable-documentation && make && sudo make install && \
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
