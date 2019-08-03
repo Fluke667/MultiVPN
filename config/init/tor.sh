@@ -79,17 +79,9 @@ if [ ! -e /tor-config-done ]; then
     fi
 fi
 
-echo "\n========================================================"
-# Display OS version, Tor version & torrc in log
-echo "Alpine Version: \c" && cat /etc/alpine-release
-tor --version
-obfs4proxy -version
-cat /etc/tor/torrc
-echo "========================================================\n"
 
 # execute from user
 #USER ${TOR_USER}
 #exec tor --RunAsDaemon 0 -f torrc
 
-sleep 3m
 "$@"
