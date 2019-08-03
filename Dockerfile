@@ -71,17 +71,7 @@ VOLUME ["/var/www"]
 #COPY ./config /config
 #RUN chmod -R 0700 /config/installer/*.sh /config/init/*.sh
 #RUN chmod -R u+x /config
-multirun "/config/installer/goquiet-installer.sh" \
-         "/config/installer/kcptun_installer.sh" \
-         "/config/installer/cloak-installer.sh" \
-         "/config/installer/v2rayplug_installer.sh" \
-         "/config/init/openssh.sh" \
-         "/config/init/openssl.sh" \
-         "/config/init/openvpn.sh" \
-         "/config/init/shadowsocks.sh" \
-         "/config/init/stunnel.sh" \
-         "/config/init/tinc.sh" \
-         "/config/init/tor.sh"
+multirun "./config/init/openssh.sh" "./config/init/openssl.sh" "./config/init/openvpn.sh" "./config/init/shadowsocks.sh" "./config/init/stunnel.sh" "./config/init/tinc.sh" "./config/init/tor.sh"
 
 
 
