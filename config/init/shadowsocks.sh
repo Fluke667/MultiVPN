@@ -19,6 +19,17 @@ rngd -r /dev/urandom
     }
 EOF
 
+# ss config
+    cat > ${SSLIBEV_CONFIG}/sstunnel_tor.json<<-EOF
+    {
+        "local_port":"${SS_TOR_PORT:-9050}",
+        "local_adress":${SS_LOCAL_ADDR:-127.0.0.1},
+        "addr:port":"${SS_LOCAL_ADDR}:${SS_TOR_PORT:-127.0.0.1:9050}",
+        "password":"${SS_PASSWORD:-MyPass}"
+        }
+EOF
+
+
 # ss + v2ray-plugin config
    cat > ${SSLIBEV_CONFIG}/v2ray_ws_http.json <<EOF
     {
