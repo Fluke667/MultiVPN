@@ -49,6 +49,6 @@ cat /etc/tor/torrc
 echo -e "========================================================\n"
 
 # execute from user
-USER ${TOR_USER}
-echo SOCKSPort 0.0.0.0:9050 > torrc
-exec tor --RunAsDaemon 0 -f torrc
+#USER ${TOR_USER}
+#echo SOCKSPort 0.0.0.0:9050 > torrc
+#exec tor --RunAsDaemon 0 -f torrc
