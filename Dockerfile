@@ -70,12 +70,15 @@ VOLUME ["/var/www"]
 
 ADD ./config /config
 
-#COPY /config/installer.sh ./config/installer.sh
-RUN chmod a+x ./config/installer.sh && ./config/installer.sh
+COPY /config/installer.sh /config/installer.sh
+RUN chmod a+x /config/installer.sh && /config/installer.sh
+COPY ./config/init.sh /config/init.sh
+RUN chmod a+x /config/init.sh && /config/init.sh
 
-ADD runit /sbin/
-RUN chmod a+x /sbin/runit
-CMD ["runit"]
+
+#ADD runit /sbin/
+#RUN chmod a+x /sbin/runit
+#CMD ["runit"]
 
 ADD entry /sbin/
 RUN chmod a+x /sbin/entry
