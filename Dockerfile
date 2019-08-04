@@ -76,8 +76,6 @@ RUN sh /config/installer.sh && sh /config/init/openssh.sh && sh /config/init/ope
     sh /config/init/cloak.sh
 
 
-
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
