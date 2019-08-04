@@ -81,32 +81,53 @@ fi
 
 
 
-    if [ ! -f "$STUNNEL_CRT.pem" ]
+    if [ ! -f "$CRT_STUNNEL.pem" ]
         then
 echo " ---> Generate STUNNEL certificate"
-    openssl req -x509 -nodes -newkey rsa:2048 -days 3650 -subj '/CN=stunnel' \
-                -keyout $STUNNEL_KEY.key -out $STUNNEL_CRT.pem
-    chmod 600 $STUNNEL_CRT.pem
+    openssl req -x509 -nodes -newkey rsa:${CRT_KEY_LENGTH} -days ${CRT_DAYS} -subj ${CRT_STUNNEL_CN} \
+                -keyout ${CRT_STUNNEL}.key -out ${CRT_STUNNEL}.pem
+    chmod 600 ${CRT_STUNNEL}.pem
     
     else
-  echo "ENTRYPOINT: $STUNNEL_CRT.pem already exists"
+  echo "ENTRYPOINT: $CRT_STUNNEL.pem already exists"
 fi
 
 
 
-    if [ ! -f "$PPROXY_CRT.crt" ]
+
+    if [ ! -f "$CRT_MEEK.pem" ]
+        then
+echo " ---> Generate MEEK certificate"
+    openssl req -x509 -nodes -newkey rsa:${CRT_KEY_LENGTH} -days ${CRT_DAYS} -subj ${CRT_MEEK_CN} \
+                -keyout ${CRT_MEEK}.key -out ${CRT_MEEK}.pem
+    else
+  echo "ENTRYPOINT: $CRT_MEEK.pem already exists"
+fi
+
+
+
+    if [ ! -f "$CRT_PPROXY.crt" ]
         then
 echo " ---> Generate PPROXY private key"
-    openssl genrsa -des3 -out $PPROXY_CRT.key 1024
+    openssl genrsa -des3 -out ${CRT_PPROXY}.key ${CRT_KEY_LENGTH}
 echo " ---> Generate PPROXY certificate request"
-    openssl req -new -key $PPROXY_CRT.key -out $PPROXY_CRT.csr
+    openssl req -new -key ${CRT_PPROXY}.key -out ${CRT_PPROXY}.csr -subj ${CRT_PPROXY_SUBJ}
 echo " ---> Generate PPROXY certificate"
-    openssl x509 -req -days 3650 -in $PPROXY_CRT.csr -signkey $PPROXY_CRT.key -out $PPROXY_CRT.crt
-    
+    openssl x509 -req -days ${CRT_DAYS} -in ${CRT_PPROXY}.csr -signkey ${CRT_PPROXY}.key -out ${CRT_PPROXY}.crt
     else
-  echo "ENTRYPOINT: $PPROXY_CRT.crt already exists"
+  echo "ENTRYPOINT: $CRT_PPROXY.crt already exists"
 fi
 
+
+    if [ ! -f "$CRT_V2RAY.pem" ]
+        then
+echo " ---> Generate V2RAY private key"
+    openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:${CRT_KEY_LENGTH} -out ${CRT_V2RAY}.key
+echo " ---> Generate V2RAY certificate"
+openssl req -x509 -key ${CRT_V2RAY}.key -out ${CRT_V2RAY}.pem -days 365 -subj ${CRT_V2RAY_CN}
+    else
+  echo "ENTRYPOINT: $CRT_V2RAY.pem already exists"
+fi
 
 
 
