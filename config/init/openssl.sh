@@ -83,7 +83,7 @@ fi
 
     if [ ! -f "$STUNNEL_CRT.pem" ]
         then
-	
+echo " ---> Generate STUNNEL certificate"
     openssl req -x509 -nodes -newkey rsa:2048 -days 3650 -subj '/CN=stunnel' \
                 -keyout $STUNNEL_KEY.key -out $STUNNEL_CRT.pem
     chmod 600 $STUNNEL_CRT.pem
@@ -94,6 +94,18 @@ fi
 
 
 
+    if [ ! -f "$PPROXY_CRT.crt" ]
+        then
+echo " ---> Generate PPROXY private key"
+    openssl genrsa -des3 -out $PPROXY_CRT.key 1024
+echo " ---> Generate PPROXY certificate request"
+    openssl req -new -key $PPROXY_CRT.key -out $PPROXY_CRT.csr
+echo " ---> Generate PPROXY certificate"
+    openssl x509 -req -days 3650 -in $PPROXY_CRT.csr -signkey $PPROXY_CRT.key -out $PPROXY_CRT.crt
+    
+    else
+  echo "ENTRYPOINT: $PPROXY_CRT.crt already exists"
+fi
 
 
 
