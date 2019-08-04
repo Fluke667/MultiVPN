@@ -7,17 +7,21 @@ COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
 COPY --from=gobuilder /go/bin/broker /usr/bin/
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
-    libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 \
-    expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel tinyproxy \
+    libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs \
+    expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \
     boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams musl-utils && \
-    #logrotate util-linux findutils grep nodejs npm && \
+
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
-    linux-headers curl openssl-dev zlib-dev git libcork-dev libbloom-dev ipset-dev gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
-    musl-dev curl  boost-dev miniupnpc-dev sqlite-dev && \
+    linux-headers curl openssl-dev zlib-dev git gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
+    musl-dev curl  boost-dev miniupnpc-dev sqlite-dev gd-dev geoip-dev libmaxminddb-dev libxml2-dev libxslt-dev paxmark perl-dev pkgconf && \
+    
     apk update && apk add --no-cache --virtual webserver \
-    nginx php7 sqlite sqlite-libs && \
+    nginx php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader \
+    php7-ctype php7-session php7-mbstring php7-gd  gd perl perl-fcgi perl-io-socket-ssl perl-net-ssleay perl-protocol-websocket tzdata uwsgi-python && \
+    nginx-mod-http-headers-more nginx-mod-http-image-filter nginx-mod-http-js nginx-mod-http-lua nginx-mod-http-perl nginx-mod-http-redis2 && \
+    nginx-mod-http-set-misc && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
@@ -70,7 +74,7 @@ COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
 VOLUME ["/etc/tinc"]
-VOLUME ["/var/www"]
+VOLUME ["/var/www/html"]
 VOLUME ["/home/i2pd"]
 VOLUME ["/etc/ssh"]
 
