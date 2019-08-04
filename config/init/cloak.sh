@@ -9,6 +9,7 @@ cat > ${CLOAK_SRV_CONF} <<-EOF
     "openvpn": "127.0.0.1:8389",
     "tor": "127.0.0.1:9001"
   },
+  "localAddr": "$CLOAK_LOCALADDR",
   "RedirAddr": "$CLOAK_WEBSRVADDR",
   "PrivateKey": "$CLOAK_PRIVKEY",
   "AdminUID": "$CLOAK_UID",
