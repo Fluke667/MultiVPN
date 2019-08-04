@@ -16,6 +16,9 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
     linux-headers curl openssl-dev zlib-dev git libcork-dev libbloom-dev ipset-dev gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
     musl-dev curl  boost-dev miniupnpc-dev && \
+    apk update && apk add --no-cache --virtual webserver \
+    lighttpd php7-common php7-iconv php7-json php7-gd php7-curl php7-xml php7-mysqli php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql \
+    php7-soap php7-xmlrpc php7-posix php7-mcrypt php7-gettext php7-ldap php7-ctype php7-dom && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
@@ -30,7 +33,6 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Compile Section 3A - Get & Configure & Make Files
     cd /tmp && git clone ${PURPLEI2P_DL} && \
     cd i2pd && make && cp -R contrib/certificates/* /etc/certs/i2pd && cp i2pd /usr/bin && \
-    
     cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation > /dev/null && make && \
     make install && \
     cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
