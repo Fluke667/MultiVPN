@@ -63,12 +63,12 @@ COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
 
-VOLUME ["/config"]
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
 VOLUME ["/etc/tinc"]
 VOLUME ["/var/www"]
 VOLUME ["/home/i2pd"]
+VOLUME ["/etc/ssh"]
 
 
 ADD config /config
