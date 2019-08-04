@@ -8,6 +8,7 @@
 #exec ss-server -v -s ${SS_SERVER_ADDR} -p ${SS_SERVER_PORT} -l ${SS_LOCAL_PORT} -k ${SS_PASSWORD} -t ${SS_TIMEOUT} -m ${SS_METHOD} -n ${SS_MAXOPENFILES} -d ${SS_DNS} --fast-open --reuse-port -u 
 #exec ss-local -u --fast-open -c /etc/shadowsocks-libev/privoxy.json
 #ss-tunnel -c /etc/shadowsocks-libev/sstunnel_tor.json &
+#php-fpm -D && lighttpd -D -f /etc/lighttpd/lighttpd.conf
 
 
 pproxy -l socks4+socks5://:8090#$PPROXY_USER:$PPROXY_PASS &
