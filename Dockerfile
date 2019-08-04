@@ -45,7 +45,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 #openvpn
 EXPOSE 1194
 # python-proxy
-EXPOSE 8090 8080 8070
+EXPOSE 8010 8020 8030
 # SocksPort, Control, ORPort, DirPort, 
 EXPOSE 9050 9051 9001 9030
 # shadowsocks-libev
@@ -58,6 +58,9 @@ EXPOSE 8888
 EXPOSE 655
 # i2pd
 EXPOSE 7070 4444 4447 7656 2827 7654 7650
+# Nginx/PHP7/SQlite
+EXPOSE 8080
+
                 
 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
