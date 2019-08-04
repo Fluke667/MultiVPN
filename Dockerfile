@@ -1,22 +1,22 @@
-#FROM golang:1.12-alpine3.10 AS builder
-#RUN apk --no-cache add git build-base
-#RUN mkdir -p /go /go/bin /go/src && \
-#    go get -v git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy && \
-#    go get -v git.torproject.org/pluggable-transports/meek.git/meek-server && \
-#    go get -v git.torproject.org/pluggable-transports/snowflake.git/server && \
-#    go get -v git.torproject.org/pluggable-transports/snowflake.git/broker
+FROM golang:1.12-alpine3.10 AS builder
+RUN apk --no-cache add git build-base
+RUN mkdir -p /go /go/bin /go/src && \
+    go get -v git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy && \
+    go get -v git.torproject.org/pluggable-transports/meek.git/meek-server && \
+    go get -v git.torproject.org/pluggable-transports/snowflake.git/server && \
+    go get -v git.torproject.org/pluggable-transports/snowflake.git/broker
 
 FROM fluke667/alpine
-#COPY --from=builder /go/bin/obfs4proxy /usr/bin/
-#COPY --from=builder /go/bin/meek-server /usr/bin/
-#COPY --from=builder /go/bin/server /usr/bin/snowflake
-#COPY --from=builder /go/bin/broker /usr/bin/
+COPY --from=builder /go/bin/obfs4proxy /usr/bin/
+COPY --from=builder /go/bin/meek-server /usr/bin/
+COPY --from=builder /go/bin/server /usr/bin/snowflake
+COPY --from=builder /go/bin/broker /usr/bin/
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel tinyproxy \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs && \
-    #rsyslog logrotate util-linux findutils grep nodejs npm && \
+    #logrotate util-linux findutils grep nodejs npm && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
     linux-headers curl openssl-dev zlib-dev git libcork-dev libbloom-dev ipset-dev gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
