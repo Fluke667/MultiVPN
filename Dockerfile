@@ -1,16 +1,17 @@
-FROM golang:1.12-alpine3.10 AS builder
-RUN apk --no-cache add git build-base
-RUN mkdir -p /go /go/bin /go/src && \
-    go get -v git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy && \
-    go get -v git.torproject.org/pluggable-transports/meek.git/meek-server && \
-    go get -v git.torproject.org/pluggable-transports/snowflake.git/server && \
-    go get -v git.torproject.org/pluggable-transports/snowflake.git/broker
+#FROM golang:1.12-alpine3.10 AS builder
+#RUN apk --no-cache add git build-base
+#RUN mkdir -p /go /go/bin /go/src && \
+#    go get -v git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy && \
+#    go get -v git.torproject.org/pluggable-transports/meek.git/meek-server && \
+#    go get -v git.torproject.org/pluggable-transports/snowflake.git/server && \
+#    go get -v git.torproject.org/pluggable-transports/snowflake.git/broker
+FROM fluke667/alpine-golang:latest AS gobuilder
 
 FROM fluke667/alpine
-COPY --from=builder /go/bin/obfs4proxy /usr/bin/
-COPY --from=builder /go/bin/meek-server /usr/bin/
-COPY --from=builder /go/bin/server /usr/bin/snowflake
-COPY --from=builder /go/bin/broker /usr/bin/
+COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin/
+COPY --from=gobuilder /go/bin/meek-server /usr/bin/
+COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
+COPY --from=gobuilder /go/bin/broker /usr/bin/
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium python3 python3-dev gnupg sqlite sqlite-libs sqlite-dev readline bzip2 libev libbz2 \
@@ -36,6 +37,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     make install && \
     cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
     cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var > /dev/null && make && sudo make install && \
+    
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk del build-deps
