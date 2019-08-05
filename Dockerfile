@@ -2,14 +2,12 @@ FROM fluke667/alpine-golang:latest AS gobuilder
 FROM fluke667/alpine-builder AS appbuilder
 
 FROM fluke667/alpine
-COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin/ && --from=gobuilder /go/bin/meek-server /usr/bin/ \
-     --from=gobuilder /go/bin/server /usr/bin/snowflake && --from=gobuilder /go/bin/broker /usr/bin/ \
-     --from=appbuilder /tmp/i2pd/contrib/certificates/* /etc/certs/i2pd && --from=appbuilder /tmp/i2pd/i2pd /usr/bin &&
-#COPY --from=gobuilder /go/bin/meek-server /usr/bin/
-#COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
-#COPY --from=gobuilder /go/bin/broker /usr/bin/
-#COPY --from=appbuilder /tmp/i2pd/contrib/certificates/* /etc/certs/i2pd
-#COPY --from=appbuilder /tmp/i2pd/i2pd /usr/bin
+COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin/ 
+COPY --from=gobuilder /go/bin/meek-server /usr/bin/
+COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
+COPY --from=gobuilder /go/bin/broker /usr/bin/
+COPY --from=appbuilder /tmp/i2pd/contrib/certificates/* /etc/certs/i2pd
+COPY --from=appbuilder /tmp/i2pd/i2pd /usr/bin
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs \
