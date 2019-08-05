@@ -73,7 +73,6 @@ EXPOSE 7070 4444 4447 7656 2827 7654 7650
 EXPOSE 8080
 
                 
-
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
 COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
 COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
