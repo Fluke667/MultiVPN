@@ -13,7 +13,7 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/bin/ss-tunnel /usr/bin/ \
                        /usr/sbin/tinc /usr/bin/ \
                        /usr/sbin/tincd /usr/bin/ \
-                       /usr/bin/i2pd /usr/bin/
+                       /tmp/i2pd/i2pd /usr/bin/
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
