@@ -1,12 +1,14 @@
 FROM fluke667/alpine-golang:latest AS gobuilder
 FROM fluke667/alpine-builder AS appbuilder
-
 FROM fluke667/alpine
 COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin
 COPY --from=gobuilder /go/bin/meek-server /usr/bin
 COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
 COPY --from=gobuilder /go/bin/broker /usr/bin
-COPY --from=appbuilder /usr/sbin/tinc /usr/bin
+COPY --from=appbuilder /usr/bin/ck-server /usr/bin
+COPY --from=appbuilder /usr/bin/gq-server /usr/bin
+COPY --from=appbuilder /usr/bin/kcptun-server /usr/bin
+COPY --from=appbuilder /usr/bin/v2ray-plugin /usr/bin
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
