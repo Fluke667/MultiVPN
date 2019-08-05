@@ -18,8 +18,8 @@ openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn
 proxybroker serve --host 0.0.0.0 --port 8888 --types HTTP HTTPS --lvl High &
 tinc --net=$TINC_NETNAME start -D --config=$TINC_DIR/$TINC_NETNAME -D --debug=$TINC_DEBUG --logfile=$TINC_LOG &
 ss-server -c /etc/shadowsocks-libev/standalone.json &
-tor --RunAsDaemon 0 -f /etc/tor/torrc
-
+tor --RunAsDaemon 0 -f /etc/tor/torrc &
+obfs-server --fast-open -a nobody -s $OBFS_SERVER -p $OBFS_PORT -d $OBFS_DNS --obfs $OBFS_OPTS -r $OBFS_FORWARD
 
 
 $@
