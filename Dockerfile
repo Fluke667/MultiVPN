@@ -39,7 +39,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Adduser 
-    adduser -S -h /home/i2pd i2pd && chown -R i2pd:nobody /home/i2pd && \
+    #adduser -S -h /home/i2pd i2pd && chown -R i2pd:nobody /home/i2pd && \
 ### Compile Section 3A - Get & Configure & Make Files
     #cd /tmp && git clone ${PURPLEI2P_DL} && \
     #cd i2pd && make && cp -R contrib/certificates/* /etc/certs/i2pd && cp i2pd /usr/bin && \
