@@ -24,9 +24,10 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \
-    boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams musl-utils && \
+    boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams musl-utils \
     #Testing and Third Repos:
-    #meek obfs4proxy shadowsocks-libev libcork libcorkipset libbloom simple-obfs && \
+    libcork libcorkipset libbloom && \
+    # meek obfs4proxy shadowsocks-libev simple-obfs && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
     linux-headers curl openssl-dev zlib-dev git gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
