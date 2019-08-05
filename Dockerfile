@@ -1,14 +1,14 @@
 FROM fluke667/alpine-golang:latest AS gobuilder
 FROM fluke667/alpine-builder AS appbuilder
 FROM fluke667/alpine
-COPY --from=gobuilder /go/bin/obfs4proxy/ /usr/bin/ \ 
-                      /go/bin/meek-server/ /usr/bin/ \ 
-                      /go/bin/server/ /usr/bin/ \ 
-                      /go/bin/broker/ /usr/bin/
-COPY --from=appbuilder /usr/bin/ck-server/ /usr/bin/ \
-                       /usr/bin/gq-server/ /usr/bin/ \
-                       /usr/bin/kcptun-server/ /usr/bin/ \
-                       /usr/bin/v2ray-plugin/ /usr/bin/
+COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin/ \ 
+                      /go/bin/meek-server /usr/bin/ \ 
+                      /go/bin/server /usr/bin/ \ 
+                      /go/bin/broker /usr/bin/
+COPY --from=appbuilder /usr/bin/ck-server /usr/bin/ \
+                       /usr/bin/gq-server /usr/bin/ \
+                       /usr/bin/kcptun-server /usr/bin/ \
+                       /usr/bin/v2ray-plugin /usr/bin/
                        
 
 #COPY --from=gobuilder /go/bin/meek-server /usr/bin
