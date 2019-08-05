@@ -1,14 +1,23 @@
 FROM fluke667/alpine-golang:latest AS gobuilder
 FROM fluke667/alpine-builder AS appbuilder
 FROM fluke667/alpine
-COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin
-COPY --from=gobuilder /go/bin/meek-server /usr/bin
-COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
-COPY --from=gobuilder /go/bin/broker /usr/bin
-COPY --from=appbuilder /usr/bin/ck-server /usr/bin
-COPY --from=appbuilder /usr/bin/gq-server /usr/bin
-COPY --from=appbuilder /usr/bin/kcptun-server /usr/bin
-COPY --from=appbuilder /usr/bin/v2ray-plugin /usr/bin
+COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin \ 
+                      /go/bin/meek-server /usr/bin \ 
+                      /go/bin/server /usr/bin/snowflake \ 
+                      /go/bin/broker /usr/bin
+COPY --from=appbuilder /usr/bin/ck-server /usr/bin \
+                       /usr/bin/gq-server /usr/bin \
+                       /usr/bin/kcptun-server /usr/bin \
+                       /usr/bin/v2ray-plugin /usr/bin
+                       
+
+#COPY --from=gobuilder /go/bin/meek-server /usr/bin
+#COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
+#COPY --from=gobuilder /go/bin/broker /usr/bin
+#COPY --from=appbuilder /usr/bin/ck-server /usr/bin
+#COPY --from=appbuilder /usr/bin/gq-server /usr/bin
+#COPY --from=appbuilder /usr/bin/kcptun-server /usr/bin
+#COPY --from=appbuilder /usr/bin/v2ray-plugin /usr/bin
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
@@ -16,6 +25,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \
     boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams musl-utils && \
+    #Testing and Third Repos:
+    #meek obfs4proxy shadowsocks-libev libcork libcorkipset libbloom simple-obfs && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
     linux-headers curl openssl-dev zlib-dev git gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
@@ -34,9 +45,9 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Compile Section 3A - Get & Configure & Make Files
     #cd /tmp && git clone ${PURPLEI2P_DL} && \
     #cd i2pd && make && cp -R contrib/certificates/* /etc/certs/i2pd && cp i2pd /usr/bin && \
-    cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
-    cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation > /dev/null && make && \
-    make install && \
+    #cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
+    #cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation > /dev/null && make && \
+    #make install && \
     #cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
    #cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var > /dev/null && make && sudo make install && \
 ### Clean Up all
