@@ -5,11 +5,13 @@ COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin/ \
                       /go/bin/meek-server /usr/bin/ \ 
                       /go/bin/server /usr/bin/ \ 
                       /go/bin/broker /usr/bin/
-COPY --from=appbuilder /usr/bin/ck-server /usr/bin/ \
-                       /usr/bin/gq-server /usr/bin/ \
-                       /usr/bin/kcptun-server /usr/bin/ \
-                       /usr/bin/v2ray-plugin /usr/bin/
-                       
+COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
+                       /usr/bin/ss-manager /usr/bin/ \
+                       /usr/bin/ss-nat /usr/bin/ \
+                       /usr/bin/ss-redir /usr/bin/ \
+                       /usr/bin/ss-server /usr/bin/ \
+                       /usr/bin/ss-tunnel /usr/bin/
+
 
 #COPY --from=gobuilder /go/bin/meek-server /usr/bin
 #COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
