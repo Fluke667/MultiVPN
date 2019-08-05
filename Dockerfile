@@ -2,12 +2,12 @@ FROM fluke667/alpine-golang:latest AS gobuilder
 FROM fluke667/alpine-builder AS appbuilder
 
 FROM fluke667/alpine
-COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin/ 
-COPY --from=gobuilder /go/bin/meek-server /usr/bin/
+COPY --from=gobuilder /go/bin/obfs4proxy /usr/bin
+COPY --from=gobuilder /go/bin/meek-server /usr/bin
 COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
-COPY --from=gobuilder /go/bin/broker /usr/bin/
-COPY --from=appbuilder /tmp/i2pd/contrib/certificates/* /etc/certs/i2pd
-COPY --from=appbuilder /tmp/i2pd/i2pd /usr/bin
+COPY --from=gobuilder /go/bin/broker /usr/bin
+COPY --from=appbuilder /usr/sbin/tinc /usr/bin
+
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs \
@@ -39,9 +39,9 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
 ### Compile Section 3A - Get & Configure & Make Files
     #cd /tmp && git clone ${PURPLEI2P_DL} && \
     #cd i2pd && make && cp -R contrib/certificates/* /etc/certs/i2pd && cp i2pd /usr/bin && \
-    #cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
-    #cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation > /dev/null && make && \
-    #make install && \
+    cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
+    cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation > /dev/null && make && \
+    make install && \
     #cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
    #cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var > /dev/null && make && sudo make install && \
 ### Clean Up all
