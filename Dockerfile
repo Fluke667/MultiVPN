@@ -11,8 +11,8 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/bin/ss-redir /usr/bin/ \
                        /usr/bin/ss-server /usr/bin/ \
                        /usr/bin/ss-tunnel /usr/bin/ \
-                       /usr/bin/tinc /usr/bin/ \
-                       /usr/bin/tincd /usr/bin/ \
+                       /usr/sbin/tinc /usr/bin/ \
+                       /usr/sbin/tincd /usr/bin/ \
                        /usr/sbin/i2pd /usr/bin/
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
