@@ -21,7 +21,7 @@ COPY --from=appbuilder /usr/bin/ck-server/ /usr/bin/ \
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
-    libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs \
+    libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \
     boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams musl-utils \
