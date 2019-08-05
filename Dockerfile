@@ -12,17 +12,18 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/bin/ss-server /usr/bin/ \
                        /usr/bin/ss-tunnel /usr/bin/ \
                        /usr/sbin/tinc /usr/bin/ \
-                       /usr/sbin/tincd /usr/bin/ \
-                       /tmp/i2pd/i2pd /usr/bin/
-
+                       /usr/sbin/tincd /usr/bin/
+                       
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \
-    boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams musl-utils \
+    boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams musl-utils && \
     #Testing and Third Repos:
-    libcork libcorkipset libbloom && \
+    echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
+    apk add --update --no-cache \
+    i2pd libcork libcorkipset libbloom && \
     # meek obfs4proxy shadowsocks-libev simple-obfs && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
