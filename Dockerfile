@@ -41,7 +41,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
    #cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var > /dev/null && make && sudo make install && \
 ### Clean Up all
     #rm -rf /var/cache/apk/*
-    apk --no-cache --purge del build-deps \
+    apk --no-cache --purge del build-deps
     
    
 #openvpn
