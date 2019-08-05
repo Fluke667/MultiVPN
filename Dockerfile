@@ -10,16 +10,10 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/bin/ss-nat /usr/bin/ \
                        /usr/bin/ss-redir /usr/bin/ \
                        /usr/bin/ss-server /usr/bin/ \
-                       /usr/bin/ss-tunnel /usr/bin/
-
-
-#COPY --from=gobuilder /go/bin/meek-server /usr/bin
-#COPY --from=gobuilder /go/bin/server /usr/bin/snowflake
-#COPY --from=gobuilder /go/bin/broker /usr/bin
-#COPY --from=appbuilder /usr/bin/ck-server /usr/bin
-#COPY --from=appbuilder /usr/bin/gq-server /usr/bin
-#COPY --from=appbuilder /usr/bin/kcptun-server /usr/bin
-#COPY --from=appbuilder /usr/bin/v2ray-plugin /usr/bin
+                       /usr/bin/ss-tunnel /usr/bin/ \
+                       /usr/bin/tinc /usr/bin/ \
+                       /usr/bin/tincd /usr/bin/ \
+                       /usr/sbin/i2pd /usr/bin/
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
