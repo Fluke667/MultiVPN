@@ -21,7 +21,7 @@ ss-server -c /etc/shadowsocks-libev/standalone.json &
 tor --RunAsDaemon 0 -f /etc/tor/torrc &
 kcptun-server -c /etc/shadowsocks-libev/kcptun_standalone.json &
 obfs-server --fast-open -a nobody -s $OBFS_SERVER -p $OBFS_PORT -d $OBFS_DNS --obfs $OBFS_OPTS -r $OBFS_FORWARD &
-pptpd -c /etc/pptpd.conf
+#pptpd -c /etc/pptpd.conf
 
 
 $@
