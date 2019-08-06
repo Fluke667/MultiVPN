@@ -109,11 +109,12 @@ fi
     if [ ! -f "$CRT_PPROXY.crt" ]
         then
 echo " ---> Generate PPROXY private key"
-    openssl genrsa -des3 -out ${CRT_PPROXY}.key ${CRT_KEY_LENGTH}
+    openssl genrsa -out ${CRT_PPROXY}.key ${CRT_KEY_LENGTH}
 echo " ---> Generate PPROXY certificate request"
     openssl req -new -key ${CRT_PPROXY}.key -out ${CRT_PPROXY}.csr -subj ${CRT_PPROXY_SUBJ}
 echo " ---> Generate PPROXY certificate"
-    openssl x509 -req -days ${CRT_DAYS} -in ${CRT_PPROXY}.csr -signkey ${CRT_PPROXY}.key -out ${CRT_PPROXY}.crt
+        openssl x509 -req -extfile ${CRT_SRV_EXT} -in ${CRT_PPROXY}.csr -CA ${CRT_CA}.pem -CAkey ${CRT_CA}.key \
+                     -CAcreateserial -out ${CRT_PPROXY}.crt -days ${CRT_DAYS} -sha256
     else
   echo "ENTRYPOINT: $CRT_PPROXY.crt already exists"
 fi
