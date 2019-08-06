@@ -52,3 +52,4 @@ cat > /etc/ppp/chap-secrets <<EOF
 MyUser          pptpd  MyPass
 EOF
 
+"$@"
