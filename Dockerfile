@@ -14,8 +14,8 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/sbin/tinc /usr/bin/ \
                        /usr/sbin/tincd /usr/bin/
                        
-RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
-    #pptpd ppp \
+RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip pptpd \
+    #ppp \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
@@ -92,8 +92,7 @@ VOLUME ["/etc/ppp"]
 ADD config /config
 RUN sh /config/installer.sh && sh /config/init/openssh.sh && sh /config/init/openssl.sh && sh /config/init/openvpn.sh && \
     sh /config/init/shadowsocks.sh && sh /config/init/stunnel.sh && sh /config/init/tinc.sh && sh /config/init/tor.sh && \
-    sh /config/init/cloak.sh 
-    #&& sh /config/init/pptpd.sh
+    sh /config/init/cloak.sh && sh /config/init/pptpd.sh
 
 
 COPY entrypoint.sh /entrypoint.sh
