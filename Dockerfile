@@ -14,8 +14,8 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/sbin/tinc /usr/bin/ \
                        /usr/sbin/tincd /usr/bin/
                        
-RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip \
-    openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun \
+RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip iproute2 \
+    openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun strongswan \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \
@@ -72,7 +72,8 @@ EXPOSE 7070 4444 4447 7656 2827 7654 7650
 # Nginx/PHP7/SQlite
 EXPOSE 8080
 # PPTP
-EXPOSE 1723
+EXPOSE 500 4500
+
 
                 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
@@ -92,7 +93,6 @@ ADD config /config
 RUN sh /config/installer.sh && sh /config/init/openssh.sh && sh /config/init/openssl.sh && sh /config/init/openvpn.sh && \
     sh /config/init/shadowsocks.sh && sh /config/init/stunnel.sh && sh /config/init/tinc.sh && sh /config/init/tor.sh && \
     sh /config/init/cloak.sh
-    #&& sh /config/init/pptpd.sh
 
 
 COPY entrypoint.sh /entrypoint.sh
