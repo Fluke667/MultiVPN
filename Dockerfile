@@ -71,6 +71,8 @@ EXPOSE 655
 EXPOSE 7070 4444 4447 7656 2827 7654 7650
 # Nginx/PHP7/SQlite
 EXPOSE 8080
+# PPTP
+EXPOSE 1723
 
                 
 COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
@@ -83,12 +85,13 @@ VOLUME ["/etc/tinc"]
 VOLUME ["/var/www/html"]
 VOLUME ["/home/i2pd"]
 VOLUME ["/etc/ssh"]
+VOLUME ["/etc/ppp"]
 
 
 ADD config /config
 RUN sh /config/installer.sh && sh /config/init/openssh.sh && sh /config/init/openssl.sh && sh /config/init/openvpn.sh && \
     sh /config/init/shadowsocks.sh && sh /config/init/stunnel.sh && sh /config/init/tinc.sh && sh /config/init/tor.sh && \
-    sh /config/init/cloak.sh
+    sh /config/init/cloak.sh && sh /config/init/pptpd.sh
 
 
 COPY entrypoint.sh /entrypoint.sh
