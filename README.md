@@ -3,10 +3,25 @@ Protocols: PPTP, L2TP, Ikev2, Shadowsocks, OpenVPN,
 
 
 ### Before Start Container:
-- sudo modprobe af_key
-- sudo modprobe nf_nat_pptp
-- sudo modprobe tun
-- sudo modprobe ppp_mppe
+- modprobe af_key
+- modprobe nf_nat_pptp
+- modprobe tun
+- modprobe ppp_mppe
+- modprobe ah4
+- modprobe ah6
+- modprobe esp4
+- modprobe esp6
+- modprobe xfrm4_tunnel
+- modprobe xfrm6_tunnel
+- modprobe xfrm_user
+- modprobe ip_tunnel
+- modprobe tunnel4
+- modprobe tunnel6
+- modprobe xfrm4_mode_tunnel
+- modprobe xfrm6_mode_tunnel
+- modprobe pcrypt
+- modprobe xfrm_ipcomp
+- modprobe deflate
 
 
 ```
