@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -eu
 mkdir -p /etc/ssh/keys
 
 #if [ ! -f "$SSH_ROOTKEY_PRIV" ]; then
