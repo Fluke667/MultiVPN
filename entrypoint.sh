@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd /config && chmod u+x * -R &
-sh /config/installer.sh &
+sh /config/init/installer.sh &
 sh /config/init/openssh.sh &
 sh /config/init/openssl.sh &
 sh /config/init/openvpn.sh &
