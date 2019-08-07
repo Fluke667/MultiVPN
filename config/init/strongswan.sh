@@ -17,7 +17,7 @@ else
     echo "Initializing..."
 fi
 
-cat > /etc/ipsec.d/ipsec.conf <<_EOF_
+cat > /etc/ipsec.d/ipsec.conf <<EOF
 config setup
     uniqueids=never
     charondebug="cfg 2, dmn 2, ike 2, net 2"
@@ -32,27 +32,27 @@ conn %default
     leftcert=server.cert.pem
     leftsubnet=0.0.0.0/0
     right=%any
-    rightdns=${VPN_DNS}
-    rightsourceip=${VPN_NETWORK}
-    rightsubnets=${LAN_NETWORK}
+    rightdns=${STRONG_DNS}
+    rightsourceip=${STRONG_NETWORK}
+    rightsubnets=${STRONG_LAN}
 
 conn IPSec-IKEv2
     keyexchange=ikev2
     ike=aes256-sha256-modp1024,3des-sha1-modp1024,aes256-sha1-modp1024!
     esp=aes256-sha256,3des-sha1,aes256-sha1!
-    leftid="${VPN_DOMAIN}"
+    leftid="${STRONG_DOMAIN}"
     leftsendcert=always
     leftauth=pubkey
     rightauth=pubkey
-    rightid="client@${VPN_DOMAIN}"
+    rightid="client@${STRONG_DOMAIN}"
     rightcert=client.cert.pem
     auto=add
-_EOF_
+EOF
 
 
 cat > /etc/ipsec.d/ipsec.secrets <<_EOF_
 : RSA server.pem
-_EOF_
+EOF
 
 
 # gen ca key and cert
@@ -70,8 +70,8 @@ ipsec pki --gen --outform pem > /etc/ipsec.d/private/server.pem
 
 ipsec pki --pub --in /etc/ipsec.d/private/server.pem |
     ipsec pki --issue --lifetime 1200 --cacert /etc/ipsec.d/cacerts/ca.cert.pem \
-              --cakey /etc/ipsec.d/private/ca.pem --dn "C=CN, O=strongSwan, CN=${VPN_DOMAIN}" \
-              --san="${VPN_DOMAIN}" --flag serverAuth --flag ikeIntermediate \
+              --cakey /etc/ipsec.d/private/ca.pem --dn "C=CN, O=strongSwan, CN=${STRONG_DOMAIN}" \
+              --san="${STRONG_DOMAIN}" --flag serverAuth --flag ikeIntermediate \
               --outform pem > /etc/ipsec.d/certs/server.cert.pem
 
 # gen client key and cert
@@ -80,18 +80,18 @@ ipsec pki --gen --outform pem > /etc/ipsec.d/private/client.pem
 ipsec pki --pub --in /etc/ipsec.d/private/client.pem |
     ipsec pki --issue \
               --cacert /etc/ipsec.d/cacerts/ca.cert.pem \
-              --cakey /etc/ipsec.d/private/ca.pem --dn "C=CN, O=strongSwan, CN=client@${VPN_DOMAIN}" \
-              --san="client@${VPN_DOMAIN}" \
+              --cakey /etc/ipsec.d/private/ca.pem --dn "C=CN, O=strongSwan, CN=client@${STRONG_DOMAIN}" \
+              --san="client@${STRONG_DOMAIN}" \
               --outform pem > /etc/ipsec.d/certs/client.cert.pem
 
 openssl pkcs12 -export \
                -inkey /etc/ipsec.d/private/client.pem \
                -in /etc/ipsec.d/certs/client.cert.pem \
-               -name "client@${VPN_DOMAIN}" \
+               -name "client@${STRONG_DOMAIN}" \
                -certfile /etc/ipsec.d/cacerts/ca.cert.pem \
                -caname "strongSwan Root CA" \
                -out /etc/ipsec.d/client.cert.p12 \
-               -passout pass:${VPN_P12_PASSWORD}
+               -passout pass:${STRONG_P12_PASS}
 
 # gen mobileconfig for mac
 
@@ -102,7 +102,7 @@ UUID4=$(uuidgen)
 UUID5=$(uuidgen)
 UUID6=$(uuidgen)
 
-cat > /etc/ipsec.d/client.mobileconfig <<_EOF_
+cat > /etc/ipsec.d/client.mobileconfig <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -111,7 +111,7 @@ cat > /etc/ipsec.d/client.mobileconfig <<_EOF_
  <array>
   <dict>
    <key>Password</key>
-   <string>${VPN_P12_PASSWORD}</string>
+   <string>${STRONG_P12_PASS}</string>
    <key>PayloadCertificateFileName</key>
    <string>client.cert.p12</string>
    <key>PayloadContent</key>
@@ -263,4 +263,4 @@ $(base64 /etc/ipsec.d/certs/server.cert.pem)
  <integer>1</integer>
 </dict>
 </plist>
-_EOF_
+EOF
