@@ -23,7 +23,7 @@ sh /config/init/strongswan.sh &
 #php-fpm -D && lighttpd -D -f /etc/lighttpd/lighttpd.conf
 
 
-sslh-fork -f -u root --listen $SSLH_LISTEN --ssh $SSLH_SSH --tls $SSLH_TLS --openvpn $SSLH_OVPN --anyprot $SSLH_TINC --anyprot $SSLH_SSOCKS \
+sslh-fork -f -u root --listen $SSLH_LISTEN --ssh $SSLH_SSH --tls $SSLH_TLS --openvpn $SSLH_OVPN --anyprot $SSLH_TINC --anyprot $SSLH_SSOCKS &
 pproxy -l socks4+socks5://:8010#$PPROXY_USER:$PPROXY_PASS &
 pproxy -l http://:8020#$PPROXY_USER:$PPROXY_PASS &
 pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8030 &
