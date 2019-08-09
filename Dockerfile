@@ -12,25 +12,24 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/bin/ss-server /usr/bin/ \
                        /usr/bin/ss-tunnel /usr/bin/ \
                        /usr/sbin/tinc /usr/bin/ \
-                       /usr/sbin/tincd /usr/bin/ \
-                       /usr/bin/sslh /usr/bin/
-                       #/usr/bin/i2pd /usr/sbin/
+                       /usr/sbin/tincd /usr/bin/
 
-RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip iproute2 \
+
+RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip iproute2 perl \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun strongswan \
-    libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa musl-utils  \
+    libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa musl-utils \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel util-linux \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs && \
-    #boost-filesystem boost-system boost-program_options boost-date_time boost-thread boost-iostreams && \
     #Testing and Third Repos:
-    #echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
-    #apk add --update --no-cache \
-    #i2pd libcork libcorkipset libbloom && \
+    echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
+    apk add --update --no-cache \
+    lcov valgrind i2pd sslh libcork libcorkipset libbloom && \
     # meek obfs4proxy shadowsocks-libev simple-obfs && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
-    linux-headers curl openssl-dev zlib-dev git gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev \
-    musl-dev curl  boost-dev miniupnpc-dev sqlite-dev gd-dev geoip-dev libmaxminddb-dev libxml2-dev libxslt-dev paxmark perl-dev pkgconf && \
+    linux-headers curl openssl-dev zlib-dev git gcc g++ gmp-dev lzo-dev libpcap-dev zstd-dev paxmark perl-dev pkgconf valgrind \
+    musl-dev curl  boost-dev miniupnpc-dev sqlite-dev gd-dev geoip-dev libmaxminddb-dev libxml2-dev libxslt-dev libconfig-dev \
+    perl-io-socket-inet6 perl-conf-libconfig && \
 ### PYTHON SECTION
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
