@@ -12,8 +12,10 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/bin/ss-server /usr/bin/ \
                        /usr/bin/ss-tunnel /usr/bin/ \
                        /usr/sbin/tinc /usr/bin/ \
-                       /usr/sbin/tincd /usr/bin/
-                       
+                       /usr/sbin/tincd /usr/bin/ \
+                       /usr/sbin/i2pd /usr/sbin/ \
+                       /usr/sbin/sslh-fork /usr/sbin/
+
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip iproute2 \
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun strongswan \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa musl-utils  \
