@@ -96,7 +96,8 @@ echo " ---> Generate openvpn.conf Config file "
     echo auth SHA512 >> ${OVPN_CONFIG}.conf
     echo persist-key >> ${OVPN_CONFIG}.conf
     echo persist-tun >> ${OVPN_CONFIG}.conf
-    echo status openvpn-status.log >> ${OVPN_CONFIG}.conf
+    echo log /var/log/openvpn/openvpn.log >> ${OVPN_CONFIG}.conf
+    echo status /var/log/openvpn/openvpn-status.log >> ${OVPN_CONFIG}.conf
     echo verb 9 >> ${OVPN_CONFIG}.conf
     echo explicit-exit-notify 1 >> ${OVPN_CONFIG}.conf
 
