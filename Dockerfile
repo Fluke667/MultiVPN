@@ -34,21 +34,12 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     pip3 install --upgrade pip && \
     pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
     obfsproxy proxybroker && \
-### Compile Section 1 - Files & Directories
+### Files & Directories
     mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /run/openvpn /etc/shadowsocks-libev \ 
     /etc/tinc/ /etc/tinc/$TINC_NETNAME /etc/tinc/$TINC_NETNAME/hosts /var/log/tinc/ /home/i2pd /home/i2pd/data /etc/certs/i2pd && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
 ### Adduser 
-    #adduser -S -h /home/i2pd i2pd && chown -R i2pd:nobody /home/i2pd && \
-### Compile Section 3A - Get & Configure & Make Files
-    #cd /tmp && git clone ${PURPLEI2P_DL} && \
-    #cd i2pd && make && cp -R contrib/certificates/* /etc/certs/i2pd && cp i2pd /usr/bin && \
-    #cd /tmp && git clone --depth=1 ${SSLIBEV_DL} && \
-    #cd shadowsocks-libev && git submodule update --init --recursive && ./autogen.sh && ./configure --prefix=/usr --disable-documentation > /dev/null && make && \
-    #make install && \
-    #cd /tmp && wget ${TINC_DL} && tar -xzvf tinc-${TINC_VER}.tar.gz && \
-   #cd tinc-${TINC_VER} && ./configure --prefix=/usr --enable-jumbograms --enable-tunemu --sysconfdir=/etc --localstatedir=/var > /dev/null && make && sudo make install && \
 ### Clean Up all
     #rm -rf /var/cache/apk/*
     apk --no-cache --purge del build-deps
@@ -62,7 +53,7 @@ EXPOSE 8010 8020 8030
 EXPOSE 9050 9051 9001 9030
 # shadowsocks-libev
 EXPOSE 8388
-#O bfsproxyPort, MeekPort
+# ObfsproxyPort, MeekPort
 EXPOSE 54444 7002
 # Proxybroker
 EXPOSE 8888
