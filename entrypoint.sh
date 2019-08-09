@@ -1,16 +1,16 @@
 #!/bin/sh
 
-#cd /config && chmod u+x * -R &
-#sh /config/installer.sh &
-#sh /config/init/openssh.sh &
-#sh /config/init/openssl.sh &
-#sh /config/init/openvpn.sh &
-#sh /config/init/shadowsocks.sh &
-#sh /config/init/stunnel.sh &
-#sh /config/init/tinc.sh &
-#sh /config/init/tor.sh &
-#sh /config/init/cloak.sh & 
-#sh /config/init/strongswan.sh &
+cd /config && chmod u+x * -R &
+sh /config/installer.sh &
+sh /config/init/openssh.sh &
+sh /config/init/openssl.sh &
+sh /config/init/openvpn.sh &
+sh /config/init/shadowsocks.sh &
+sh /config/init/stunnel.sh &
+sh /config/init/tinc.sh &
+sh /config/init/tor.sh &
+sh /config/init/cloak.sh & 
+sh /config/init/strongswan.sh &
 
 #sslh -f -u sslh --listen $SSLH --ssh $SSLH_SSH --tls $SSLH_TLS --ovpn $SSLH_OVPN --tinc $SSLH_TINC --ssocks $SSLH_SSOCKS --any $SSLH_ANY &
 #ss-local -s $PRV_SERVER -p $PRV_SERVER_PORT -b $PRV_LOCAL -l $PRV_LOCAL_PORT -k $PRV_PASS -m $PRV_METHOLD -d start -c $PRV_CONF &
