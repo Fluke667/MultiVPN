@@ -19,7 +19,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     openssl ca-certificates shadow openssh openvpn bash nano sudo dcron upx patch gmp multirun strongswan \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs easy-rsa musl-utils \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel util-linux \
-    libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs && \
+    libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \ 
+    nginx php7-fpm && \
     #Testing and Third Repos:
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     apk add --update --no-cache \
