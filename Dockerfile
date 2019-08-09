@@ -13,7 +13,7 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/bin/ss-tunnel /usr/bin/ \
                        /usr/sbin/tinc /usr/bin/ \
                        /usr/sbin/tincd /usr/bin/ \
-                       /usr/sbin/i2pd /usr/sbin/ \
+                       #/usr/sbin/i2pd /usr/sbin/ \
                        /usr/sbin/sslh-fork /usr/sbin/
 
 RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip iproute2 \
