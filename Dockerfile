@@ -46,7 +46,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     
    
 # sslh Multiplexer
-EXPOSE 443
+EXPOSE 443 8443
 #openvpn
 EXPOSE 1194
 # python-proxy
