@@ -45,6 +45,8 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     apk --no-cache --purge del build-deps
     
    
+# sslh Multiplexer
+EXPOSE 443
 #openvpn
 EXPOSE 1194
 # python-proxy
