@@ -23,7 +23,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     #Testing and Third Repos:
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     apk add --update --no-cache \
-    lcov valgrind i2pd sslh libcork libcorkipset libbloom && \
+    lcov valgrind libcork libcorkipset libbloom i2pd sslh peervpn && \
     # meek obfs4proxy shadowsocks-libev simple-obfs && \
     apk update && apk add --no-cache --virtual build-deps \
     autoconf automake build-base make libev-dev libtool udns-dev libsodium-dev mbedtls-dev pcre-dev c-ares-dev readline-dev xz-dev \
@@ -63,6 +63,8 @@ EXPOSE 8888
 EXPOSE 655
 # i2pd
 EXPOSE 7070 4444 4447 7656 2827 7654 7650
+# Peervpn
+EXPOSE 7000
 # Nginx/PHP7/SQlite
 EXPOSE 8080
 # PPTP
