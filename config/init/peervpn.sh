@@ -253,3 +253,4 @@ chmod 0600 /etc/peervpn/peervpn.conf
 
 
 #exec /sbin/peervpn /etc/peerpvn/peervpn.conf
+"$@"
