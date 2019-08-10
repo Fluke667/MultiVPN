@@ -6,12 +6,14 @@ cp -r /usr/share/easy-rsa /etc/openvpn/
 ln -s /etc/openvpn/easy-rsa/easyrsa /usr/bin
 
 cat > /etc/openvpn/easy-rsa/vars<<-EOF
-export EASY_RSA="/etc/openvpn/easy-rsa"
+export EASY_RSA=/etc/openvpn/easy-rsa
+export EASYRSA_PKI="$PWD/pki"
+export OVPN_CN=servername
 export OPENSSL="openssl"
 export PKCS11TOOL="pkcs11-tool"
 export GREP="grep"
-export KEY_CONFIG=`$EASY_RSA/openssl-easyrsa.cnf $EASY_RSA`
-export KEY_DIR="$EASY_RSA/keys"
+export KEY_CONFIG=/etc/openvpn/easy-rsaopenssl-easyrsa.cnf $EASY_RSA
+export KEY_DIR=/etc/openvpn/easy-rsa/keys
 export PKCS11_MODULE_PATH="dummy"
 export PKCS11_PIN="dummy"
 export KEY_SIZE=2048
