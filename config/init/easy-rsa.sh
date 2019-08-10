@@ -6,8 +6,8 @@ cp -r /usr/share/easy-rsa /etc/openvpn/
 ln -s /etc/openvpn/easy-rsa/easyrsa /usr/bin
 
 cat > /etc/openvpn/easy-rsa/vars<<-EOF
-set_var EASYRSA                 "$PWD"
-set_var EASYRSA_PKI             "$EASYRSA/pki"
+set_var EASYRSA                 "/etc/openvpn/easy-rsa"
+set_var EASYRSA_PKI             "/etc/openvpn/easy-rsa/pki"
 set_var EASYRSA_DN              "cn_only"
 set_var EASYRSA_REQ_COUNTRY     "DE"
 set_var EASYRSA_REQ_PROVINCE    "BY"
@@ -21,9 +21,11 @@ set_var EASYRSA_CA_EXPIRE       7500
 set_var EASYRSA_CERT_EXPIRE     365
 set_var EASYRSA_NS_SUPPORT      "no"
 set_var EASYRSA_NS_COMMENT      "Multivpn  CERTIFICATE AUTHORITY"
-set_var EASYRSA_EXT_DIR         "$EASYRSA/x509-types"
-set_var EASYRSA_SSL_CONF        "$EASYRSA/openssl-easyrsa.cnf"
+set_var EASYRSA_EXT_DIR         "/etc/openvpn/easy-rsa/x509-types"
+set_var EASYRSA_SSL_CONF        "/etc/openvpn/easy-rsa/openssl-easyrsa.cnf"
 set_var EASYRSA_DIGEST          "sha256"
+
+
 EOF
 
 cat > /etc/openvpn/easy-rsa/templates/client-emb.conf<<EOF
