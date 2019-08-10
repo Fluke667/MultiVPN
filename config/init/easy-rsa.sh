@@ -1,9 +1,8 @@
 #!/bin/sh
 
 
-mkdir -p /etc/openvpn/easy-rsa/keys /etc/openvpn/easy-rsa/templates
+mkdir -p /etc/openvpn/easy-rsa/keys /etc/openvpn/easy-rsa/templates /etc/openvpn/server /etc/openvpn/client
 cp -r /usr/share/easy-rsa /etc/openvpn/
-ln -s /etc/openvpn/easy-rsa/easyrsa /usr/bin
 
 cat > /etc/openvpn/easy-rsa/vars<<-EOF
 set_var EASYRSA                 "/etc/openvpn/easy-rsa"
@@ -24,8 +23,6 @@ set_var EASYRSA_NS_COMMENT      "Multivpn  CERTIFICATE AUTHORITY"
 set_var EASYRSA_EXT_DIR         "/etc/openvpn/easy-rsa/x509-types"
 set_var EASYRSA_SSL_CONF        "/etc/openvpn/easy-rsa/openssl-easyrsa.cnf"
 set_var EASYRSA_DIGEST          "sha256"
-
-
 EOF
 
 cat > /etc/openvpn/easy-rsa/templates/client-emb.conf<<EOF
@@ -86,3 +83,29 @@ cert cert.crt
 key key.key
 tls-auth ta.key 1
 EOF
+
+
+cd /etc/openvpn/easy-rsa/ &
+# Initialization
+./easyrsa init-pki &
+# Build CA
+./easyrsa build-ca nopass &
+# Build Diffie Hellmann
+./easyrsa gen-dh &
+# Build Server Key
+./easyrsa gen-req $OVPN_SRV_NAME nopass &
+./easyrsa sign-req server $OVPN_SRV_NAME &
+# Build Client Key
+./easyrsa gen-req $OVPN_CLI_NAME nopass &
+./easyrsa sign-req client $OVPN_CLI_NAME &
+# Build Diffie Hellmann
+./easyrsa gen-dh &
+# Copy all the Files
+cp pki/ca.crt /etc/openvpn/server/ &
+cp pki/issued/$OVPN_SRV_NAME.crt /etc/openvpn/server/ &
+cp pki/private/$OVPN_SRV_NAME.key /etc/openvpn/server/ &
+cp pki/dh.pem /etc/openvpn/server/ &
+cp pki/crl.pem /etc/openvpn/server/ &
+cp pki/ca.crt /etc/openvpn/client/ &
+cp pki/issued/$OVPN_CLI_NAME.crt /etc/openvpn/client/ &
+cp pki/private/$OVPN_CLI_NAME.key /etc/openvpn/client/
