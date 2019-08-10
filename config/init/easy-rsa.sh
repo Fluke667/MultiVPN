@@ -6,34 +6,24 @@ cp -r /usr/share/easy-rsa /etc/openvpn/
 ln -s /etc/openvpn/easy-rsa/easyrsa /usr/bin
 
 cat > /etc/openvpn/easy-rsa/vars<<-EOF
-export EASY_RSA=/etc/openvpn/easy-rsa
-export EASYRSA_PKI="$PWD/pki"
-export OVPN_CN=servername
-export OPENSSL="openssl"
-export PKCS11TOOL="pkcs11-tool"
-export GREP="grep"
-export KEY_CONFIG=/etc/openvpn/easy-rsaopenssl-easyrsa.cnf $EASY_RSA
-export KEY_DIR=/etc/openvpn/easy-rsa/keys
-export PKCS11_MODULE_PATH="dummy"
-export PKCS11_PIN="dummy"
-export KEY_SIZE=2048
-export CA_EXPIRE=3650
-export KEY_EXPIRE=365
-export KEY_COUNTRY="DE"
-export KEY_PROVINCE="BY"
-export KEY_CITY="Nuremberg"
-export KEY_ORG="TB"
-export KEY_EMAIL="vpn@fluke667.me"
-export KEY_OU="VPN"
-export KEY_NAME="server"
-
-# PKCS11 Smart Card
-# export PKCS11_MODULE_PATH="/usr/lib/changeme.so"
-# export PKCS11_PIN=1234
-
-# If you'd like to sign all keys with the same Common Name, uncomment the KEY_CN export below
-# You will also need to make sure your OpenVPN server config has the duplicate-cn option set
-# export KEY_CN="CommonName"
+set_var EASYRSA                 "$PWD"
+set_var EASYRSA_PKI             "$EASYRSA/pki"
+set_var EASYRSA_DN              "cn_only"
+set_var EASYRSA_REQ_COUNTRY     "DE"
+set_var EASYRSA_REQ_PROVINCE    "BY"
+set_var EASYRSA_REQ_CITY        "Nuremberg"
+set_var EASYRSA_REQ_ORG         "Multivpn CERTIFICATE AUTHORITY"
+set_var EASYRSA_REQ_EMAIL       "openvpn@ultivpn.io"
+set_var EASYRSA_REQ_OU          "MULTIVPN EASY CA"
+set_var EASYRSA_KEY_SIZE        2048
+set_var EASYRSA_ALGO            rsa
+set_var EASYRSA_CA_EXPIRE       7500
+set_var EASYRSA_CERT_EXPIRE     365
+set_var EASYRSA_NS_SUPPORT      "no"
+set_var EASYRSA_NS_COMMENT      "Multivpn  CERTIFICATE AUTHORITY"
+set_var EASYRSA_EXT_DIR         "$EASYRSA/x509-types"
+set_var EASYRSA_SSL_CONF        "$EASYRSA/openssl-easyrsa.cnf"
+set_var EASYRSA_DIGEST          "sha256"
 EOF
 
 cat > /etc/openvpn/easy-rsa/templates/client-emb.conf<<EOF
