@@ -3,11 +3,11 @@
 set -eu
 
 # Needed for openvpn
-#mkdir -p /run/openvpn
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 chmod 0666 /dev/net/tun
 
+mkdir -p /etc/openvpn/easy-rsa/keys /var/log/openvpn /run/openvpn
 cp -r /usr/share/easy-rsa /etc/openvpn/
 ln -s /etc/openvpn/easy-rsa/easyrsa /usr/bin
 
