@@ -50,7 +50,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
    
 # sslh Multiplexer
 EXPOSE 443 8443
-#openvpn
+# openvpn
 EXPOSE 1194
 # python-proxy
 EXPOSE 8010 8020 8030
@@ -58,8 +58,8 @@ EXPOSE 8010 8020 8030
 EXPOSE 9050 9051 9001 9030
 # shadowsocks-libev
 EXPOSE 8388
-# ObfsproxyPort, MeekPort
-EXPOSE 54444 7002
+# obfsproxy, MeekPort, obfs4proxy
+EXPOSE 54444 7002 7900
 # Proxybroker
 EXPOSE 8888
 # Tinc
