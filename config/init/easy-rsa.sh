@@ -12,7 +12,6 @@ export PKCS11TOOL="pkcs11-tool"
 export GREP="grep"
 export KEY_CONFIG=`$EASY_RSA/openssl-easyrsa.cnf $EASY_RSA`
 export KEY_DIR="$EASY_RSA/keys"
-echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR
 export PKCS11_MODULE_PATH="dummy"
 export PKCS11_PIN="dummy"
 export KEY_SIZE=2048
