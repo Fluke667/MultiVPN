@@ -12,6 +12,9 @@ sh /config/init/tor.sh &
 sh /config/init/cloak.sh & 
 sh /config/init/strongswan.sh &
 sh /config/init/obfs4proxy-openvpn.sh &
+cp /config/bin/microsocks /usr/bin &
+cp /config/bin/obfs4proxy-openvpn /usr/bin &
+cp /config/bin/ovpn /usr/bin &
 
 #sslh -f -u sslh --listen $SSLH --ssh $SSLH_SSH --tls $SSLH_TLS --ovpn $SSLH_OVPN --tinc $SSLH_TINC --ssocks $SSLH_SSOCKS --any $SSLH_ANY &
 #ss-local -s $PRV_SERVER -p $PRV_SERVER_PORT -b $PRV_LOCAL -l $PRV_LOCAL_PORT -k $PRV_PASS -m $PRV_METHOLD -d start -c $PRV_CONF &
@@ -30,6 +33,7 @@ pproxy -l http://:8020#$PPROXY_USER:$PPROXY_PASS &
 pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8030 &
 #i2pd --datadir=$DATA_DIR --reseed.verify=true --upnp.enabled=false --http.enabled=true --http.address=0.0.0.0 --httpproxy.enabled=true --httpproxy.address=0.0.0.0 --socksproxy.enabled=true --socksproxy.address=0.0.0.0 --sam.enabled=true --sam.address=0.0.0.0 &
 #peervpn /etc/peervpn/peervpn.conf &
+microsocks -1 -i $MICRO_LISTEN -p $MICRO_PORT -u $MICRO_USER -P $MICRO_PASS -b $MICRO_BINDADDR &
 openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf &
 proxybroker serve --host 0.0.0.0 --port 8888 --types HTTP HTTPS --lvl High &
 tinc --net=$TINC_NETNAME --config=$TINC_DIR/$TINC_NETNAME --debug=$TINC_DEBUG --logfile=$TINC_LOG &
