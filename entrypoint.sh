@@ -23,7 +23,7 @@ sh /config/init/strongswan.sh &
 #php-fpm -D && lighttpd -D -f /etc/lighttpd/lighttpd.conf
 
 
-sslh-fork -f -u root --listen $SSLH_LISTEN --ssh $SSLH_SSH --tls $SSLH_TLS --openvpn $SSLH_OVPN --anyprot $SSLH_TINC --anyprot $SSLH_SSOCKS &
+sslh-select -f -u root --listen $SSLH_LISTEN --ssh $SSLH_SSH --tls $SSLH_TLS --openvpn $SSLH_OVPN --anyprot $SSLH_TINC --anyprot $SSLH_SSOCKS &
 pproxy -l socks4+socks5://:8010#$PPROXY_USER:$PPROXY_PASS &
 pproxy -l http://:8020#$PPROXY_USER:$PPROXY_PASS &
 pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8030 &
@@ -31,7 +31,7 @@ pproxy -l ss://aes-256-gcm:yDRHHo1PjnolIVQHF3H4cpuL45udo7aHOco+Og==@:8030 &
 #peervpn /etc/peervpn/peervpn.conf &
 openvpn --writepid /run/openvpn/ovpn.pid --cd /etc/openvpn --config /etc/openvpn/openvpn.conf &
 proxybroker serve --host 0.0.0.0 --port 8888 --types HTTP HTTPS --lvl High &
-tinc --net=$TINC_NETNAME start --config=$TINC_DIR/$TINC_NETNAME -D --debug=$TINC_DEBUG --logfile=$TINC_LOG &
+tinc --net=$TINC_NETNAME --config=$TINC_DIR/$TINC_NETNAME --debug=$TINC_DEBUG --logfile=$TINC_LOG &
 ss-server -c /etc/shadowsocks-libev/standalone.json &
 tor --RunAsDaemon 0 -f /etc/tor/torrc &
 kcptun-server -c /etc/shadowsocks-libev/kcptun_standalone.json &
