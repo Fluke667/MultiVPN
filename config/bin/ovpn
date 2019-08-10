@@ -1,0 +1,46 @@
+#!/bin/sh
+
+usage() {
+    echo "usage"
+}
+
+
+call_main() {
+    local s
+    local prog=${1##*/}
+    local command=$2
+    local options=""
+    local pidfile=/run/openvpn/${prog}.pid
+
+
+    case "$command" in
+    start)
+        s=$"Starting $prog: "
+            action "$s" openvpn --cd /etc/openvpn --config /etc/openvpn/openvpn.conf --daemon --writepid ${pidfile}
+        ;;
+    stop)
+        s=$"Stopping $prog: "
+            action "$s" kill $(cat ${pidfile})
+        ;;
+    esac
+}
+
+# Run some action. Log its output.
+action() {
+    local STRING rc
+
+    STRING=$1
+    echo "$STRING "
+    shift
+    "$@" && echo $"$STRING""OK" || echo $"$STRING""NOK"
+    rc=$?
+    echo
+    return $rc
+}
+
+
+if  [ "x$1" = xstart -o \
+      "x$1" = xstop ] ; then
+    call_main $0 $1
+    exit $?
+fi
