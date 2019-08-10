@@ -5,7 +5,7 @@ mkdir -p /etc/openvpn/easy-rsa/keys /etc/openvpn/easy-rsa/templates
 cp -r /usr/share/easy-rsa /etc/openvpn/
 ln -s /etc/openvpn/easy-rsa/easyrsa /usr/bin
 
-cat > etc/openvpn/easy-rsa/easyrsa.vars<<-EOF
+cat > /etc/openvpn/easy-rsa/easyrsa.vars<<-EOF
 export EASY_RSA="/etc/openvpn/easy-rsa"
 export OPENSSL="openssl"
 export PKCS11TOOL="pkcs11-tool"
@@ -34,7 +34,7 @@ export KEY_NAME="server"
 # export KEY_CN="CommonName"
 EOF
 
-cat > etc/openvpn/easy-rsa/templates/client-emb.conf<<EOF
+cat > /etc/openvpn/easy-rsa/templates/client-emb.conf<<EOF
 client
 dev tun1
 proto udp
@@ -69,7 +69,7 @@ script-security 2
 </tls-auth>
 EOF
 
-cat > etc/openvpn/easy-rsa/templates/client-file.conf<<EOF
+cat > /etc/openvpn/easy-rsa/templates/client-file.conf<<EOF
 client
 dev tun1
 proto udp
