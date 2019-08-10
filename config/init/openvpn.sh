@@ -8,6 +8,8 @@ mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 chmod 0666 /dev/net/tun
 
+cp -r /usr/share/easy-rsa /etc/openvpn/
+
 if [ ! -f $OVPN_TLSAUTH_KEY.key ]
 then
 
@@ -75,10 +77,10 @@ echo " ---> Generate Openvpn file ${CLIENT_NAME}-file.ovpn"
     echo 'cert ${CRT_SRV_CN}.crt' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo 'key ${CRT_SRV_CN}.key' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
     echo 'tls-auth ta.key 1' >> ${OVPN_DIR}/${CLIENT_NAME}-file.ovpn
-    cp ${CRT_CA}.crt ${OVPN_DIR}
-    cp ${CRT_SRV}.crt ${OVPN_DIR}
-    cp ${CRT_SRV}.key ${OVPN_DIR}
-    cp ${OVPN_TLSAUTH_KEY}.key ${OVPN_DIR}
+    #cp ${CRT_CA}.crt ${OVPN_DIR}
+    #cp ${CRT_SRV}.crt ${OVPN_DIR}
+    #cp ${CRT_SRV}.key ${OVPN_DIR}
+    #cp ${OVPN_TLSAUTH_KEY}.key ${OVPN_DIR}
 echo " ---> Generate openvpn.conf Config file "
     echo port 1194 > ${OVPN_CONFIG}.conf
     echo proto udp >> ${OVPN_CONFIG}.conf
