@@ -15,12 +15,12 @@ COPY --from=appbuilder /usr/bin/ss-local /usr/bin/ \
                        /usr/sbin/tincd /usr/bin/
 
 
-RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip iproute2 perl opensc \
+RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc musl geoip iproute2 perl \
     openssl ca-certificates shadow openssh bash nano sudo dcron upx patch gmp multirun strongswan \
     libsodium python3 python3-dev gnupg readline bzip2 libev libbz2 sqlite sqlite-libs musl-utils \
     expat gdbm xz xz-libs libffi libffi-dev libc-dev mbedtls runit tor torsocks pwgen rng-tools stunnel util-linux \
     libxslt-dev w3m c-ares zlib pcre coreutils libc6-compat libstdc++ lzo libpcap ncurses-static zstd zstd-libs \ 
-    nginx php7-fpm openvpn easy-rsa openvpn-auth-pam google-authenticator && \
+    nginx php7-fpm openvpn easy-rsa openvpn-auth-pam google-authenticator opensc p11-kit && \
     #Testing and Third Repos:
     echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     apk add --update --no-cache \
