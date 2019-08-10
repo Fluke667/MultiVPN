@@ -36,7 +36,7 @@ RUN apk add --update --no-cache alpine-baselayout alpine-base busybox openrc mus
     pip3 install asn1crypto asyncssh asyncio cffi cryptography pproxy pycparser pycryptodome setuptools six aiodns aiohttp maxminddb \
     obfsproxy proxybroker && \
 ### Files & Directories
-    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /run/openvpn /etc/openvpn/easy-rsa /etc/openvpn/easy-rsa/keys /etc/openvpn/ccd /var/log/openvpn \
+    mkdir -p ~root/.ssh /etc/authorized_keys /etc/container_environment /run/openvpn /etc/openvpn/ccd /var/log/openvpn \
     /etc/shadowsocks-libev /etc/tinc/ /etc/tinc/$TINC_NETNAME /etc/tinc/$TINC_NETNAME/hosts /var/log/tinc/ /home/i2pd /home/i2pd/data /etc/certs/i2pd && \
     chmod 700 ~root/.ssh/ && \
     touch /var/log/cron.log  /run/openvpn/ovpn.pid && \
