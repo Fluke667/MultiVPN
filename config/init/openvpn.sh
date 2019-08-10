@@ -7,6 +7,8 @@ mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 chmod 0666 /dev/net/tun
 
+mkdir - /var/log/openvpn /run/openvpn
+
 if [ ! -f $OVPN_TLSAUTH_KEY.key ]
 then
 
