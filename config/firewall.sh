@@ -2,6 +2,31 @@
 
 set -e
 
+
+# flush and set policies
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+
+# set lo
+iptables -A INPUT  -i lo
+iptables -A OUTPUT -o lo
+
+# allow returning packets for all interfaces
+iptables -A INPUT -p tcp  -m state --state RELATED,ESTABLISHED -j ACCEPT 
+iptables -A INPUT -p udp  -m state --state RELATED,ESTABLISHED -j ACCEPT 
+iptables -A INPUT -p icmp -m state --state RELATED,ESTABLISHED -j ACCEPT 
+
+# allow output on tun0
+iptables -A OUTPUT -o tun0 -j ACCEPT
+
+# make sure default route is deleted forever
+ip ro del default
+
+
+
+
+
+
 # configure firewall
 iptables -t nat -A POSTROUTING -s 10.99.99.0/24 ! -d 10.99.99.0/24 -j MASQUERADE
 iptables -A FORWARD -s 10.99.99.0/24 -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j TCPMSS --set-mss 1356
