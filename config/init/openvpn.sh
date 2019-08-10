@@ -78,10 +78,9 @@ echo " ---> Generate Openvpn file ${OVPN_CLI_NAME}-emb.ovpn"
     echo persist-key >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
     echo persist-tun >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
     echo persist-remote-ip >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
-    echo user openvpn >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
-    echo group openvpn >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
     echo verb 9 >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
     echo script-security 2 >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
+    echo ns-cert-type server >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn 
     #echo auth-user-pass >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
     echo '<ca>' >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-emb.ovpn
@@ -110,10 +109,9 @@ echo " ---> Generate Openvpn file ${OVPN_CLI_NAME}-file.ovpn"
     echo persist-key >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
     echo persist-tun >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
     echo persist-remote-ip >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
-    echo user openvpn >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
-    echo group openvpn >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
     echo verb 9 >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
     echo script-security 2 >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
+    echo ns-cert-type server >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
     #echo setenv ALLOW_PASSWORD_SAVE 0 >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn 
     #echo auth-user-pass >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
     echo 'ca ca.crt' >> ${OVPN_CCD_DIR}/${OVPN_CLI_NAME}-file.ovpn
