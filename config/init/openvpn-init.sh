@@ -1,9 +1,9 @@
 #!/bin/sh
 
-mkdir -p /etc/openvpn/easy-rsa/keys /etc/openvpn/easy-rsa/templates /etc/openvpn/server /etc/openvpn/client
+
 cp -r /usr/share/easy-rsa /etc/openvpn/
 
-mkdir -p /dev/net
+#mkdir -p /dev/net <<< done in pre-install.sh
 mknod /dev/net/tun c 10 200
 chmod 0666 /dev/net/tun
 
