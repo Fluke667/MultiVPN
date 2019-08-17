@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd /config && chmod u+x * -R &
+sh /config/pre-install.sh &
 sh /config/init/openssl-init.sh &
 sh /config/init/openssh-init.sh &
 sh /config/init/openvpn-init.sh &
