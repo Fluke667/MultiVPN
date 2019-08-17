@@ -1,7 +1,5 @@
 #!/bin/sh
 
-mkdir -p /etc/cloak/
-
 cat > ${CLOAK_SRV_CONF} <<-EOF
 {
   "ProxyBook": {
