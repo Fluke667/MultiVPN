@@ -1,0 +1,29 @@
+#!/bin/bash
+
+NUMBEROFCLIENTS=$(tail -n +2 /cert/easy-rsa/pki/index.txt | grep -c "^V")
+if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
+	echo
+	echo "You have no existing users!"
+	exit 5
+fi
+echo
+echo "Select the existing user certificate you want to revoke"
+tail -n +2 /cert/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | nl -s ') '
+if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
+	read -p "Select one user (0: cancel) [1]: " CLIENTNUMBER
+else
+	read -p "Select one user (0: cancel) [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+fi
+
+[[ "$CLIENTNUMBER" = '0' ]] && exit 0
+[[ -z "$CLIENTNUMBER" ]] && exit 0
+
+CLIENT=$(tail -n +2 /cert/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | sed -n "$CLIENTNUMBER"p)
+cd /cert/easy-rsa/
+./easyrsa --batch revoke $CLIENT
+./easyrsa gen-crl
+rm -rf pki/reqs/$CLIENT.req pki/private/$CLIENT.key pki/issued/$CLIENT.crt /etc/openvpn/crl.pem /etc/openvpn/client/$CLIENT.ovpn
+cp /cert/easy-rsa/pki/crl.pem /etc/openvpn/crl.pem
+chmod 644 /etc/openvpn/crl.pem
+echo
+echo "Certificate for user $CLIENT revoked"
