@@ -7,7 +7,7 @@
                 echo "Digest = whirlpool" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
                 echo "MACLength = 16" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
                 echo "Compression = "$TINC_COMPRESSION >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
-		            echo "Port = 665" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
+		echo "Port = 665" >> /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
                 chmod 644 /etc/tinc/$TINC_NETNAME/hosts/$TINC_NODE
 		
                 # Set Runtime Configuration for Tinc
@@ -15,7 +15,7 @@
                 echo "AddressFamily = ipv4" >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "Device = /dev/net/tun"  >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "Interface = "$TINC_INTERFACE  >> /etc/tinc/$TINC_NETNAME/tinc.conf
-		            echo "PrivateKeyFile = /etc/tinc/$TINC_NETNAME/rsa_key.priv" >> /etc/tinc/$TINC_NETNAME/tinc.conf
+		echo "PrivateKeyFile = /etc/tinc/$TINC_NETNAME/rsa_key.priv" >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "#Mode = switch" >> /etc/tinc/$TINC_NETNAME/tinc.conf
                 echo "#ConnectTo = <other.client>" >> /etc/tinc/$TINC_NETNAME/tinc.conf     
                 echo "#ProcessPriority = high" >> /etc/tinc/$TINC_NETNAME/tinc.conf 
@@ -28,3 +28,5 @@
                 echo 'ifconfig '$TINC_INTERFACE' down' >> /etc/tinc/$TINC_NETNAME/tinc-down
                 chmod +x /etc/tinc/$TINC_NETNAME/tinc-up
                 chmod +x /etc/tinc/$TINC_NETNAME/tinc-down
+		
+"$@"
