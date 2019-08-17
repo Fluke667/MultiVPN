@@ -1,6 +1,5 @@
 #!/bin/sh
 
-mkdir -p /etc/ssh/keys
 
 #if [ ! -f "$SSH_ROOTKEY_PRIV" ]; then
 #  /usr/bin/ssh-keygen -q -t rsa -N '' -f $SSH_ROOTKEY_PRIV
@@ -54,15 +53,11 @@ mkdir -p /etc/ssh/keys
 #  chown -R $SSH_ROOTKEY_PATH
 #fi
     
-#mkdir -p /etc/ssh/keys/authorized_keys
 # Add Public Keys to root account
 #if [ -n "$SSH_ROOTKEY_PUB" ]; then
 #		echo "$SSH_ROOTKEY_PUB" > /etc/ssh/keys/authorized_keys/root
 #fi
 
-#prepare run dir
-if [ ! -d "/var/run/sshd" ]; then
-	mkdir -p /var/run/sshd
-fi
 
-exec "$@"
+
+"$@"
