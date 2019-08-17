@@ -9,14 +9,6 @@
 # - VPN_P12_PASSWORD
 #
 
-if [ -e /etc/ipsec.d/ipsec.conf ]
-then
-    echo "Initialized!"
-    exit 0
-else
-    echo "Initializing..."
-fi
-
 cat > /etc/ipsec.d/ipsec.conf <<EOF
 config setup
     uniqueids=never
