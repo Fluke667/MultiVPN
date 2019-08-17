@@ -16,6 +16,7 @@ sh /config/conf/tor-conf.sh &
 sh /config/conf/cloak-conf.sh &
 sh /config/conf/strongswan-conf.sh &
 sh /config/conf/obfs4proxy-ovpn-conf.sh &
+sh /config/conf/i2pd-conf.sh &
 cp /config/bin/microsocks /usr/bin &
 cp /config/bin/obfs4proxy-openvpn /usr/bin &
 cp /config/bin/ovpn /usr/bin &
