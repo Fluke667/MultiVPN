@@ -1,7 +1,5 @@
 #!/bin/sh
 
-rngd -r /dev/urandom
-
 # ss config
     cat > ${SSLIBEV_CONFIG}/standalone.json<<-EOF
     {
