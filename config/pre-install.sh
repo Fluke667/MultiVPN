@@ -1,9 +1,8 @@
 #!/bin/sh
 
-Prepare directorys
-echo "***** PREPARE DIRECTORYS: *****"
+echo "${INFO} ***** PREPARE DIRECTORYS AND FILES *****"
 if [ ! -d "/var/run/sshd" ]; then
-	mkdir -p /var/run/sshd
+mkdir -p /var/run/sshd
 fi
 if [ ! -d "/etc/ssh/keys" ]; then
 mkdir -p /etc/ssh/keys
