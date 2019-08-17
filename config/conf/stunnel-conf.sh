@@ -1,8 +1,8 @@
 #!/bin/sh
 
-rm $STUNNEL_CONF
 
-cat > ${STUNNEL_CONF} <<-EOF
+cat >${STUNNEL_CONF}<<-EOF
+
 cert = ${STUNNEL_CRT}.pem
 key = ${STUNNEL_KEY}.key
 
