@@ -2,17 +2,20 @@
 
 cd /config && chmod u+x * -R &
 sh /config/installer.sh &
-sh /config/init/openssh.sh &
 sh /config/init/openssl-init.sh &
-sh /config/init/openssl-conf.sh &
-sh /config/init/openvpn.sh &
-sh /config/init/shadowsocks.sh &
-sh /config/init/stunnel.sh &
-sh /config/init/tinc.sh &
-sh /config/init/tor.sh &
-sh /config/init/cloak.sh & 
-sh /config/init/strongswan.sh &
-sh /config/init/obfs4proxy-openvpn.sh &
+sh /config/init/openssh-init.sh &
+sh /config/init/openvpn-init.sh &
+sh /config/init/tinc-init.sh & 
+sh /config/conf/openssl-conf.sh &
+sh /config/conf/openssh-conf.sh &
+sh /config/conf/openvpn-conf.sh &
+sh /config/conf/shadowsocks-conf.sh &
+sh /config/conf/stunnel-conf.sh &
+sh /config/conf/tinc-conf.sh &
+sh /config/conf/tor-conf.sh &
+sh /config/conf/cloak-conf.sh &
+sh /config/conf/strongswan-conf.sh &
+sh /config/conf/obfs4proxy-ovpn-conf.sh &
 cp /config/bin/microsocks /usr/bin &
 cp /config/bin/obfs4proxy-openvpn /usr/bin &
 cp /config/bin/ovpn /usr/bin &
