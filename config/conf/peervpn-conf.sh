@@ -1,13 +1,5 @@
 #!/bin/sh
 
-set -e
-
-mkdir -p /etc/peervpn
-
-# Create /etc/peervpn/peervpn.conf if it does not exist.
-#
-if [ ! -f /etc/peervpn/peervpn.conf ]; then
-    cat > /etc/peervpn/peervpn.conf <<-EOF
 ## ******************************
 ## * PeerVPN configuration file *
 ## ******************************
@@ -245,12 +237,8 @@ enablerelay ${PEERVPN_ENABLERELAY:-no}
 
 #chroot /var/empty
 EOF
-fi
-chmod 0600 /etc/peervpn/peervpn.conf
 
 # This must be done from inside the running container.
 # (https://github.com/mjuenema/docker-alpine-peervpn/issues/3)
 
-
-#exec /sbin/peervpn /etc/peerpvn/peervpn.conf
 "$@"
