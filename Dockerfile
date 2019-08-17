@@ -75,9 +75,9 @@ EXPOSE 6600 6700
 
 
                 
-COPY ./etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
-COPY ./etc/ssh/sshd_config /etc/ssh/sshd_config
-COPY ./etc/openvpn/vpnconf /etc/openvpn/vpnconf
+COPY ./config/etc/ssl/openssl.cnf /etc/ssl/openssl.cnf
+COPY ./config/etc/ssh/sshd_config /etc/ssh/sshd_config
+COPY ./config/etc/openvpn/vpnconf /etc/openvpn/vpnconf
 
 VOLUME ["/etc/certs"]
 VOLUME ["/etc/openvpn"]
