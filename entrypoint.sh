@@ -1,10 +1,10 @@
 #!/bin/sh
 
 cd /config && chmod u+x * -R &
-sh /config/installer.sh &
 sh /config/init/openssl-init.sh &
 sh /config/init/openssh-init.sh &
 sh /config/init/openvpn-init.sh &
+sh /config/init/shadowsocks-plugin-init.sh &
 sh /config/init/tinc-init.sh & 
 sh /config/conf/openssl-conf.sh &
 sh /config/conf/openssh-conf.sh &
