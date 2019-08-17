@@ -9,7 +9,7 @@ key = ${STUNNEL_KEY}.key
 setuid = stunnel
 setgid = stunnel
 
-pid = /var/run/stunnel/stunnel.pid
+pid = /run/stunnel/stunnel.pid
 
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
